@@ -16,21 +16,17 @@
  */
 
 /**
- * This package is a part of JDevKit, an open-source Java Development Kit that
- * provides a set of convenient tools to streamline code development and
- * enhance productivity. This package serves as the core package containing
- * common exceptions that are used throughout the entireJDevKit project.
+ * 该软件包是开源 Java 开发工具包 JDevKit 的一部分。提供了一套方便的工具，可简化代码开发并提高生产率。
+ * 提高工作效率。该包作为核心包，包含 在整个 JDevKit 项目中使用的常用异常。
+ * <p>
+ * JDevKit 的设计是模块化的，库中的其他特定功能模块可能会依赖于核心包中的这些例外。库中的其他特定功能模
+ * 块可能会依赖于核心软件包中的这些异常。
+ * <p>
+ * 有关 JDevKit 的更多信息和最新版本，请访问我们的网站 <a href="https://codecrafters.org.cn"
+ * >codecrafters.org.cn</a>。
  *
  * <p>
- * JDevKit is designed to be modular, and other specific feature modules within
- * the library may rely on these exceptions from the core package.
- *
- * <p>
- * For more information and the latest version of JDevKit, please visit our
- * website <a href="https://codecrafters.org.cn">codecrafters.org.cn</a>.
- *
- * <p>
- * <b>Contact</b>
+ * <b>联系方式</b>
  * <ul>
  *     <li>
  *         <a href="https://github.com/CodeCraftersCN/jdevkit/issues/new"

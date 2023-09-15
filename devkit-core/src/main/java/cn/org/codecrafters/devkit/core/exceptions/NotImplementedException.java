@@ -18,22 +18,13 @@
 package cn.org.codecrafters.devkit.core.exceptions;
 
 /**
- * NotImplementedException - Custom Runtime Exception
+ * {@code NotImplementedException} 异常是一个自定义的运行时环境异常，其表示在一个具体的方法或功能
+ * 并未进行实现或者在代码层面不可访问。其继承自 {@code RuntimeException} 异常。
  * <p>
- * The {@code NotImplementedException} class is a custom runtime exception
- * that represents a situation where a particular method or functionality is
- * not implemented or is currently unavailable in the codebase. It extends the
- * standard {@code RuntimeException} class, making it an unchecked exception.
- *
+ * 当开发人员需要指示代码的特定部分不完整或需要进一步实现时，通常会引发此异常。 它用作占位符，以突出显示开
+ * 发和测试阶段应用程序中未完成的部分。
  * <p>
- * This exception is typically thrown when developers need to indicate that a
- * specific part of the code is incomplete or requires further implementation.
- * It serves as a placeholder to highlight unfinished sections of the
- * application during development and testing phases.
- *
- * <p>
- * Usage Example:
- *
+ * 使用案例:
  * <pre>
  * public void someMethod() {
  *     // Some code...
@@ -43,7 +34,7 @@ package cn.org.codecrafters.devkit.core.exceptions;
  * }
  * </pre>
  *
- * <b>Contact</b>
+ * <b>联系方式</b>
  * <ul>
  *     <li>
  *         <a href="https://github.com/CodeCraftersCN/jdevkit/issues/new"
@@ -62,51 +53,46 @@ package cn.org.codecrafters.devkit.core.exceptions;
 public class NotImplementedException extends RuntimeException {
 
     /**
-     * Creates a new {@code NotImplementedException} with no specific error
-     * message.
+     * 创建一个不指定错误信息的 {@code NotImplementedException} 实例
      */
     public NotImplementedException() {
     }
 
     /**
-     * Creates a new {@code NotImplementedException} with the provided error
-     * message.
+     * 创建一个带有指定错误信息的 {@code NotImplementedException} 实例。
      *
-     * @param message the error message associated with this exception
+     * @param message 与此异常相关的错误消息
      */
     public NotImplementedException(String message) {
         super(message);
     }
 
     /**
-     * Creates a new {@code NotImplementedException} with the specified error
-     * message and a cause for this exception.
+     * 创建一个带有指定错误信息和造成原因的 {@code NotImplementedException} 实例。
      *
-     * @param message the error message associated with this exception
-     * @param cause   the cause of this exception
+     * @param message 与此异常相关的错误消息
+     * @param cause   该异常发生的原因
      */
     public NotImplementedException(String message, Throwable cause) {
         super(message, cause);
     }
 
     /**
-     * Creates a new {@code NotImplementedException} with the specified cause.
+     * 创建一个带有指定造成原因的 {@code NotImplementedException} 实例。
      *
-     * @param cause the cause of this exception
+     * @param cause 该异常发生的原因
      */
     public NotImplementedException(Throwable cause) {
         super(cause);
     }
 
     /**
-     * Creates a new {@code NotImplementedException} with the specified error
-     * message, cause, suppression flag, and stack trace writable flag.
+     * 使用指定的错误消息、原因、抑制标志和堆栈跟踪可写标志创建一个新的 {@code NotImplementedException}。
      *
-     * @param message            the error message associated with this
-     *                           exception
-     * @param cause              the cause of this exception
-     * @param enableSuppression  whether suppression is enabled or disabled
-     * @param writableStackTrace whether the stack trace should be writable
+     * @param message            与此异常相关的错误消息
+     * @param cause              该异常发生的原因
+     * @param enableSuppression  抑制是启用还是禁用
+     * @param writableStackTrace 堆栈跟踪是否可写
      */
     public NotImplementedException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);

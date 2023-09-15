@@ -16,7 +16,7 @@
  */
 
 /**
- * Commonly used exceptions will be used in JDevKit.
+ * 在 JDevKit 中通用的异常。
  *
  * @author Zihlu Wang
  * @since 1.0.0
