@@ -16,15 +16,12 @@
  */
 
 /**
- * <p>
  * The "cn.org.codecrafters.simplejwt.autoconfiguration.properties" package
  * contains configuration properties classes used for Simple JWT library
- * auto-configuration. These classes define the properties that can be
+ * autoconfiguration. These classes define the properties that can be
  * configured in the application's properties file (e.g.,
  * application.properties) to customize the behavior and settings of the Simple
  * JWT library.
- *
- *
  * <p>
  * Developers can customize the JWT algorithm, issuer, and secret by setting
  * the corresponding properties in the application's properties file with the

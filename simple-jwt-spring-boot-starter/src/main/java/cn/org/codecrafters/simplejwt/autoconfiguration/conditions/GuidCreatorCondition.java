@@ -9,11 +9,11 @@ import org.springframework.core.type.AnnotatedTypeMetadata;
 import java.util.Objects;
 
 /**
- * GuidCreatorCondition
- * <p>
- * Created on 28 Aug 2023
+ * The condition to create bean {@code jtiCreator}.
  *
  * @author Zihlu Wang
+ * @version 1.1.0
+ * @since 1.0.0
  */
 @Slf4j
 public class GuidCreatorCondition implements Condition {

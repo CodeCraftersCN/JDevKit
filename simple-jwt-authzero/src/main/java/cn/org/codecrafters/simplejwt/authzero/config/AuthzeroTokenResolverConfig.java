@@ -37,7 +37,6 @@ import java.util.function.Function;
  * the specific algorithms used by the Auth0 Java JWT library, which is the
  * underlying library used by AuthzeroTokenResolver to handle JSON Web Tokens
  * (JWTs).
- *
  * <p>
  * <b>Algorithm Mapping:</b>
  * The AuthzeroTokenResolverConfig class allows specifying the relationship
@@ -47,7 +46,6 @@ import java.util.function.Function;
  * keys are the standard TokenAlgorithm instances, and the values represent the
  * algorithm functions used by Auth0 Java JWT library for each corresponding
  * key.
- *
  * <p>
  * <b>Note:</b>
  * The provided algorithm mapping should be consistent with the actual
@@ -56,7 +54,7 @@ import java.util.function.Function;
  * and processing within the AuthzeroTokenResolver.
  *
  * @author Zihlu Wang
- * @version 1.0.0
+ * @version 1.1.0
  * @since 1.0.0
  */
 public final class AuthzeroTokenResolverConfig implements TokenResolverConfig<Function<String, Algorithm>> {

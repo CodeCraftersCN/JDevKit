@@ -35,7 +35,7 @@ import java.util.List;
  * component or event.
  *
  * @author Zihlu Wang
- * @version 1.0.0
+ * @version 1.1.0
  * @since 1.0.0
  */
 public abstract sealed class WebCalendarNode

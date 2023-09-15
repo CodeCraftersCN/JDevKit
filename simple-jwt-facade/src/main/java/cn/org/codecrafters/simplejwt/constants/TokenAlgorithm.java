@@ -25,7 +25,6 @@ import lombok.Getter;
  * cryptographic algorithms to be used for secure token generation and
  * validation. This enum provides a list of supported algorithms to ensure
  * consistent usage and avoid potential security issues.
- *
  * <p><b>Supported Algorithms:</b>
  * This enum includes the following supported algorithms:
  * <ul>
@@ -40,7 +39,7 @@ import lombok.Getter;
  *     <li>{@link TokenAlgorithm#ES512}: ECDSA with SHA-512</li>
  * </ul>
  *
- * @version 1.0.0
+ * @version 1.1.0
  * @since 1.0.0
  */
 @Getter

@@ -23,32 +23,29 @@ import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 
 /**
- * <p>
  * SnowflakeGuidCreator - GUID generator based on the Snowflake algorithm.
- *
  * <p>
  * The SnowflakeGuidCreator generates unique identifiers using the Snowflake
- * algorithm, which combines a timestamp, worker ID, and data center ID to
+ * algorithm, which combines a timestamp, worker ID, and data centre ID to
  * create 64-bit long integers. The bit distribution for the generated IDs is
  * as follows:
  * <ul>
  *     <li>1 bit for sign</li>
  *     <li>41 bits for timestamp (in milliseconds)</li>
- *     <li>5 bits for data center ID</li>
+ *     <li>5 bits for data centre ID</li>
  *     <li>5 bits for worker ID</li>
  *     <li>12 bits for sequence number (per millisecond)</li>
  * </ul>
- *
  * <p>
  * When initializing the SnowflakeGuidCreator, you must provide the worker ID
- * and data center ID, ensuring they are within the valid range defined by the
+ * and data centre ID, ensuring they are within the valid range defined by the
  * bit size. The generator maintains an internal sequence number that
  * increments for IDs generated within the same millisecond. If the system
  * clock moves backward, an exception is thrown to prevent generating IDs with
  * repeated timestamps.
  *
  * @author Zihlu Wang
- * @version 1.0.0
+ * @version 1.1.0
  * @since 1.0.0
  */
 public final class SnowflakeGuidCreator implements GuidCreator<Long> {
@@ -71,7 +68,7 @@ public final class SnowflakeGuidCreator implements GuidCreator<Long> {
     private final long workerIdBits = 5L;
 
     /**
-     * The number of bits reserved for the data center ID.
+     * The number of bits reserved for the data centre ID.
      */
     private final long dataCentreIdBits = 5L;
 
@@ -81,7 +78,7 @@ public final class SnowflakeGuidCreator implements GuidCreator<Long> {
     private final long workerId;
 
     /**
-     * The data center ID assigned to this generator.
+     * The data centre ID assigned to this generator.
      */
     private final long dataCentreId;
 
@@ -97,10 +94,10 @@ public final class SnowflakeGuidCreator implements GuidCreator<Long> {
 
     /**
      * Constructs a SnowflakeGuidGenerator with the default start epoch and
-     * custom worker ID, data center ID.
+     * custom worker ID, data centre ID.
      *
      * @param workerId     the worker ID (between 0 and 31).
-     * @param dataCentreId the data center ID (between 0 and 31).
+     * @param dataCentreId the data centre ID (between 0 and 31).
      */
     public SnowflakeGuidCreator(long workerId, long dataCentreId) {
         this(workerId, dataCentreId, DEFAULT_CUSTOM_EPOCH);
@@ -108,15 +105,15 @@ public final class SnowflakeGuidCreator implements GuidCreator<Long> {
 
     /**
      * Constructs a SnowflakeGuidGenerator with a custom epoch, worker ID, and
-     * data center ID.
+     * data centre ID.
      *
      * @param startEpoch   the custom epoch timestamp (in milliseconds) to
      *                     start generating IDs from
      * @param workerId     the worker ID (between 0 and 31)
-     * @param dataCentreId the data center ID (between 0 and 31)
+     * @param dataCentreId the data centre ID (between 0 and 31)
      * @throws IllegalArgumentException if the start epoch is greater than the
      *                                  current timestamp, or if the worker ID
-     *                                  or data center ID is out of range
+     *                                  or data centre ID is out of range
      */
     public SnowflakeGuidCreator(long workerId, long dataCentreId, long startEpoch) {
         if (startEpoch > currentTimestamp()) {

@@ -34,28 +34,25 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 
 /**
- * <p>
  * JjwtTokenResolverAutoConfiguration is responsible for automatically
  * configuring the Simple JWT library with {@code io.jsonwebtoken:jjwt-api}
  * when used in a Spring Boot application. It provides default settings and
  * configurations to ensure that the library works smoothly without requiring
  * manual configuration.
- *
  * <p>
- * This auto-configuration class sets up the necessary beans and components
+ * This autoconfiguration class sets up the necessary beans and components
  * required for JWT generation and validation. It automatically creates and
  * configures the {@link TokenResolver} bean based on the available options and
  * properties.
- *
  * <p>
  * Developers using the Simple JWT library with Spring Boot do not need to
- * explicitly configure the library, as the auto-configuration takes care of
+ * explicitly configure the library, as the autoconfiguration takes care of
  * setting up the necessary components and configurations automatically.
  * However, developers still have the flexibility to customize the behavior of
  * the library by providing their own configurations and properties.
  *
  * @author Zihlu Wang
- * @version 1.0.0
+ * @version 1.1.0
  * @since 1.0.0
  */
 @Slf4j

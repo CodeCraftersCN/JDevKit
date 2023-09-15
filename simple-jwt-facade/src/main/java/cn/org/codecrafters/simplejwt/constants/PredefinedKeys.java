@@ -23,8 +23,8 @@ import java.util.List;
  * The {@code PredefinedKeys} class contains constants for standard JSON Web Token (JWT) claims. These constants
  * represent the names of the standard claims that can be included in a JWT payload. Developers can use these constants
  * when working with JWTs to ensure consistent naming of the claims.
- *
- * <p>The class provides the following standard JWT claim constants:
+ * <p>
+ * The class provides the following standard JWT claim constants:
  * <ul>
  *     <li>{@link #ISSUER}: Represents the "iss" (Issuer) claim.</li>
  *     <li>{@link #SUBJECT}: Represents the "sub" (Subject) claim.</li>
@@ -34,13 +34,14 @@ import java.util.List;
  *     <li>{@link #ISSUED_AT}: Represents the "iat" (Issued At) claim.</li>
  *     <li>{@link #JWT_ID}: Represents the "jti" (JWT ID) claim.</li>
  * </ul>
- *
- * <p>The class also contains a list of all the standard claim constants, accessible via the {@link #KEYS} field. This
+ * <p>
+ * The class also contains a list of all the standard claim constants, accessible via the {@link #KEYS} field. This
  * list can be useful for iterating through all the standard claims or checking for the presence of specific claims.
- *
- * <p>Note: This class is final and cannot be instantiated. It only serves as a utility class to hold the standard JWT
+ * <p>
+ * Note: This class is final and cannot be instantiated. It only serves as a utility class to hold the standard JWT
  * claim constants.
  *
+ * @version 1.1.0
  * @since 1.0.0
  */
 public final class PredefinedKeys {

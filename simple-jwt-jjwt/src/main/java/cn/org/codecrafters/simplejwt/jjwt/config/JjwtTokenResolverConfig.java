@@ -20,19 +20,45 @@ package cn.org.codecrafters.simplejwt.jjwt.config;
 import cn.org.codecrafters.simplejwt.config.TokenResolverConfig;
 import cn.org.codecrafters.simplejwt.constants.TokenAlgorithm;
 import cn.org.codecrafters.simplejwt.exceptions.UnsupportedAlgorithmException;
+import cn.org.codecrafters.simplejwt.jjwt.JjwtTokenResolver;
 import io.jsonwebtoken.SignatureAlgorithm;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * JjwtTokenResolverConfig
+ * The JjwtTokenResolverConfig class provides the configuration for the
+ * JjwtTokenResolverConfig.
+ * <p>
+ * This configuration class is used to establish the mapping between the
+ * standard TokenAlgorithm defined within the JjwtTokenResolverConfig and
+ * the specific algorithms used by the {@code io.jsonwebtoken:jjwt} library,
+ * which is the underlying library used by JjwtTokenResolverConfig to handle
+ * JSON Web Tokens (JWTs).
+ * <p>
+ * <b>Algorithm Mapping:</b>
+ * The JjwtTokenResolverConfig class allows specifying the relationship
+ * between the standard TokenAlgorithm instances supported by
+ * JjwtTokenResolverConfig and the corresponding algorithms used by the
+ * {@code io.jsonwebtoken:jjwt} library. The mapping is achieved using a Map,
+ * where the keys are the standard TokenAlgorithm instances, and the values
+ * represent the algorithm functions used by {@code io.jsonwebtoken:jjwt}
+ * library for each corresponding key.
+ * <p>
+ * <b>Note:</b>
+ * The provided algorithm mapping should be consistent with the actual
+ * algorithms supported and used by the {@code io.jsonwebtoken:jjwt} library.
+ * It is crucial to ensure that the mapping is accurate to enable proper token
+ * validation and processing within the {@link JjwtTokenResolver}.
  *
  * @author Zihlu Wang
+ * @version 1.1.0
+ * @since 1.0.0
  */
 public final class JjwtTokenResolverConfig implements TokenResolverConfig<SignatureAlgorithm> {
 
-    private JjwtTokenResolverConfig() {}
+    private JjwtTokenResolverConfig() {
+    }
 
     private static final Map<TokenAlgorithm, SignatureAlgorithm> SUPPORTED_ALGORITHMS = new HashMap<>() {{
         put(TokenAlgorithm.HS256, SignatureAlgorithm.HS256);

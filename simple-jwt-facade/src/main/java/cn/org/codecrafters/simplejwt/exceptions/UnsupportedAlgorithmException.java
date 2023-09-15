@@ -18,15 +18,14 @@
 package cn.org.codecrafters.simplejwt.exceptions;
 
 /**
- * <p>
  * This {@code UnsupportedAlgorithmException} is to indicates that the given
  * algorithm is not supported by TokenResolver yet.
- * 
  * <p>
  * To support a specified algorithm, you could
- * 
  *
  * @author Zihlu Wang
+ * @version 1.1.0
+ * @since 1.0.0
  */
 public class UnsupportedAlgorithmException extends RuntimeException {
 
@@ -51,14 +50,12 @@ public class UnsupportedAlgorithmException extends RuntimeException {
     }
 
     /**
-     * <p>
      * Constructs a new runtime exception with the specified detail message and
      * cause.
-     * 
-     * <p>Note that the detail message associated with
+     * <p>
+     * Note that the detail message associated with
      * {@code cause} is <i>not</i> automatically incorporated in
      * this runtime exception's detail message.
-     * 
      *
      * @param message the detail message (which is saved for later retrieval
      *                by the {@link #getMessage()} method).
@@ -95,13 +92,12 @@ public class UnsupportedAlgorithmException extends RuntimeException {
      * stack trace enabled or disabled.
      *
      * @param message            the detail message.
-     * @param cause              the cause.  (A {@code null} value is permitted,
-     *                           and indicates that the cause is nonexistent or unknown.)
-     * @param enableSuppression  whether or not suppression is enabled
-     *                           or disabled
-     * @param writableStackTrace whether or not the stack trace should
-     *                           be writable
-     * @since 1.7
+     * @param cause              the cause (A {@code null} value is permitted,
+     *                           and indicates that the cause is nonexistent or
+     *                           unknown.)
+     * @param enableSuppression  whether suppression is enabled or disabled
+     * @param writableStackTrace whether the stack trace should be writable
+     * @since 1.0.0
      */
     public UnsupportedAlgorithmException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);

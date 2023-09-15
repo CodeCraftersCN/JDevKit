@@ -27,7 +27,7 @@ import java.util.Random;
  * passwords for various security-sensitive purposes.
  *
  * @author Zihlu Wang
- * @version 1.0.0
+ * @version 1.1.0
  * @since 1.0.0
  */
 public final class SecretCreator {

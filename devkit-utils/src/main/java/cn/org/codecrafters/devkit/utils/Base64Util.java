@@ -28,7 +28,6 @@ import java.util.Base64;
  * <p>
  * 该类被设计为具有私有构造函数的最终类，以防止实例化。该类中的所有方法都是静态的，可以方便地访问
  * Base64 编码和解码功能。
- * 
  * <p>
  * 使用案例
  * <pre>
@@ -42,11 +41,9 @@ import java.util.Base64;
  * String decoded = Base64Util.decode(encoded);
  * System.out.println("Decoded string: " + decoded);
  * </pre>
- *
  * <p>
  * <b>注意事项:</b> 如果没有提供特定的字符集，该实用程序类将使用默认字符集（UTF-8）。建议明确
  * 指定字符集，以确保编码和解码的一致性。
- * 
  *
  * @author Zihlu Wang
  * @version 1.0.0

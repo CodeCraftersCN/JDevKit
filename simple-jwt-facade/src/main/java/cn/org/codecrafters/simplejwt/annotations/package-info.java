@@ -22,7 +22,6 @@
  * properties of a data class to exclude them from being included as part
  * of the JWT payload.
  *
- * @version 1.0.0
  * @since 1.0.0
  */
 package cn.org.codecrafters.simplejwt.annotations;

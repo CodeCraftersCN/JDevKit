@@ -55,7 +55,9 @@ import java.util.Optional;
  * The prefix to specify the encrypted value is {@code pg}.
  *
  * @author hubin@baomidou
+ * @version 1.1.0
  * @see org.springframework.boot.env.EnvironmentPostProcessor
+ * @since 1.1.0 (3.3.2 of MyBatis-Plus)
  */
 public class PropertyGuard implements EnvironmentPostProcessor {
 

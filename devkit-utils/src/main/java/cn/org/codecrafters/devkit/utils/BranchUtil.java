@@ -57,14 +57,13 @@ import java.util.function.Supplier;
  *         // do something
  *     });
  * </pre>
- *
  * <p>
  * <b>注意事项:</b>
  * {@link #and(Boolean...)} 和 {@link #or(Boolean...)} 方法接受任意数量的布尔表达式。
  *
  * @param <T> 方法要处理的结果的类型
  * @author Zihlu Wang
- * @version 1.0.0
+ * @version 1.1.0
  * @see java.util.function.Supplier
  * @see java.util.function.BooleanSupplier
  * @see java.lang.Runnable

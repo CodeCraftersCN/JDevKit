@@ -2,12 +2,12 @@
 
 ## Introduction
 
-The module `webcal` is a Java library that facilitates the generation and resolution of iCalendar content for web-based calendar applications. It provides a flexible and easy-to-use API for creating web calendars with customizable settings and events.
+The module `webcal` is a Java library that facilitates the generation and resolution of iCalendar content for web-based calendar applications. It provides a flexible and easy-to-use API for creating web calendars with customisable settings and events.
 
 ### Key features
 
 - Create and manage web calendars with events, including event details such as summary, description, location, and more.
-- Define event classifications and categories for better organization and filtering of calendar data.
+- Define event classifications and categories for better organisation and filtering of calendar data.
 - Set event start and end times, durations, and time zones to handle various scheduling scenarios.
 - Configure event priorities and completion percentages for visual representation in the calendar.
 - Generate iCalendar format output suitable for web calendar applications.

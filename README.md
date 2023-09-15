@@ -27,7 +27,7 @@ A module for generating globally unique IDs. It includes a facade interface and 
 
 <span style="font-size: 14px;">_[Learn more](https://github.com/CodeCraftersCN/jdevkit/webcal/README.md)_</span>
 
-The module `webcal` is a Java library that facilitates the generation and resolution of iCalendar content for web-based calendar applications. It provides a flexible and easy-to-use API for creating web calendars with customizable settings and events.
+The module `webcal` is a Java library that facilitates the generation and resolution of iCalendar content for web-based calendar applications. It provides a flexible and easy-to-use API for creating web calendars with customisable settings and events.
 
 With the `webcal` module, developers can easily integrate calendar functionality into web applications, enabling users to view, add, and manage events in a structured and standardized format. It is designed to simplify calendar-related tasks and enhance the overall user experience when dealing with calendar data on the web.
 

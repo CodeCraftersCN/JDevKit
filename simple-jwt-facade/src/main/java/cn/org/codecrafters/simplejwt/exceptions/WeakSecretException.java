@@ -18,9 +18,12 @@
 package cn.org.codecrafters.simplejwt.exceptions;
 
 /**
- * WeakSecretException
+ * This Exception indicates that your secret is too weak to be used in signing
+ * JWTs.
  *
  * @author Zihlu Wang
+ * @version 1.1.0
+ * @since 1.0.0
  */
 public class WeakSecretException extends RuntimeException {
 

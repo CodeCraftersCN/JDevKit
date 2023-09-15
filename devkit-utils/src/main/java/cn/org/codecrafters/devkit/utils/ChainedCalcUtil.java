@@ -17,6 +17,8 @@
 
 package cn.org.codecrafters.devkit.utils;
 
+import lombok.Getter;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Objects;
@@ -24,19 +26,14 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 
 /**
- * <p>
  * Utility class for chained high-precision calculations using BigDecimal.
- *
- *
  * <p>
  * The ChainedCalcUtil class provides a convenient way to perform chained
  * high-precision calculations using BigDecimal. It allows users to perform
  * mathematical operations such as addition, subtraction, multiplication,
- * and division with customizable precision and scale. By using this utility
+ * and division with customisable precision and scale. By using this utility
  * class, developers can achieve accurate results and avoid precision loss
  * in their calculations.
- *
- *
  * <p>
  * <b>Usage:</b>
  * <pre>
@@ -85,7 +82,6 @@ import java.util.function.Function;
  *  </pre>
  * The above expressions perform various mathematical calculations using the
  * ChainedCalcUtil class.
- *
  * <p>
  * <b>Note:</b>
  * The ChainedCalcUtil class internally uses BigDecimal to handle
@@ -94,12 +90,17 @@ import java.util.function.Function;
  * for extremely large numbers or complex calculations.
  *
  * @author sunzsh
- * @version 1.0.0
+ * @version 1.1.0
  * @see java.math.BigDecimal
- * @since 9 Jul 2023
+ * @since 1.0.0
  */
+@Getter
 public final class ChainedCalcUtil {
 
+    /**
+     * -- GETTER --
+     * Returns the current value as a BigDecimal.
+     */
     private BigDecimal value;
 
     /**
@@ -232,15 +233,6 @@ public final class ChainedCalcUtil {
      */
     public ChainedCalcUtil divideWithScale(Number other, Integer scale, Integer beforeOperateScale) {
         return baseOperator(otherValue -> this.value.divide(otherValue, scale, RoundingMode.HALF_UP), other, beforeOperateScale);
-    }
-
-    /**
-     * Returns the current value as a BigDecimal.
-     *
-     * @return the current value as a BigDecimal
-     */
-    public BigDecimal getValue() {
-        return value;
     }
 
     /**

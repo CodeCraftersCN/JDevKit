@@ -16,15 +16,12 @@
  */
 
 /**
- * <p>
  * The package provides a set of tools for generating globally unique
  * identifiers (GUIDs).
- * 
  * <p>
  * The goal of this library is to provide an efficient, reliable way to
  * generate globally unique identifiers without requiring any specific
  * environment or configuration.
- * 
  * <p>
  * Key features include:
  * <ul>

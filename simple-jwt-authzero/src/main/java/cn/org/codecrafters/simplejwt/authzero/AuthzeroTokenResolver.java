@@ -39,19 +39,16 @@ import java.time.ZoneId;
 import java.util.*;
 
 /**
- * <p>
  * The {@code AuthzeroTokenResolver} class is an implementation of the {@link
  * cn.org.codecrafters.simplejwt.TokenResolver} interface. It uses the {@code
  * com.auth0:java-jwt} library to handle JSON Web Token (JWT) resolution. This
  * resolver provides functionality to create, extract, verify, and renew JWT
  * tokens using various algorithms and custom payload data.
- *
  * <p>
  * <b>Dependencies:</b>
  * This implementation relies on the {@code com.auth0:java-jwt} library. Please
  * ensure you have added this library as a dependency to your project before
  * using this resolver.
- *
  * <p>
  * <b>Usage:</b>
  * To use the {@code AuthzeroTokenResolver}, first, create an instance of this
@@ -63,11 +60,9 @@ import java.util.*;
  *                               "Token Issuer",
  *                               "Token Secret");
  * }</pre>
- *
  * <p>
  * Then, you can utilize the various methods provided by this resolver to
  * handle JWT tokens:
- *
  * <pre>{@code
  * // Creating a new JWT token
  * String token =
@@ -84,7 +79,6 @@ import java.util.*;
  * String renewedToken =
  *     tokenResolver.renew(token, Duration.ofMinutes(30), customPayloads);
  * }</pre>
- *
  * <p>
  * <b>Note:</b>
  * It is essential to configure the appropriate algorithms, secret, and issuer
@@ -93,7 +87,7 @@ import java.util.*;
  * correctly configured in your project's dependencies.
  *
  * @author Zihlu Wang
- * @version 1.0.0
+ * @version 1.1.0
  * @see GuidCreator
  * @see Algorithm
  * @see JWTVerifier

@@ -22,7 +22,6 @@ import lombok.Getter;
 /**
  * The Classification enum represents the classification levels of calendar
  * content based on RFC 5545.
- *
  * <p>
  * Calendar events or components can be classified as one of the following
  * levels:
@@ -42,7 +41,7 @@ import lombok.Getter;
  * </ul>
  *
  * @author Zihlu Wang
- * @version 1.0.0
+ * @version 1.1.0
  * @since 1.0.0
  */
 @Getter
@@ -50,7 +49,6 @@ public enum Classification {
 
     /**
      * Public classification level.
-     *
      * <p>
      * Indicates that the calendar content is public and can be freely
      * distributed.
@@ -59,7 +57,6 @@ public enum Classification {
 
     /**
      * Private classification level.
-     *
      * <p>
      * Indicates that the calendar content is private and should not be shared
      * with others.
@@ -68,7 +65,6 @@ public enum Classification {
 
     /**
      * Confidential classification level.
-     *
      * <p>
      * Indicates that the calendar content is confidential and should be kept
      * strictly private.
@@ -79,8 +75,6 @@ public enum Classification {
     /**
      * -- GETTER --
      * Get the string representation of the classification level.
-     *
-     * @return the string representation of the classification level
      */
     private final String classification;
 

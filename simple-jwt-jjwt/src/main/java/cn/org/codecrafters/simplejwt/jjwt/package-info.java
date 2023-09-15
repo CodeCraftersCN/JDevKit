@@ -19,11 +19,10 @@
  * This package contains classes related to the integration of the {@code
  * io.jsonwebtoken:jjwt-api} library in the Simple JWT project. {@code
  * io.jsonwebtoken:jjwt-api} is a powerful and widely-used Identity as a Service
- * (IDaaS) platform that provides secure authentication and authorization
+ * (IDaaS) platform that provides secure authentication and authorisation
  * solutions for web and mobile applications. The classes in this package
  * provide the necessary functionality to handle JSON Web Tokens (JWTs) using
  * the {@code io.jsonwebtoken:jjwt-api} library.
- *
  * <p>
  * The main class in this package is the {@link
  * cn.org.codecrafters.simplejwt.jjwt.JjwtTokenResolver}, which
@@ -33,14 +32,12 @@
  * JWTs using the {@code io.jsonwebtoken:jjwt-api} library. Developers can use
  * this class as the main token resolver in the Simple JWT project when
  * integrating {@code io.jsonwebtoken:jjwt-api} as the JWT management library.
- *
  * <p>
  * The {@code JjwtTokenResolver} relies on the {@code io.jsonwebtoken:jjwt-api}
  * library to handle the underlying JWT operations, including token creation,
  * validation, and extraction. It utilizes the {@code io.jsonwebtoken:jjwt-api}
  * {@code Algorithm} class to define and use different algorithms for JWT
  * signing and verification.
- *
  * <p>
  * To use the {@code JjwtTokenResolver}, developers must provide the necessary
  * configurations and dependencies, such as the {@code GuidCreator} for
@@ -48,7 +45,6 @@
  * issuer name, and the secret key used for token signing and validation. The
  * {@code JjwtTokenResolverConfig} class provides a convenient way to configure
  * these dependencies.
- *
  * <p>
  * Developers using the {@code io.jsonwebtoken:jjwt-api} integration should be
  * familiar with the concepts and usage of the {@code io.jsonwebtoken:jjwt-api}

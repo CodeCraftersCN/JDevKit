@@ -16,15 +16,13 @@
  */
 
 /**
- * <p>
  * The classes in this package provide configuration options and settings for
  * the Simple JWT library. They are used to customize the behavior of the
  * library and allow developers to fine-tune various aspects of JWT generation
  * and validation.
- *
  * <p>
  * Other configuration classes may be added in the future to support additional
- * customization options and features. Developers using the Simple JWT library
+ * customisation options and features. Developers using the Simple JWT library
  * should be familiar with the available configuration options to ensure proper
  * integration and usage of the library.
  *

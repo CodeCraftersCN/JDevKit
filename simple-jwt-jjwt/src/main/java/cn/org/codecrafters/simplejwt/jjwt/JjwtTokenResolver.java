@@ -43,9 +43,61 @@ import java.util.Map;
 import java.util.UUID;
 
 /**
- * JjwtTokenResolver
+ * The {@link JjwtTokenResolver} class is an implementation of the {@link
+ * cn.org.codecrafters.simplejwt.TokenResolver} interface. It uses the {@code
+ * io.jsonwebtoken:jjwt} library to handle JSON Web Token (JWT) resolution.
+ * This resolver provides functionality to create, extract, verify, and renew
+ * JWT tokens using various algorithms and custom payload data.
+ * <p>
+ * <b>Dependencies:</b>
+ * This implementation relies on the {@code io.jsonwebtoken:jjwt} library. Please
+ * ensure you have added this library as a dependency to your project before
+ * using this resolver.
+ * <p>
+ * <b>Usage:</b>
+ * To use the {@code JjwtTokenResolver}, first, create an instance of this
+ * class:
+ * <pre>{@code
+ *   TokenResolver<DecodedJWT> tokenResolver =
+ *       new JjwtTokenResolver(TokenAlgorithm.HS256,
+ *                                 "Token Subject",
+ *                                 "Token Issuer",
+ *                                 "Token Secret");
+ *   }</pre>
+ * <p>
+ * Then, you can utilize the various methods provided by this resolver to
+ * handle JWT tokens:
+ * <pre>{@code
+ *   // Creating a new JWT token
+ *   String token =
+ *       tokenResolver.createToken(Duration.ofHours(1),
+ *                                 "your_subject",
+ *                                 "your_audience",
+ *                                 customPayloads);
+ *
+ *   // Extracting payload data from a JWT token
+ *   DecodedJWT decodedJWT = tokenResolver.resolve(token);
+ *   T payloadData = decodedJWT.extract(token, T.class);
+ *
+ *   // Renewing an existing JWT token
+ *   String renewedToken =
+ *       tokenResolver.renew(token, Duration.ofMinutes(30), customPayloads);
+ *   }</pre>
+ * <p>
+ * <b>Note:</b>
+ * It is essential to configure the appropriate algorithms, secret, and issuer
+ * according to your specific use case when using this resolver.
+ * Additionally, ensure that the {@code io.jsonwebtoken:jjwt} library is
+ * correctly configured in your project's dependencies.
  *
  * @author Zihlu Wang
+ * @version 1.1.0
+ * @see Claims
+ * @see Jws
+ * @see Jwts
+ * @see SignatureAlgorithm
+ * @see Keys
+ * @since 1.0.0
  */
 @Slf4j
 public class JjwtTokenResolver implements TokenResolver<Jws<Claims>> {
@@ -67,11 +119,11 @@ public class JjwtTokenResolver implements TokenResolver<Jws<Claims>> {
 
         if (secret.length() <= 32) {
             log.error("""
-                    The provided secret which owns {} characters is too weak. Please replace it with a stronger one.
-                    """, secret.length());
+                            The provided secret which owns {} characters is too weak. Please replace it with a stronger one.""",
+                    secret.length());
             throw new WeakSecretException("""
-                    The provided secret which owns %s characters is too weak. Please replace it with a stronger one.
-                    """.formatted(secret.length()));
+                    The provided secret which owns %s characters is too weak. Please replace it with a stronger one."""
+                    .formatted(secret.length()));
         }
 
         this.jtiCreator = jtiCreator;
@@ -86,12 +138,12 @@ public class JjwtTokenResolver implements TokenResolver<Jws<Claims>> {
         }
 
         if (secret.length() <= 32) {
-            log.error("""
-                    The provided secret which owns {} characters is too weak. Please replace it with a stronger one.
-                    """, secret.length());
-            throw new WeakSecretException("""
-                    The provided secret which owns %s characters is too weak. Please replace it with a stronger one.
-                    """.formatted(secret.length()));
+            log.error(
+                    "The provided secret which owns {} characters is too weak. Please replace it with a stronger one.",
+                    secret.length());
+            throw new WeakSecretException(
+                    "The provided secret which owns %s characters is too weak. Please replace it with a stronger one."
+                            .formatted(secret.length()));
         }
 
         this.jtiCreator = UUID::randomUUID;
@@ -106,12 +158,12 @@ public class JjwtTokenResolver implements TokenResolver<Jws<Claims>> {
         }
 
         if (secret.length() <= 32) {
-            log.error("""
-                    The provided secret which owns {} characters is too weak. Please replace it with a stronger one.
-                    """, secret.length());
-            throw new WeakSecretException("""
-                    The provided secret which owns %s characters is too weak. Please replace it with a stronger one.
-                    """.formatted(secret.length()));
+            log.error(
+                    "The provided secret which owns {} characters is too weak. Please replace it with a stronger one.",
+                    secret.length());
+            throw new WeakSecretException(
+                    "The provided secret which owns %s characters is too weak. Please replace it with a stronger one."
+                            .formatted(secret.length()));
         }
 
         this.jtiCreator = UUID::randomUUID;

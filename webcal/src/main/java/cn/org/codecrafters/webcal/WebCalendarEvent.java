@@ -41,7 +41,7 @@ import java.util.UUID;
  * iCalendar content for the event.
  *
  * @author Zihlu Wang
- * @version 1.0.0
+ * @version 1.1.0
  * @since 1.0.0
  */
 public final class WebCalendarEvent extends WebCalendarNode {
