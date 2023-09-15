@@ -23,43 +23,33 @@ import java.util.function.BooleanSupplier;
 import java.util.function.Supplier;
 
 /**
+ * BranchUtil 类提供静态方法，通过利用 lambda 表达式来简化 Java 开发中的条件逻辑。 它提供
+ * 了方便的方法，用更简洁和更具表现力的函数结构替换冗长的 if...else 语句。
  * <p>
- * The BranchUtil class provides static methods to simplify conditional logic
- * in Java development by leveraging lambda expressions. It offers convenient
- * methods to replace verbose if...else statements with more concise and
- * expressive functional constructs.
- *
- *
+ * 在处理分支逻辑和条件语句时，开发人员可以使用此实用程序类中的方法来简化代码、增强可读性并促进更
+ * 函数式的编程风格。
  * <p>
- * Developers can use the methods in this utility class to streamline their
- * code, enhance readability, and promote a more functional style of
- * programming when dealing with branching logic and conditional statements.
- *
- *
- * <p>
- * <b>Example:</b>
+ * <b>使用案例:</b>
  * <pre>
- * // If you want to simplify an if (exp1 || exp2), you can use the
- * // following code:
+ * // 如果你想将表达式 exp1 || exp2，你可以使用下面的代码
  * var r1 = BranchUtil.or(1 == 1, 2 == 1)
  *     .handle(() -> "1 is equal to 1 or 2 is equal to 1.");
  *
- * // If you have an else branch, you can use the following code:
+ * // 如果你需要处理 else 分支，你可以使用下面的代码
  * var r2 = BranchUtil.or(1 == 1, 2 == 1)
  *     .handle(() -> "1 is equal to 1 or 2 is equal to 1.",
  *             () -> "1 is not equal to 1 and 2 is not equal to 1.");
  *
- * // If you only need to execute code without a return value:
+ * // 如果您只需要执行没有返回值的代码：
  * BranchUtil.or(1 == 1, 2 == 1)
  *     .handle(() -> {
  *         // do something
  *     }, () -> {
  *         // do something
  *     });
- * // If you only need an if branch, you can remove the second Supplier
- * // instance.
+ * // 如果您只需要一个 if 分支，则可以删除第二个 Supplier 实例。
  *
- * // To check if all boolean expressions are true, use the 'and' method:
+ * // 要检查所有布尔表达式是否都为 true，请使用 “and” 方法：
  * BranchUtil.and(1 == 1, 2 == 1)
  *     .handle(() -> {
  *         // do something
@@ -69,11 +59,10 @@ import java.util.function.Supplier;
  * </pre>
  *
  * <p>
- * <b>Note:</b>
- * The {@link #and(Boolean...)} and {@link #or(Boolean...)} methods accept any
- * number of boolean expressions.
+ * <b>注意事项:</b>
+ * {@link #and(Boolean...)} 和 {@link #or(Boolean...)} 方法接受任意数量的布尔表达式。
  *
- * @param <T> the type of the result to be handled by the methods
+ * @param <T> 方法要处理的结果的类型
  * @author Zihlu Wang
  * @version 1.0.0
  * @see java.util.function.Supplier
@@ -84,27 +73,25 @@ import java.util.function.Supplier;
 public final class BranchUtil<T> {
 
     /**
-     * The final result of the boolean expression.
+     * 布尔表达式的最终结果。
      */
     private final boolean result;
 
     /**
-     * Create a {@code BranchUtil} instance.
+     * 创建一个 {@code BranchUtil} 实例。
      *
-     * @param result the result of the boolean expressions.
+     * @param result 布尔表达式的结果
      */
     private BranchUtil(boolean result) {
         this.result = result;
     }
 
     /**
-     * Creates a {@code BranchUtil} instance to evaluate a logical OR operation
-     * on the provided boolean expressions.
+     * 创建一个 {@code BranchUtil} 实例以对提供的布尔表达式进行逻辑 OR 运算。
      *
-     * @param booleans the boolean expressions to be evaluated
-     * @param <T>      the type of the result to be handled by the methods
-     * @return a {@code BranchUtil} instance representing the result of the
-     * logical OR operation
+     * @param booleans 要计算的布尔表达式
+     * @param <T>      方法要处理的结果的类型
+     * @return 表示逻辑 OR 运算结果的 {@code BranchUtil} 实例
      */
     public static <T> BranchUtil<T> or(Boolean... booleans) {
         var result = Arrays.stream(booleans)
@@ -114,13 +101,11 @@ public final class BranchUtil<T> {
     }
 
     /**
-     * Creates a {@code BranchUtil} instance to evaluate a logical AND
-     * operation on the provided boolean expressions.
+     * 创建一个 {@code BranchUtil} 实例以对提供的布尔表达式进行逻辑 AND 运算。
      *
-     * @param booleans the boolean expressions to be evaluated
-     * @param <T>      the type of the result to be handled by the methods
-     * @return a {@code BranchUtil} instance representing the result of the
-     * logical AND operation
+     * @param booleans 要计算的布尔表达式
+     * @param <T>      方法要处理的结果的类型
+     * @return 表示逻辑 AND 运算结果的 {@code BranchUtil} 实例
      */
     public static <T> BranchUtil<T> and(Boolean... booleans) {
         var result = Arrays.stream(booleans)
@@ -130,14 +115,11 @@ public final class BranchUtil<T> {
     }
 
     /**
-     * Creates a {@code BranchUtil} instance to evaluate a logical OR operation
-     * on the provided boolean suppliers.
+     * 创建一个 {@code BranchUtil} 实例以对提供的布尔表达式进行逻辑 OR 运算。
      *
-     * @param booleanSuppliers the boolean suppliers to be evaluated
-     * @param <T>              the type of the result to be handled by the
-     *                         methods
-     * @return a {@code BranchUtil} instance representing the result of the
-     * logical OR operation
+     * @param booleanSuppliers 要计算的布尔表达式
+     * @param <T>              方法要处理的结果的类型
+     * @return 表示逻辑 OR 运算结果的 {@code BranchUtil} 实例
      */
     public static <T> BranchUtil<T> or(BooleanSupplier... booleanSuppliers) {
         var result = Arrays.stream(booleanSuppliers)
@@ -147,14 +129,11 @@ public final class BranchUtil<T> {
     }
 
     /**
-     * Creates a {@code BranchUtil} instance to evaluate a logical AND
-     * operation on the provided boolean suppliers.
+     * 创建一个 {@code BranchUtil} 实例以对提供的布尔表达式进行逻辑 AND 运算。
      *
-     * @param booleanSuppliers the boolean suppliers to be evaluated
-     * @param <T>              the type of the result to be handled by the
-     *                         methods
-     * @return a {@code BranchUtil} instance representing the result of the
-     * logical AND operation
+     * @param booleanSuppliers 要计算的布尔表达式
+     * @param <T>              方法要处理的结果的类型
+     * @return 表示逻辑 AND 运算结果的 {@code BranchUtil} 实例
      */
     public static <T> BranchUtil<T> and(BooleanSupplier... booleanSuppliers) {
         var result = Arrays.stream(booleanSuppliers)
@@ -164,24 +143,15 @@ public final class BranchUtil<T> {
     }
 
     /**
+     * 通过根据结果执行适当的处理程序来处理布尔表达式的结果。
      * <p>
-     * Handles the result of the boolean expressions by executing the
-     * appropriate handler based on the result.
+     * 如果结果为 {@code true}，则执行 {@code ifHandler}。 如果结果为
+     * {@code false} 并且提供了 {@code elseHandler}，则执行它。
      *
-     * <p>
-     * If the result is {@code true}, the {@code ifHandler} is executed. If the
-     * result is {@code false} and an {@code elseHandler} is provided, it is
-     * executed.
-     *
-     * <p>
-     * Returns the result of the executed handler.
-     *
-     * @param ifHandler   the handler to be executed if the result is
-     *                    {@code true}
-     * @param elseHandler the handler to be executed if the result is
-     *                    {@code false} (optional)
-     * @return the result of the executed handler, or {@code null} if no
-     * {@code elseHandler} is provided
+     * @param ifHandler   如果结果为 {@code true} 则执行的处理程序
+     * @param elseHandler 如果结果为 {@code false} 则执行的处理程序（可选）
+     * @return 执行处理程序的结果，如果未提供 {@code elseHandler} 并且需要使用
+     * else 分支，则为 {@code null}
      */
     public T handle(Supplier<T> ifHandler, Supplier<T> elseHandler) {
         if (this.result && Objects.nonNull(ifHandler)) {
@@ -196,35 +166,26 @@ public final class BranchUtil<T> {
     }
 
     /**
+     * 通过根据结果执行适当的处理程序来处理布尔表达式的结果。
      * <p>
-     * Handles the result of the boolean expressions by executing the provided
-     * handler if the result is {@code true}.
+     * 如果结果为 {@code true}，则执行 {@code ifHandler}。 如果结果为
+     * {@code false} 并且提供了 {@code elseHandler}，则执行它。
      *
-     * <p>
-     * Returns the result of the executed handler.
-     *
-     * @param ifHandler the handler to be executed if the result is
-     *                  {@code true}
-     * @return the result of the executed handler
+     * @param ifHandler 如果结果为 {@code true} 则执行的处理程序
+     * @return 执行处理程序的结果，如果需要运行 else 分支则返回 {@code null}
      */
     public T handle(Supplier<T> ifHandler) {
         return handle(ifHandler, null);
     }
 
     /**
+     * 通过根据结果执行适当的处理程序来处理布尔表达式的结果。
      * <p>
-     * Handles the result of the boolean expressions by executing the
-     * appropriate handler based on the result.
+     * 如果结果为 {@code true}，则执行 {@code ifHandler}。 如果结果为 {@code false}
+     * 并且提供了 {@code elseHandler}，则执行它。
      *
-     * <p>
-     * If the result is {@code true}, the {@code ifHandler} is executed. If the
-     * result is {@code false} and an {@code elseHandler} is provided, it is
-     * executed.
-     *
-     * @param ifHandler   the handler to be executed if the result is
-     *                    {@code true}
-     * @param elseHandler the handler to be executed if the result is
-     *                    {@code false} (optional)
+     * @param ifHandler   如果结果为 {@code true} 则执行的处理程序
+     * @param elseHandler 如果结果为 {@code false} 则执行的处理程序（可选）
      */
     public void handle(Runnable ifHandler, Runnable elseHandler) {
         if (this.result && Objects.nonNull(ifHandler)) {
@@ -240,11 +201,12 @@ public final class BranchUtil<T> {
     }
 
     /**
-     * Handles the result of the boolean expressions by executing the provided
-     * handler if the result is {@code true}.
+     * 通过根据结果执行适当的处理程序来处理布尔表达式的结果。
+     * <p>
+     * 如果结果为 {@code true}，则执行 {@code ifHandler}。 如果结果为
+     * {@code false} 并且提供了 {@code elseHandler}，则执行它。
      *
-     * @param ifHandler the handler to be executed if the result is
-     *                  {@code true}
+     * @param ifHandler 如果结果为 {@code true} 则执行的处理程序
      */
     public void handle(Runnable ifHandler) {
         handle(ifHandler, null);
