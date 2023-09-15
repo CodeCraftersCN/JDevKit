@@ -34,8 +34,9 @@ import java.util.Objects;
 import java.util.UUID;
 
 /**
- * AES Util helps you encrypt and decrypt data with specified key and AES
- * algorithm.
+ * AES Util 可帮助你使用指定密钥和 AES 算法加密和解密数据。
+ * <p>
+ * 本工具类作者为 hubin@baomidou
  *
  * @author hubin@baomidou
  * @since 1.1.0
@@ -51,11 +52,11 @@ public final class AesUtil {
     private static final String AES_CBC_CIPHER = "AES/CBC/PKCS5Padding";
 
     /**
-     * Encrypt the given data with given key with AES algorithm.
+     * 使用 AES 算法，用给定密钥对给定数据进行加密。
      *
-     * @param data the data to be encrypted
-     * @param key  the key to encrypt the data
-     * @return the encryption result or {@code null} if encryption failed
+     * @param data 需要加密的数据
+     * @param key  加密数据的密钥
+     * @return 加密结果，如果加密失败则为 {@code null}
      */
     public static byte[] encrypt(byte[] data, byte[] key) {
         try {
@@ -75,11 +76,11 @@ public final class AesUtil {
     }
 
     /**
-     * Decrypt the given data with given key with AES algorithm.
+     * 使用 AES 算法，用给定密钥解密给定数据。
      *
-     * @param data the data to be decrypted
-     * @param key  the key to encrypt the data
-     * @return the decryption result or {@code null} if decryption failed
+     * @param data 需要解密的数据
+     * @param key  加解密数据的密钥
+     * @return 解密结果，如果解密失败则为 {@code null}
      */
     public static byte[] decrypt(byte[] data, byte[] key) {
         try {
@@ -99,22 +100,22 @@ public final class AesUtil {
     }
 
     /**
-     * Encrypt the given data with given key with AES algorithm.
+     * 使用 AES 算法，用给定密钥对给定数据进行加密。
      *
-     * @param data the data to be encrypted
-     * @param key  the key to encrypt the data
-     * @return the encryption result or {@code null} if encryption failed
+     * @param data 需要加密的数据
+     * @param key  加密数据的密钥
+     * @return 加密结果，如果加密失败则为 {@code null}
      */
     public static String encrypt(String data, String key) {
         return Base64.getEncoder().encodeToString(encrypt(data.getBytes(StandardCharsets.UTF_8), key.getBytes(StandardCharsets.UTF_8)));
     }
 
     /**
-     * Decrypt the given data with given key with AES algorithm.
+     * 使用 AES 算法，用给定密钥解密给定数据。
      *
-     * @param data the data to be decrypted
-     * @param key  the key to encrypt the data
-     * @return the decryption result or {@code null} if decryption failed
+     * @param data 需要解密的数据
+     * @param key  加解密数据的密钥
+     * @return 解密结果，如果解密失败则为 {@code null}
      */
     public static String decrypt(String data, String key) {
         return new String(Objects.requireNonNull(
@@ -124,9 +125,9 @@ public final class AesUtil {
     }
 
     /**
-     * Generates 16 characters-long random key.
+     * 生成一个 16 个字符长度的随机密钥。
      *
-     * @return the generated secure secret
+     * @return 生成的安全密文
      */
     public static String generateRandomKey() {
         return UUID.randomUUID().toString().replaceAll("-", "").substring(0, 16);
