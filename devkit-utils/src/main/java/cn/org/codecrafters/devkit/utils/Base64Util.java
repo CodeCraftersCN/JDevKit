@@ -22,36 +22,30 @@ import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
 /**
+ * {@code Base64Util} 类提供了使用 Base64 编码对字符串进行编码和解码的静态方法。字符串编
+ * 码和解码的静态方法。它利用来自 Java 标准库中的 {@link Base64} 类来执行编码和解码操作。
+ * 该实用程序类提供了方便的方法，可对不同字符集的字符串进行编码和解码。编码和解码字符串的便捷方法。
  * <p>
- * The {@code Base64Util} class provides static methods to encode and decode
- * strings using Base64 encoding. It utilizes the {@link Base64} class from the
- * Java standard library for performing the encoding and decoding operations.
- * This utility class offers convenient methods to encode and decode strings
- * with different character sets.
+ * 该类被设计为具有私有构造函数的最终类，以防止实例化。该类中的所有方法都是静态的，可以方便地访问
+ * Base64 编码和解码功能。
  * 
  * <p>
- * This class is designed as a final class with a private constructor to
- * prevent instantiation. All methods in this class are static, allowing easy
- * access to the Base64 encoding and decoding functionality.
- * 
- * <p>
- * Example usage:
+ * 使用案例
  * <pre>
  * String original = "Hello, World!";
  *
- * // Encode the string using UTF-8 charset
+ * // 使用 UTF-8 字符集为字符串编码
  * String encoded = Base64Util.encode(original);
  * System.out.println("Encoded string: " + encoded);
  *
- * // Decode the encoded string using UTF-8 charset
+ * // 使用 UTF-8 字符集为 Base64 字符串解码
  * String decoded = Base64Util.decode(encoded);
  * System.out.println("Decoded string: " + decoded);
  * </pre>
  *
  * <p>
- * <b>Note:</b> This utility class uses the default charset (UTF-8) if no
- * specific charset is provided. It is recommended to specify the charset
- * explicitly to ensure consistent encoding and decoding.
+ * <b>注意事项:</b> 如果没有提供特定的字符集，该实用程序类将使用默认字符集（UTF-8）。建议明确
+ * 指定字符集，以确保编码和解码的一致性。
  * 
  *
  * @author Zihlu Wang
@@ -61,17 +55,17 @@ import java.util.Base64;
 public final class Base64Util {
 
     /**
-     * Private constructor to prevent instantiation of the class.
+     * 私有构造函数可防止类的实例化。
      */
     private Base64Util() {
     }
 
     /**
-     * Encodes the given string using the specified charset.
+     * 使用指定的字符集对给定字符串进行编码。
      *
-     * @param value   the string to be encoded
-     * @param charset the charset to be used for encoding
-     * @return the Base64 encoded string
+     * @param value   要编码的字符串
+     * @param charset 用于编码的字符集
+     * @return Base64 编码的字符串
      */
     public static String encode(String value, Charset charset) {
         var encoder = Base64.getEncoder();
@@ -81,21 +75,21 @@ public final class Base64Util {
     }
 
     /**
-     * Encodes the given string using the default UTF-8 charset.
+     * 使用 UTF-8 字符集对给定字符串进行编码。
      *
-     * @param value the string to be encoded
-     * @return the Base64 encoded string
+     * @param value   要编码的字符串
+     * @return Base64 编码的字符串
      */
     public static String encode(String value) {
         return encode(value, StandardCharsets.UTF_8);
     }
 
     /**
-     * Decodes the given Base64 encoded string using the specified charset.
+     * 使用指定的字符集解码给定的 Base64 编码字符串。
      *
-     * @param value   the Base64 encoded string to be decoded
-     * @param charset the charset to be used for decoding
-     * @return the decoded string
+     * @param value   要解码的 Base64 字符串
+     * @param charset 用于解码的字符集
+     * @return 解码后的字符串
      */
     public static String decode(String value, Charset charset) {
         var decoder = Base64.getDecoder();
@@ -105,10 +99,10 @@ public final class Base64Util {
     }
 
     /**
-     * Decodes the given Base64 encoded string using the default UTF-8 charset.
+     * 使用默认的 UTF-8 字符集解码给定的 Base64 编码字符串。
      *
-     * @param value the Base64 encoded string to be decoded
-     * @return the decoded string
+     * @param value 要解码的 Base64 编码字符串
+     * @return 解码后的字符串
      */
     public static String decode(String value) {
         return decode(value, StandardCharsets.UTF_8);
