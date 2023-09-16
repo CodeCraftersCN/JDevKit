@@ -94,128 +94,124 @@ import java.util.function.Function;
  * @see java.math.BigDecimal
  * @since 1.0.0
  */
-@Getter
 public final class ChainedCalcUtil {
 
     /**
-     * -- GETTER --
-     * Returns the current value as a BigDecimal.
+     * 计算出来的结果。
      */
     private BigDecimal value;
 
     /**
-     * Creates a ChainedCalcUtil instance with the specified initial value.
+     * 创建具有指定初始值的 {@linkplain ChainedCalcUtil} 实例。
      *
-     * @param value the initial value for the calculation
+     * @param value 计算的初始值
      */
     private ChainedCalcUtil(Number value) {
         this.value = convertBigDecimal(value, null);
     }
 
     /**
-     * Starts a chained calculation with the specified initial value.
+     * 使用给定的数值进行链式运算。
      *
-     * @param value the initial value for the calculation
-     * @return a ChainedCalcUtil instance for performing chained calculations
+     * @param value 计算的初始值
+     * @return 用于执行链式计算的 {@linkplain ChainedCalcUtil} 实例
      */
     public static ChainedCalcUtil startWith(Number value) {
         return new ChainedCalcUtil(value);
     }
 
     /**
-     * Adds the specified value to the current value.
+     * 进行加法运算。
      *
-     * @param other the value to be added
-     * @return a ChainedCalcUtil instance with the updated value
+     * @param other 要添加到此 {@linkplain ChainedCalcUtil} 的值
+     * @return 具有更新值的 {@linkplain ChainedCalcUtil} 实例
      */
     public ChainedCalcUtil add(Number other) {
         return operator(BigDecimal::add, other);
     }
 
     /**
-     * Adds the specified value to the current value with a specified scale
-     * before the operation.
+     * 使用特定的精度进行加法运算。
      *
-     * @param other              the value to be added
-     * @param beforeOperateScale the scale to be applied before the operation
-     * @return a ChainedCalcUtil instance with the updated value
+     * @param other              操作数
+     * @param beforeOperateScale 进行运算之前的操作数精度
+     * @return 包含 {@code this + other} 的 {@linkplain ChainedCalcUtil} 实例
      */
     public ChainedCalcUtil add(Number other, Integer beforeOperateScale) {
         return operator(BigDecimal::add, other, beforeOperateScale);
     }
 
     /**
-     * Subtracts the specified value from the current value.
+     * 减法运算。
      *
-     * @param other the value to be subtracted
-     * @return a ChainedCalcUtil instance with the updated value
+     * @param other 需要减去的数值
+     * @return 包含 {@code this - other} 的 {@linkplain ChainedCalcUtil} 实例
      */
     public ChainedCalcUtil subtract(Number other) {
         return operator(BigDecimal::subtract, other);
     }
 
     /**
-     * Subtracts the specified value from the current value with a specified
-     * scale before the operation.
+     * 使用给定的精度进行减法运算。
      *
-     * @param other              the value to be subtracted
-     * @param beforeOperateScale the scale to be applied before the operation
-     * @return a ChainedCalcUtil instance with the updated value
+     * @param other              需要减去的数值
+     * @param beforeOperateScale 进行运算之前的操作数精度
+     * @return 包含 {@code this - other} 的 {@linkplain ChainedCalcUtil} 实例
      */
     public ChainedCalcUtil subtract(Number other, Integer beforeOperateScale) {
         return operator(BigDecimal::subtract, other, beforeOperateScale);
     }
 
     /**
-     * Multiplies the current value by the specified value.
+     * 进行乘法运算。
      *
-     * @param other the value to be multiplied by
-     * @return a ChainedCalcUtil instance with the updated value
+     * @param other 需要乘以的数值
+     * @return 包含 {@code this * other} 的 {@linkplain ChainedCalcUtil} 实例
      */
     public ChainedCalcUtil multiply(Number other) {
         return operator(BigDecimal::multiply, other);
     }
 
     /**
-     * Multiplies the current value by the specified value with a specified
-     * scale before the operation.
+     * 使用给定的精度进行乘法运算。
      *
-     * @param other              the value to be multiplied by
-     * @param beforeOperateScale the scale to be applied before the operation
-     * @return a ChainedCalcUtil instance with the updated value
+     * @param other              需要乘以的数值
+     * @param beforeOperateScale 进行运算之前的操作数精度
+     * @return 包含 {@code this * other} 的 {@linkplain ChainedCalcUtil} 实例
      */
     public ChainedCalcUtil multiply(Number other, Integer beforeOperateScale) {
         return operator(BigDecimal::multiply, other, beforeOperateScale);
     }
 
     /**
-     * Divides the current value by the specified value.
+     * 进行除法运算。
+     * <p>
+     * 该运算方式不能进行结果为无限小数的除法运算。
      *
-     * @param other the value to divide by
-     * @return a ChainedCalcUtil instance with the updated value
+     * @param other 除数
+     * @return 包含 {@code this / other} 的 {@linkplain ChainedCalcUtil} 实例
      */
     public ChainedCalcUtil divide(Number other) {
         return operator(BigDecimal::divide, other);
     }
 
     /**
-     * Divides the current value by the specified value with a specified scale
-     * before the operation.
+     * 进行除法运算。
      *
-     * @param other              the value to divide by
-     * @param beforeOperateScale the scale to be applied before the operation
-     * @return a ChainedCalcUtil instance with the updated value
+     * @param other              除数
+     * @param beforeOperateScale 进行运算之前的操作数精度
+     * @return 包含 {@code this / other} 的 {@linkplain ChainedCalcUtil} 实例
      */
     public ChainedCalcUtil divide(Number other, Integer beforeOperateScale) {
         return operator(BigDecimal::divide, other, beforeOperateScale);
     }
 
     /**
-     * Divides the current value by the specified value with a specified scale.
+     * 进行除法运算，并指定计算的精度。
      *
-     * @param other the value to divide by
-     * @param scale the scale for the result
-     * @return a ChainedCalcUtil instance with the updated value
+     * @param other 被除数
+     * @param scale 小数点后的位数
+     * @return 包含 {@code this / other} 的 {@linkplain ChainedCalcUtil} 实例
      */
     public ChainedCalcUtil divideWithScale(Number other, Integer scale) {
         return baseOperator(otherValue ->
@@ -223,100 +219,94 @@ public final class ChainedCalcUtil {
     }
 
     /**
-     * Divides the current value by the specified value with a specified scale
-     * and a scale applied before the operation.
+     * 进行除法运算，并指定计算的精度。
      *
-     * @param other              the value to divide by
-     * @param scale              the scale for the result
-     * @param beforeOperateScale the scale to be applied before the operation
-     * @return a ChainedCalcUtil instance with the updated value
+     * @param other              被除数
+     * @param scale              小数点后的位数
+     * @param beforeOperateScale 进行运算之前的操作数精度
+     * @return 包含 {@code this / other} 的 {@linkplain ChainedCalcUtil} 实例
      */
     public ChainedCalcUtil divideWithScale(Number other, Integer scale, Integer beforeOperateScale) {
         return baseOperator(otherValue -> this.value.divide(otherValue, scale, RoundingMode.HALF_UP), other, beforeOperateScale);
     }
 
     /**
-     * Returns the current value as a BigDecimal with the specified scale.
+     * 以具有指定小数位数的 {@link BigDecimal} 形式返回当前值。
      *
-     * @param scale the scale for the result
-     * @return the current value as a BigDecimal with the specified scale
+     * @param scale 结果的精度
+     * @return 具有指定小数位数的 {@link BigDecimal} 形式的当前值
      */
     public BigDecimal getValue(int scale) {
         return value.setScale(scale, RoundingMode.HALF_UP);
     }
 
     /**
-     * Returns the current value as a Double.
+     * 以 {@link Double} 形式返回当前值。
      *
-     * @return the current value as a Double
+     * @return {@link Double} 形式的当前值
      */
     public Double getDouble() {
-        return getValue().doubleValue();
+        return value.doubleValue();
     }
 
     /**
-     * Returns the current value as a Double with the specified scale.
+     * 以具有指定小数位数的 {@link Double} 形式返回当前值。
      *
-     * @param scale the scale for the result
-     * @return the current value as a Double with the specified scale
+     * @param scale 结果的精度
+     * @return 将当前值转换成具指定精度的 {@link Double} 值
      */
     public Double getDouble(int scale) {
         return getValue(scale).doubleValue();
     }
 
     /**
-     * Returns the current value as a Long.
+     * 以 {@link Long} 形式返回当前值。
      *
-     * @return the current value as a Long
+     * @return {@link Long} 形式的当前值
      */
     public Long getLong() {
-        return getValue().longValue();
+        return value.longValue();
     }
 
     /**
-     * Returns the current value as an Integer.
+     * 以 {@link Integer} 形式返回当前值。
      *
-     * @return the current value as an Integer
+     * @return {@link Integer} 形式的当前值
      */
     public Integer getInteger() {
-        return getValue().intValue();
+        return value.intValue();
     }
 
     /**
-     * Applies the specified operator function to the current value and another
-     * value.
+     * 对当前值和另一个值应用指定的运算符函数。
      *
-     * @param operator   the operator function to apply
-     * @param otherValue the value to apply the operator with
-     * @return a ChainedCalcUtil instance with the updated value
+     * @param operator   要应用的操作函数
+     * @param otherValue 要操作的操作数
+     * @return {@linkplain ChainedCalcUtil} 实例
      */
     private ChainedCalcUtil operator(BiFunction<BigDecimal, BigDecimal, BigDecimal> operator, Object otherValue) {
         return operator(operator, otherValue, 9);
     }
 
     /**
-     * Applies the specified operator function to the current value and another
-     * value with a specified scale before the operation.
+     * 对当前值和另一个值应用指定的运算符函数。
      *
-     * @param operator           the operator function to apply
-     * @param other              the value to apply the operator with
-     * @param beforeOperateScale the scale to be applied before the operation,
-     *                           or null if not applicable
-     * @return a ChainedCalcUtil instance with the updated value
+     * @param operator           要应用的操作函数
+     * @param other              要操作的操作数
+     * @param beforeOperateScale 操作之前的操作数精度
+     * @return {@linkplain ChainedCalcUtil} 实例
      */
     private ChainedCalcUtil operator(BiFunction<BigDecimal, BigDecimal, BigDecimal> operator, Object other, Integer beforeOperateScale) {
         return baseOperator((otherValue) -> operator.apply(this.value, otherValue), other, beforeOperateScale);
     }
 
     /**
-     * Applies the specified operator function to the current value and another
-     * value.
+     * 对当前值和另一个值应用指定的运算符函数。
      *
-     * @param operatorFunction   the operator function to apply
-     * @param anotherValue       the value to apply the operator with
-     * @param beforeOperateScale the scale to be applied before the operation,
-     *                           or null if not applicable
-     * @return a ChainedCalcUtil instance with the updated value
+     * @param operatorFunction   要应用的操作函数
+     * @param anotherValue       要操作的操作数
+     * @param beforeOperateScale 操作之前的操作数精度
+     * @return {@linkplain ChainedCalcUtil} 实例
      */
     private synchronized ChainedCalcUtil baseOperator(Function<BigDecimal, BigDecimal> operatorFunction,
                                                       Object anotherValue, Integer beforeOperateScale) {
@@ -324,7 +314,7 @@ public final class ChainedCalcUtil {
             return this;
         }
         if (anotherValue instanceof ChainedCalcUtil) {
-            this.value = operatorFunction.apply(((ChainedCalcUtil) anotherValue).getValue());
+            this.value = operatorFunction.apply(((ChainedCalcUtil) anotherValue).value);
             return this;
         }
         this.value = operatorFunction.apply(convertBigDecimal(anotherValue, beforeOperateScale));
@@ -332,12 +322,11 @@ public final class ChainedCalcUtil {
     }
 
     /**
-     * Converts the specified value to a BigDecimal.
+     * 将指定值转换为 {@linkplain BigDecimal}。
      *
-     * @param value the value to convert
-     * @param scale the scale to apply to the resulting BigDecimal, or null if
-     *              not applicable
-     * @return the converted BigDecimal value
+     * @param value 要转换的数据
+     * @param scale 转换后的精度
+     * @return 转换后的 {@linkplain BigDecimal} 实例
      */
     private BigDecimal convertBigDecimal(Object value, Integer scale) {
         if (Objects.isNull(value)) {

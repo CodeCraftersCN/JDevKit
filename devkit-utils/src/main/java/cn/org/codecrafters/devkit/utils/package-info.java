@@ -16,11 +16,10 @@
  */
 
 /**
- * This package is part of JDevKit, an open-source Java Development Kit that
- * provides a set of convenient tools to streamline code development and
- * enhance productivity. This package serves as the root package for the module
- * dev-utils, which contains a collection of common utility classes commonly
- * used in all Java Application development.
+ * 该软件包是 {@code JDevKit} 的一部分，{@code JDevKit} 是一个开源 {@code Java}
+ * 开发工具包，它提供了一系列方便的工具来简化代码开发并提高生产率。此软件包是 {@code
+ * dev-utils} 模块的根软件包，{@code dev-utils} 模块包含所有 {@code Java} 应用程序
+ * 开发中常用的公用类集合。该模块包含所有 {@code Java} 应用程序开发中常用的公用类。
  *
  * @author Zihlu Wang
  * @since 1.0.0

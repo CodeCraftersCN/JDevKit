@@ -25,44 +25,39 @@ import java.util.Objects;
 import java.util.Optional;
 
 /**
- * Utility class for performing hash operations on strings.
+ * 对字符串执行散列操作的实用程序类。
  * <p>
- * The HashUtil class provides convenient methods for calculating various hash
- * functions on strings, including MD2, MD5, SHA-1, SHA-224, SHA-256, SHA-384,
- * and SHA-512. It allows developers to easily obtain the hash value of a given
- * string using different algorithms.
+ * HashUtil 类提供了计算字符串上各种散列函数的便捷方法，包括 MD2、MD5、SHA-1、SHA-224、
+ * SHA-256、SHA-384 和 SHA-512。它允许开发人员使用不同的算法轻松获取给定字符串的哈希值。
  * <p>
- * Example usage:
+ * 使用案例：
  * <pre>
- * // Perform MD2 hash operation
+ * // 执行 MD2 哈希运算
  * String md2Hash = HashUtil.md2("someString");
  *
- * // Perform MD5 hash operation
+ * // 执行 MD5 哈希运算
  * String md5Hash = HashUtil.md5("someString");
  *
- * // Perform SHA-1 hash operation
+ * // 执行 SHA-1 哈希运算
  * String sha1Hash = HashUtil.sha1("someString");
  *
- * // Perform SHA-224 hash operation
+ * // 执行 SHA-224 哈希运算
  * String sha224Hash = HashUtil.sha224("someString");
  *
- * // Perform SHA-256 hash operation
+ * // 执行 SHA-256 哈希运算
  * String sha256Hash = HashUtil.sha256("someString");
  *
- * // Perform SHA-384 hash operation
+ * // 执行 SHA-384 哈希运算
  * String sha384Hash = HashUtil.sha384("someString");
  *
- * // Perform SHA-512 hash operation
+ * // 执行 SHA-512 哈希运算
  * String sha512Hash = HashUtil.sha512("someString");
  * </pre>
- * The above examples demonstrate how to use the HashUtil class to calculate
- * hash values for a given string using different algorithms.
+ * 上述示例演示了如何使用 HashUtil 类，使用不同的算法计算给定字符串的哈希值。
  * <p>
- * <b>Note:</b>
- * The hash functions provided by the HashUtil class are one-way hash
- * functions, meaning the original data cannot be retrieved from the hash
- * value. These hash functions are commonly used for data integrity checks and
- * password storage, but they should not be used for encryption purposes.
+ * <b>请注意：</b>
+ * HashUtil 类提供的散列函数是单向散列函数，这意味着无法从散列值中检索到原始数据。这些散列函数通常用于数据
+ * 完整性检查和密码存储，但不能用于加密目的。
  *
  * @author Zihlu Wang
  * @version 1.1.0
@@ -72,23 +67,19 @@ import java.util.Optional;
 public final class HashUtil {
 
     /**
-     * Private constructor to prevent instantiation
+     * 防止实例化的私有构造函数
      */
     private HashUtil() {
     }
 
     /**
-     * Calculates the hash value of the specified string using the specified
-     * algorithm and charset.
+     * 使用指定的算法和字符集计算指定字符串的哈希值。
      *
-     * @param method  the hash algorithm to use
-     * @param value   the string to calculate the hash value for
-     * @param charset the charset to use for encoding the string (default is
-     *                UTF-8 if null)
-     * @return the hash value as a hexadecimal string, or an empty string if
-     * the algorithm is not available
-     * @throws RuntimeException if an unknown algorithm name is provided
-     *                          (should not occur under controlled usage)
+     * @param method  使用的哈希算法
+     * @param value   要计算哈希值的字符串
+     * @param charset 字符集（如果为空，默认为 UTF-8）
+     * @return 以十六进制字符串表示的哈希值，如果算法不可用，则表示空字符串
+     * @throws RuntimeException 如果提供了未知的算法名称（在受控使用情况下不应出现这种情况）
      */
     private static String hash(String method, String value, Charset charset) {
         try {
@@ -107,20 +98,18 @@ public final class HashUtil {
 
             return builder.toString();
         } catch (NoSuchAlgorithmException ignored) {
-            // This should not occur under controlled usage
-            // Only trusted algorithms are allowed
+            // 在受控使用情况下不应出现这种情况
+            // 只允许使用受信任的算法
             return "";
         }
     }
 
     /**
-     * Calculates the MD2 hash value of the specified string using the given
-     * charset.
+     * 使用给定的字符集计算指定字符串的 MD2 哈希值。
      *
-     * @param value   the string to calculate with the MD2 algorithm
-     * @param charset the charset to use for encoding the string (default is
-     *                UTF-8 if null)
-     * @return the MD2 hash value as a hexadecimal string
+     * @param value   要使用 MD2 算法计算哈希值的字符串
+     * @param charset 字符集（如果为空，默认为 UTF-8）
+     * @return 以十六进制字符串表示的 MD2 哈希值
      */
     public static String md2(String value, Charset charset) {
         charset = Optional.ofNullable(charset).orElse(StandardCharsets.UTF_8);
@@ -128,11 +117,10 @@ public final class HashUtil {
     }
 
     /**
-     * Calculates the MD2 hash value of the specified string using the UTF-8
-     * charset.
+     * 使用 UTF-8 字符集计算指定字符串的 MD2 哈希值。
      *
-     * @param value the string to calculate with the MD2 algorithm
-     * @return the MD2 hash value as a hexadecimal string
+     * @param value 要使用 MD2 算法计算的字符串
+     * @return 以十六进制字符串表示的 MD2 哈希值
      */
     public static String md2(String value) {
         return hash("MD2", value, StandardCharsets.UTF_8);
