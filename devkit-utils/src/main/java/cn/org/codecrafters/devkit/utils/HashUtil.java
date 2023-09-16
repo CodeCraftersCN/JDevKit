@@ -117,7 +117,7 @@ public final class HashUtil {
      * Calculates the MD2 hash value of the specified string using the given
      * charset.
      *
-     * @param value   the string to calculate the MD2 hash value for
+     * @param value   the string to calculate with the MD2 algorithm
      * @param charset the charset to use for encoding the string (default is
      *                UTF-8 if null)
      * @return the MD2 hash value as a hexadecimal string
@@ -131,7 +131,7 @@ public final class HashUtil {
      * Calculates the MD2 hash value of the specified string using the UTF-8
      * charset.
      *
-     * @param value the string to calculate the MD2 hash value for
+     * @param value the string to calculate with the MD2 algorithm
      * @return the MD2 hash value as a hexadecimal string
      */
     public static String md2(String value) {
@@ -142,7 +142,7 @@ public final class HashUtil {
      * Calculates the MD5 hash value of the specified string using the given
      * charset.
      *
-     * @param value   the string to calculate the MD5 hash value for
+     * @param value   the string to calculate with the MD5 algorithm
      * @param charset the charset to use for encoding the string (default is
      *                UTF-8 if null)
      * @return the MD5 hash value as a hexadecimal string
@@ -156,7 +156,7 @@ public final class HashUtil {
      * Calculates the MD5 hash value of the specified string using the UTF-8
      * charset.
      *
-     * @param value the string to calculate the MD5 hash value for
+     * @param value the string to calculate with the MD5 algorithm
      * @return the MD5 hash value as a hexadecimal string
      */
     public static String md5(String value) {
@@ -167,7 +167,7 @@ public final class HashUtil {
      * Calculates the SHA-1 hash value of the specified string using the given
      * charset.
      *
-     * @param value   the string to calculate the SHA-1 hash value for
+     * @param value   the string to calculate with the SHA-1 algorithm
      * @param charset the charset to use for encoding the string (default is
      *                UTF-8 if null)
      * @return the SHA-1 hash value as a hexadecimal string
@@ -181,7 +181,7 @@ public final class HashUtil {
      * Calculates the SHA-1 hash value of the specified string using the UTF-8
      * charset.
      *
-     * @param value the string to calculate the SHA-1 hash value for
+     * @param value the string to calculate with the SHA-1 algorithm
      * @return the SHA-1 hash value as a hexadecimal string
      */
     public static String sha1(String value) {
@@ -192,7 +192,7 @@ public final class HashUtil {
      * Calculates the SHA-224 hash value of the specified string using the
      * given charset.
      *
-     * @param value   the string to calculate the SHA-224 hash value for
+     * @param value   the string to calculate with the SHA-225 algorithm
      * @param charset the charset to use for encoding the string (default is
      *                UTF-8 if null)
      * @return the SHA-224 hash value as a hexadecimal string
@@ -206,7 +206,7 @@ public final class HashUtil {
      * Calculates the SHA-224 hash value of the specified string using the
      * UTF-8 charset.
      *
-     * @param value the string to calculate the SHA-224 hash value for
+     * @param value the string to calculate with the SHA-224 algorithm
      * @return the SHA-224 hash value as a hexadecimal string
      */
     public static String sha224(String value) {
@@ -217,7 +217,7 @@ public final class HashUtil {
      * Calculates the SHA-256 hash value of the specified string using the
      * given charset.
      *
-     * @param value   the string to calculate the SHA-256 hash value for
+     * @param value   the string to calculate with the SHA-256 algorithm
      * @param charset the charset to use for encoding the string (default is
      *                UTF-8 if null)
      * @return the SHA-256 hash value as a hexadecimal string
@@ -231,7 +231,7 @@ public final class HashUtil {
      * Calculates the SHA-256 hash value of the specified string using the
      * UTF-8 charset.
      *
-     * @param value the string to calculate the SHA-256 hash value for
+     * @param value the string to calculate with the SHA-256 algorithm
      * @return the SHA-256 hash value as a hexadecimal string
      */
     public static String sha256(String value) {
@@ -242,7 +242,7 @@ public final class HashUtil {
      * Calculates the SHA-384 hash value of the specified string using the
      * given charset.
      *
-     * @param value   the string to calculate the SHA-384 hash value for
+     * @param value   the string to calculate with the SHA-384 algorithm
      * @param charset the charset to use for encoding the string (default is
      *                UTF-8 if null)
      * @return the SHA-384 hash value as a hexadecimal string
@@ -256,7 +256,7 @@ public final class HashUtil {
      * Calculates the SHA-384 hash value of the specified string using the
      * UTF-8 charset.
      *
-     * @param value the string to calculate the SHA-384 hash value for
+     * @param value the string to calculate with the SHA-384 algorithm
      * @return the SHA-384 hash value as a hexadecimal string
      */
     public static String sha384(String value) {
@@ -267,7 +267,7 @@ public final class HashUtil {
      * Calculates the SHA-512 hash value of the specified string using the
      * given charset.
      *
-     * @param value   the string to calculate the SHA-384 hash value for
+     * @param value   the string to calculate with the SHA-512 algorithm
      * @param charset the charset to use for encoding the string (default is
      *                UTF-8 if null)
      * @return the SHA-512 hash value as a hexadecimal string
@@ -281,7 +281,7 @@ public final class HashUtil {
      * Calculates the SHA-512 hash value of the specified string using the
      * UTF-8 charset.
      *
-     * @param value the string to calculate the SHA-384 hash value for
+     * @param value the string to calculate with the SHA-512 algorithm
      * @return the SHA-512 hash value as a hexadecimal string
      */
     public static String sha512(String value) {
