@@ -17,8 +17,6 @@
 
 package cn.org.codecrafters.devkit.utils;
 
-import lombok.Getter;
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Objects;
@@ -26,43 +24,40 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 
 /**
- * Utility class for chained high-precision calculations using BigDecimal.
+ * 使用 {@link BigDecimal} 进行链式高精度计算的实用程序类。
  * <p>
- * The ChainedCalcUtil class provides a convenient way to perform chained
- * high-precision calculations using BigDecimal. It allows users to perform
- * mathematical operations such as addition, subtraction, multiplication,
- * and division with customisable precision and scale. By using this utility
- * class, developers can achieve accurate results and avoid precision loss
- * in their calculations.
+ * {@link ChainedCalcUtil} 类提供了一种使用 {@link BigDecimal} 执行链式高精度计算
+ * 的便捷方法。 它允许用户以可定制的精度和比例执行加法、减法、乘法和除法等数学运算。 通过使用
+ * 此实用程序类，开发人员可以获得准确的结果并避免计算中的精度损失。
  * <p>
- * <b>Usage:</b>
+ * <b>使用案例：</b>
  * <pre>
- *  // Perform addition: 3 + 4
+ *  // 执行运算：3 + 4
  *  BigDecimal result1 = ChainedCalcUtil.startWith(3)
  *                                      .add(4)
  *                                      .getValue();
  *
- *  // Perform subtraction: 4 - 2
+ *  // 执行运算：4 - 2
  *  BigDecimal result2 = ChainedCalcUtil.startWith(4)
  *                                      .subtract(2)
  *                                      .getValue();
  *
- *  // Perform multiplication: 3 * 6
+ *  // 执行运算：3 * 6
  *  BigDecimal result3 = ChainedCalcUtil.startWith(3)
  *                                      .multiply(6)
  *                                      .getValue();
  *
- *  // Perform division: 6 ÷ 2
+ *  // 执行运算：6 ÷ 2
  *  BigDecimal result4 = ChainedCalcUtil.startWith(6)
  *                                      .divide(2)
  *                                      .getValue();
  *
- *  // Perform division with specified scale: 13 ÷ 7 with a scale of 2
+ *  // 执行指定精度的运算：13 ÷ 7，保留两位小数
  *  BigDecimal result5 = ChainedCalcUtil.startWith(13)
  *                                      .divideWithScale(7, 2)
  *                                      .getValue();
  *
- *  // Get int, long, or double results
+ *  // 获取 int、long 或者 double 结果
  *  int intResult = ChainedCalcUtil.startWith(3)
  *                                .add(4)
  *                                .getInteger();
@@ -75,19 +70,17 @@ import java.util.function.Function;
  *                                      .divide(2)
  *                                      .getDouble();
  *
- *  // Get BigDecimal result with specified scale
+ *  // 以指定的精度获取 BigDecimal 结果
  *  BigDecimal result6 = ChainedCalcUtil.startWith(13)
  *                                      .divide(7)
  *                                      .getValue(2);
  *  </pre>
- * The above expressions perform various mathematical calculations using the
- * ChainedCalcUtil class.
+ * 上述表达式使用 {@link ChainedCalcUtil} 类执行各种数学计算。
  * <p>
- * <b>Note:</b>
- * The ChainedCalcUtil class internally uses BigDecimal to handle
- * high-precision calculations. It is important to note that BigDecimal
- * operations can be memory-intensive and may have performance implications
- * for extremely large numbers or complex calculations.
+ * <b>请注意：</b>
+ * {@link ChainedCalcUtil} 类内部使用 {@link BigDecimal} 来处理高精度计算。 值得
+ * 注意的是，{@link BigDecimal} 运算可能会占用大量内存，并且可能会对极大的数字或复杂的
+ * 计算产生性能影响。
  *
  * @author sunzsh
  * @version 1.1.0
