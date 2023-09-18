@@ -18,22 +18,10 @@
 package cn.org.codecrafters.guid.exceptions;
 
 /**
- * The TimingException class represents an exception that is thrown when there
- * is an error related to time sequence.
+ * {@link TimingException} 类表示出现与时间顺序相关的错误时引发的异常。
  * <p>
- * This class extends the RuntimeException class, which means that instances of
- * TimingException do not need to be declared in a method or constructor's
- * throws clause.
- * <p>
- * Instances of TimingException can be created with or without a message and a
- * cause. The message provides a description of the exception, while the cause
- * represents the underlying cause of the exception and provides additional
- * information about the error.
- * <p>
- * TimingException is typically used to handle exceptions related to timing,
- * such as timeouts or synchronisation issues. It is a subclass of
- * RuntimeException, which means it is an unchecked exception and does not need
- * to be caught or declared.
+ * {@link TimingException} 的实例可以在有或没有消息和原因的情况下创建。该消息提供异常的描述，
+ * 而原因表示异常的根本原因并提供有关错误的附加信息。
  *
  * @author Zihlu Wang
  * @since 1.0.0
@@ -41,38 +29,34 @@ package cn.org.codecrafters.guid.exceptions;
 public class TimingException extends RuntimeException {
 
     /**
-     * A custom exception that is thrown when there is an issue with timing or
-     * scheduling.
+     * 当时间或调度出现问题时抛出的自定义异常。
      */
     public TimingException() {
     }
 
     /**
-     * A custom exception that is thrown when there is an issue with timing or
-     * scheduling with customized error message.
+     * 当时间或调度出现问题时抛出的自定义带有错误信息的异常。
      *
-     * @param message customized message
+     * @param message 自定义错误信息
      */
     public TimingException(String message) {
         super(message);
     }
 
     /**
-     * A custom exception that is thrown when there is an issue with timing or
-     * scheduling with customized error message.
+     * 当时间或调度出现问题时抛出的自定义带有错误信息和造成原因的异常。
      *
-     * @param message customized message
-     * @param cause   the cause of this exception
+     * @param message 自定义的错误信息
+     * @param cause   造成这种异常的原因
      */
     public TimingException(String message, Throwable cause) {
         super(message, cause);
     }
 
     /**
-     * A custom exception that is thrown when there is an issue with timing or
-     * scheduling with customized error message.
+     * 当定时或调度出现问题时抛出的自定义异常，带有指定的错误原因。
      *
-     * @param cause the cause of this exception
+     * @param cause 造成这种异常的原因
      */
     public TimingException(Throwable cause) {
         super(cause);
