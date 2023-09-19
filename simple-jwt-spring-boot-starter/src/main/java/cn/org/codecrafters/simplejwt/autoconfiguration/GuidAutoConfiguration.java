@@ -29,7 +29,7 @@ import org.springframework.context.annotation.Conditional;
 import java.util.UUID;
 
 /**
- * Autoconfiguration for injecting a {@code GuidCreator} for generating jwt id.
+ * Autoconfiguration for injecting a {@link GuidCreator} for generating jwt id.
  *
  * @author Zihlu Wang
  * @version 1.1.0

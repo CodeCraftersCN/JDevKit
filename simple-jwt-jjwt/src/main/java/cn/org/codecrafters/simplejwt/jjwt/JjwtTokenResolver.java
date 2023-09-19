@@ -58,7 +58,7 @@ import java.util.UUID;
  * To use the {@code JjwtTokenResolver}, first, create an instance of this
  * class:
  * <pre>{@code
- *   TokenResolver<DecodedJWT> tokenResolver =
+ *   TokenResolver<Jws<Claims>> tokenResolver =
  *       new JjwtTokenResolver(TokenAlgorithm.HS256,
  *                                 "Token Subject",
  *                                 "Token Issuer",
@@ -119,7 +119,7 @@ public class JjwtTokenResolver implements TokenResolver<Jws<Claims>> {
 
         if (secret.length() <= 32) {
             log.error("""
-                            The provided secret which owns {} characters is too weak. Please replace it with a stronger one.""",
+                      The provided secret which owns {} characters is too weak. Please replace it with a stronger one.""",
                     secret.length());
             throw new WeakSecretException("""
                     The provided secret which owns %s characters is too weak. Please replace it with a stronger one."""
@@ -256,7 +256,7 @@ public class JjwtTokenResolver implements TokenResolver<Jws<Claims>> {
     }
 
     /**
-     * Resolves the given token into a ResolvedTokenType object.
+     * Resolves the given token into a {@link Jws<Claims>} object.
      *
      * @param token the token to be resolved
      * @return a ResolvedTokenType object
@@ -287,7 +287,7 @@ public class JjwtTokenResolver implements TokenResolver<Jws<Claims>> {
         try {
             return MapUtil.mapToObject(claims, targetType);
         } catch (InvocationTargetException e) {
-            log.info("An error occurs while invoking the constructor of type {}.", targetType.getCanonicalName());
+            log.error("An error occurs while invoking the constructor of type {}.", targetType.getCanonicalName());
         } catch (NoSuchMethodException e) {
             log.error("The constructor of the required type {} is not found.", targetType.getCanonicalName());
         } catch (InstantiationException e) {

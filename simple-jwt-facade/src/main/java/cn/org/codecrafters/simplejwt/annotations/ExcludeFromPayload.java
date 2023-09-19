@@ -23,11 +23,10 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * <p>
- * This annotation is used to mark a property of a data class that should be
- * excluded from being automatically injected into the JSON Web Token (JWT)
- * payload during token generation. When a property is annotated with this
- * annotation, it will not be included as part of the JWT payload.
+ * Annotation {@code ExcludeFromPayload} is used to mark a property of a data
+ * class that should be excluded from being automatically injected into the
+ * JSON Web Token (JWT) payload during token generation. When a property is
+ * annotated by this annotation, it will not be included in the JWT payloads.
  * <p>
  * <b>Usage:</b>
  * To exclude a property from the JWT payload, annotate the property with
@@ -46,10 +45,10 @@ import java.lang.annotation.Target;
  * }</pre>
  * <p>
  * <b>Note:</b>
- * This annotation should be used only on properties that are not intended to
+ * This annotation should be used on properties that are not intended to
  * be included in the JWT payload due to their sensitive nature or for other
- * reasons. It is important to carefully choose which properties are excluded
- * from the payload to ensure the JWT remains secure and efficient.
+ * reasons only. It is important to carefully choose which properties are
+ * excluded from the payload to ensure the JWT remains secure and efficient.
  *
  * @author Zihlu Wang
  * @version 1.1.0

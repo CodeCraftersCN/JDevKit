@@ -16,10 +16,10 @@
  */
 
 /**
- * The package cn.org.codecrafters.webcal.config contains classes related to
- * the configuration and settings of the web calendar module. It provides
- * various configurations and constants used in the generation and resolution
- * of iCalendar content.
+ * The package {@code cn.org.codecrafters.webcal.config} contains classes
+ * related to the configuration and settings of the web calendar module. It
+ * provides various configurations and constants used in the generation and
+ * resolution of iCalendar content.
  * <p>The classes in this package include:</p>
  * <ul>
  *     <li>

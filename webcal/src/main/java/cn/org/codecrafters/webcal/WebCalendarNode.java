@@ -25,14 +25,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The abstract sealed class WebCalendarNode represents a node in the web
- * calendar, such as an event, a to-do item, or an alarm. It provides common
- * properties and methods for all calendar components and events.
- *
+ * The abstract sealed class {@code WebCalendarNode} represents a node in the
+ * web calendar, such as an event, a to-do item, or an alarm. It provides
+ * common properties and methods for all calendar components and events.
  * <p>
- * Subclasses of WebCalendarNode should implement the {@link #resolve()} method
- * to generate the corresponding iCalendar content for the specific calendar
- * component or event.
+ * Subclasses of {@code WebCalendarNode} should implement the {@link
+ * #resolve()} method to generate the corresponding iCalendar content for the
+ * specific calendar component or event.
  *
  * @author Zihlu Wang
  * @version 1.1.0

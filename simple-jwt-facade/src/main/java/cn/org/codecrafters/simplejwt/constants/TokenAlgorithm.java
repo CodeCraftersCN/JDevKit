@@ -25,8 +25,8 @@ import lombok.Getter;
  * cryptographic algorithms to be used for secure token generation and
  * validation. This enum provides a list of supported algorithms to ensure
  * consistent usage and avoid potential security issues.
- * <p><b>Supported Algorithms:</b>
- * This enum includes the following supported algorithms:
+ * <p>
+ * <b>Supported Algorithms:</b>
  * <ul>
  *     <li>{@link TokenAlgorithm#HS256}: HMAC SHA-256</li>
  *     <li>{@link TokenAlgorithm#HS384}: HMAC SHA-384</li>

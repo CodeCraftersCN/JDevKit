@@ -29,8 +29,7 @@ package cn.org.codecrafters.devkit.core.exceptions;
  * public void someMethod() {
  *     // Some code...
  *     throw new NotImplementedException("""
- *     This feature will be implemented in a future release.
- *     """);
+ *     This feature will be implemented in a future release.""");
  * }
  * </pre>
  *
@@ -46,7 +45,7 @@ package cn.org.codecrafters.devkit.core.exceptions;
  * </ul>
  *
  * @author Zihlu Wang
- * @version 1.0.0
+ * @version 1.1.0
  * @see RuntimeException
  * @since 1.0.0
  */

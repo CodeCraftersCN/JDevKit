@@ -22,9 +22,9 @@ import cn.org.codecrafters.simplejwt.exceptions.WeakSecretException;
 import java.util.Random;
 
 /**
- * SecretCreator is a utility class that provides methods to generate secure
- * secret strings. The generated secrets can be used as cryptographic keys or
- * passwords for various security-sensitive purposes.
+ * {@code SecretCreator} is a utility class that provides methods to generate
+ * secure secret strings. The generated secrets can be used as cryptographic
+ * keys or passwords for various security-sensitive purposes.
  *
  * @author Zihlu Wang
  * @version 1.1.0
@@ -83,24 +83,23 @@ public final class SecretCreator {
         if (length < 32) {
             throw new WeakSecretException("""
                     The requested secret, which is only %d characters long, is too weak. \
-                    Please replace it with a stronger secret.
-                    """.formatted(length));
+                    Please replace it with a stronger secret.""".formatted(length));
         }
 
-        final var randomizer = new Random();
+        final var randomiser = new Random();
         var charset = new StringBuilder(LOWERCASE_CHARACTERS);
 
         if (isContainCapital) charset.append(UPPERCASE_CHARACTERS);
         if (isContainDigital) charset.append(DIGITS);
         if (isContainSpecialSign) charset.append(SPECIAL_SIGNS);
 
-        var password = new StringBuilder();
+        var secretBuilder = new StringBuilder();
         var charsetSize = charset.length();
         for (var i = 0; i < length; ++i) {
-            password.append(charset.charAt(randomizer.nextInt(charsetSize)));
+            secretBuilder.append(charset.charAt(randomiser.nextInt(charsetSize)));
         }
 
-        return password.toString();
+        return secretBuilder.toString();
     }
 
     /**
@@ -115,6 +114,7 @@ public final class SecretCreator {
      * @return the generated secure secret
      * @throws WeakSecretException if the requested secret length is less than
      *                             32 characters
+     * @see #createSecret(int, boolean, boolean, boolean)
      */
     public static String createSecret(int length,
                                       boolean isContainCapital,
@@ -132,6 +132,7 @@ public final class SecretCreator {
      * @return the generated secure secret
      * @throws WeakSecretException if the requested secret length is less than
      *                             32 characters
+     * @see #createSecret(int, boolean, boolean, boolean)
      */
     public static String createSecret(int length,
                                       boolean isContainCapital) {
@@ -146,6 +147,7 @@ public final class SecretCreator {
      * @return the generated secure secret
      * @throws WeakSecretException if the requested secret length is less than
      *                             32 characters
+     * @see #createSecret(int, boolean, boolean, boolean)
      */
     public static String createSecret(int length) {
         return createSecret(length, false, false, false);

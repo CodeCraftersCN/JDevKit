@@ -33,18 +33,20 @@
  * this class as the main token resolver in the Simple JWT project when
  * integrating {@code io.jsonwebtoken:jjwt-api} as the JWT management library.
  * <p>
- * The {@code JjwtTokenResolver} relies on the {@code io.jsonwebtoken:jjwt-api}
+ * The {@link cn.org.codecrafters.simplejwt.jjwt.JjwtTokenResolver} relies on
+ * the {@code io.jsonwebtoken:jjwt-api}
  * library to handle the underlying JWT operations, including token creation,
  * validation, and extraction. It utilizes the {@code io.jsonwebtoken:jjwt-api}
- * {@code Algorithm} class to define and use different algorithms for JWT
- * signing and verification.
+ * {@link io.jsonwebtoken.SignatureAlgorithm} class to define and use different
+ * algorithms for JWT signing and verification.
  * <p>
- * To use the {@code JjwtTokenResolver}, developers must provide the necessary
- * configurations and dependencies, such as the {@code GuidCreator} for
- * generating unique JWT IDs (JTI), the supported algorithm function, the
- * issuer name, and the secret key used for token signing and validation. The
- * {@code JjwtTokenResolverConfig} class provides a convenient way to configure
- * these dependencies.
+ * To use the {@link cn.org.codecrafters.simplejwt.jjwt.JjwtTokenResolver},
+ * developers must provide the necessary configurations and dependencies, such
+ * as the {@link cn.org.codecrafters.guid.GuidCreator} for generating unique
+ * JWT IDs (JTI), the supported algorithm function, the issuer name, and the
+ * secret key used for token signing and validation. The
+ * {@link cn.org.codecrafters.simplejwt.jjwt.config.JjwtTokenResolverConfig}
+ * class provides a convenient way to configure these dependencies.
  * <p>
  * Developers using the {@code io.jsonwebtoken:jjwt-api} integration should be
  * familiar with the concepts and usage of the {@code io.jsonwebtoken:jjwt-api}

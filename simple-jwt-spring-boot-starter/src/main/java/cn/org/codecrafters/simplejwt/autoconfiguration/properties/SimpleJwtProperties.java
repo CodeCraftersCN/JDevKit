@@ -25,20 +25,20 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
  * {@code SimpleJwtProperties} is a configuration properties class used to
- * store the properties related to Simple JWT library configuration. These
+ * store the properties related to Simple JWT library configurations. These
  * properties can be configured in the application's properties file (e.g.,
  * application.properties) with the prefix "code-crafters.simple-jwt".
  * <p>
- * SimpleJwtProperties provides configuration options for the JWT algorithm,
- * issuer, and secret. The properties are used by the {@link
+ * {@code SimpleJwtProperties} provides configuration options for the JWT
+ * algorithm, issuer, and secret. The properties are used by the {@link
  * AuthzeroTokenResolverAutoConfiguration} and {@link
  * cn.org.codecrafters.simplejwt.jjwt.JjwtTokenResolver} to set up the
  * necessary configurations for JWT generation and validation.
  * <p>
- * Developers can customize the JWT algorithm, issuer, and secret by setting
+ * Developers can customise the JWT algorithm, issuer, and secret by setting
  * the corresponding properties in the application's properties file. The
- * SimpleJwtAutoConfiguration class reads these properties and uses them to
- * create the TokenResolver bean with the desired configuration.
+ * {@code SimpleJwtAutoConfiguration} class reads these properties and uses
+ * them to create the TokenResolver bean with the desired configuration.
  *
  * @author Zihlu Wang
  * @version 1.1.0

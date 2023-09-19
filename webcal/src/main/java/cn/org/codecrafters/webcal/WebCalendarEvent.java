@@ -28,17 +28,16 @@ import java.util.Optional;
 import java.util.UUID;
 
 /**
- * The WebCalendarEvent class represents an event in the web calendar. It
- * extends the abstract class WebCalendarNode and provides additional methods
- * to set properties specific to events.
- *
+ * The {@code WebCalendarEvent} class represents an event in the web calendar.
+ * It extends the abstract class WebCalendarNode and provides additional
+ * methods to set properties specific to events.
  * <p>
  * Users can use the methods in this class to add categories, set the
- * classification, add comments, descriptions, locations, set percent complete
- * , set priority, set summary, set start time, set end time, set duration, set
- * URL, set UID, and set timezone for the event. After setting the properties,
- * users can call the {@link #resolve()} method to generate the corresponding
- * iCalendar content for the event.
+ * classification, add comments, descriptions, locations, set percent
+ * complete, set priority, set summary, set start time, set end time, set
+ * duration, set URL, set UID, and set timezone for the event. After setting
+ * the properties, users can call the {@link #resolve()} method to generate the
+ * corresponding iCalendar content for the event.
  *
  * @author Zihlu Wang
  * @version 1.1.0
@@ -275,7 +274,7 @@ public final class WebCalendarEvent extends WebCalendarNode {
                         .map((item) -> "DTEND" + Optional.ofNullable(timezone).map(tz -> ";TZID=" + tz).orElse("") + ":" +
                                 end.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME) + "\n").orElse("") +
                 Optional.ofNullable(classification)
-                        .map((item) -> "CLASS:" + item.getClassification() + "\n").orElse("") +
+                        .map((item) -> "CLASS:" + item.name() + "\n").orElse("") +
                 Optional.ofNullable(comment).map((item) -> "COMMENT:" + item + "\n").orElse("") +
                 Optional.ofNullable(description).map((item) -> "DESCRIPTION:" + item + "\n").orElse("") +
                 Optional.ofNullable(location).map((item) -> "LOCATION:" + item + "\n").orElse("") +

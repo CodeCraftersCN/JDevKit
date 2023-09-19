@@ -17,19 +17,21 @@
 
 package cn.org.codecrafters.simplejwt.config;
 
+import cn.org.codecrafters.simplejwt.TokenResolver;
 import cn.org.codecrafters.simplejwt.constants.TokenAlgorithm;
 
 /**
- * The TokenResolverConfig interface provides a mechanism to configure a
- * TokenResolver with algorithm functions.
+ * The {@code TokenResolverConfig} provides a mechanism to configure a
+ * {@link TokenResolver} with algorithm functions.
  * <p>
  * This generic interface is used to define the configuration details for a
- * TokenResolver that utilizes algorithm functions. The interface allows for
- * specifying algorithm functions corresponding to different TokenAlgorithm
- * instances supported by the TokenResolver implementation.
+ * {@link TokenResolver} that utilizes algorithm functions. The interface
+ * allows for specifying algorithm functions corresponding to different {@link
+ * TokenAlgorithm} instances supported by the {@link TokenResolver}
+ * implementation.
  *
  * @param <Algo> the type representing algorithm functions used by the
- *               {@code TokenResolver}
+ *               {@link TokenResolver}
  * @author Zihlu Wang
  * @version 1.0.0
  * @since 1.0.0
@@ -37,18 +39,20 @@ import cn.org.codecrafters.simplejwt.constants.TokenAlgorithm;
 public interface TokenResolverConfig<Algo> {
 
     /**
-     * Gets the algorithm function corresponding to the specified
-     * TokenAlgorithm.
+     * Gets the algorithm function corresponding to the specified {@link
+     * TokenAlgorithm}.
      * <p>
      * This method returns the algorithm function associated with the given
-     * TokenAlgorithm. The provided TokenAlgorithm represents the specific
-     * algorithm for which the corresponding algorithm function is required.
-     * The returned AlgorithmFunction represents the function implementation
-     * that can be used by the TokenResolver to handle the specific algorithm.
+     * {@link TokenAlgorithm}. The provided TokenAlgorithm represents the
+     * specific algorithm for which the corresponding algorithm function is
+     * required. The returned {@code Algo} represents the function
+     * implementation that can be used by the {@link TokenResolver} to handle
+     * the specific algorithm.
      *
-     * @param algorithm the TokenAlgorithm for which the algorithm function is
-     *                  required
-     * @return the algorithm function associated with the given TokenAlgorithm
+     * @param algorithm the {@link TokenAlgorithm} for which the algorithm
+     *                  function is required
+     * @return the algorithm function associated with the given {@link
+     * TokenAlgorithm}
      */
     Algo getAlgorithm(TokenAlgorithm algorithm);
 

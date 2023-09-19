@@ -9,7 +9,7 @@ import org.springframework.core.type.AnnotatedTypeMetadata;
 import java.util.Objects;
 
 /**
- * The condition to create bean {@code jtiCreator}.
+ * The conditions to create bean {@code jtiCreator}.
  *
  * @author Zihlu Wang
  * @version 1.1.0

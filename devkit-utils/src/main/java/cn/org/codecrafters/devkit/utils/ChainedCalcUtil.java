@@ -17,6 +17,8 @@
 
 package cn.org.codecrafters.devkit.utils;
 
+import lombok.Getter;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.Objects;
@@ -84,6 +86,7 @@ import java.util.function.Function;
  * @see java.math.BigDecimal
  * @since 1.0.0
  */
+@Getter
 public final class ChainedCalcUtil {
 
     /**

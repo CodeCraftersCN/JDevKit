@@ -122,11 +122,11 @@ public class AuthzeroTokenResolver implements TokenResolver<DecodedJWT> {
     private final AuthzeroTokenResolverConfig config = AuthzeroTokenResolverConfig.getInstance();
 
     /**
-     * Creates a new instance of AuthzeroTokenResolver with the provided
-     * configurations.
+     * Creates a new instance of {@code AuthzeroTokenResolver} with the
+     * provided configurations.
      *
-     * @param jtiCreator the GuidCreator used for generating unique identifiers
-     *                   for "jti" claim in JWT tokens
+     * @param jtiCreator the {@link GuidCreator} used for generating unique
+     *                   identifiers for "jti" claim in JWT tokens
      * @param algorithm  the algorithm used for signing and verifying JWT
      *                   tokens
      * @param issuer     the issuer claim value to be included in JWT tokens
@@ -151,8 +151,8 @@ public class AuthzeroTokenResolver implements TokenResolver<DecodedJWT> {
     }
 
     /**
-     * Creates a new instance of AuthzeroTokenResolver with the provided
-     * configurations and a simple UUID GuidCreator.
+     * Creates a new instance of {@link AuthzeroTokenResolver} with the
+     * provided configurations and a simple UUID GuidCreator.
      *
      * @param algorithm the algorithm used for signing and verifying JWT tokens
      * @param issuer    the issuer claim value to be included in JWT tokens
@@ -168,7 +168,7 @@ public class AuthzeroTokenResolver implements TokenResolver<DecodedJWT> {
             log.warn("The provided secret which owns {} characters is too weak. Please consider replacing it with a stronger one.", secret.length());
         }
 
-        this.jtiCreator = (GuidCreator<UUID>) UUID::randomUUID;
+        this.jtiCreator = UUID::randomUUID;
         this.algorithm = config
                 .getAlgorithm(algorithm)
                 .apply(secret);
@@ -177,8 +177,9 @@ public class AuthzeroTokenResolver implements TokenResolver<DecodedJWT> {
     }
 
     /**
-     * Creates a new instance of AuthzeroTokenResolver with the provided
-     * configurations, HMAC256 algorithm and a simple UUID GuidCreator.
+     * Creates a new instance of {@link AuthzeroTokenResolver} with the
+     * provided configurations, HMAC256 algorithm and a simple
+     * UUID GuidCreator.
      *
      * @param issuer the issuer claim value to be included in JWT tokens
      * @param secret the secret used for HMAC-based algorithms (HS256,
@@ -193,7 +194,7 @@ public class AuthzeroTokenResolver implements TokenResolver<DecodedJWT> {
             log.warn("The provided secret which owns {} characters is too weak. Please consider replacing it with a stronger one.", secret.length());
         }
 
-        this.jtiCreator = (GuidCreator<UUID>) UUID::randomUUID;
+        this.jtiCreator = UUID::randomUUID;
         this.algorithm = config
                 .getAlgorithm(TokenAlgorithm.HS256)
                 .apply(secret);
@@ -202,15 +203,16 @@ public class AuthzeroTokenResolver implements TokenResolver<DecodedJWT> {
     }
 
     /**
-     * Creates a new instance of AuthzeroTokenResolver with the provided
-     * configurations, HMAC256 algorithm and a simple UUID GuidCreator.
+     * Creates a new instance of {@link AuthzeroTokenResolver} with the
+     * provided configurations, HMAC256 algorithm and a simple
+     * UUID GuidCreator.
      *
      * @param issuer the issuer claim value to be included in JWT tokens
      */
     public AuthzeroTokenResolver(String issuer) {
         var secret = SecretCreator.createSecret(32, true, true, true);
 
-        this.jtiCreator = (GuidCreator<UUID>) UUID::randomUUID;
+        this.jtiCreator = UUID::randomUUID;
         this.algorithm = config
                 .getAlgorithm(TokenAlgorithm.HS256)
                 .apply(secret);
@@ -286,16 +288,13 @@ public class AuthzeroTokenResolver implements TokenResolver<DecodedJWT> {
     }
 
     /**
-     * <p>
      * Builds the custom claims of the JSON Web Token (JWT) using the provided
      * Map of claims and adds them to the JWTCreator.Builder.
-     * <p>
      * <p>
      * This method is used to add custom claims to the JWT. It takes a Map of
      * claims, where each entry represents a custom claim name (key) and its
      * corresponding value (value). The custom claims will be added to the JWT
      * using the JWTCreator.Builder.
-     * <p>
      *
      * @param claims  a Map containing the custom claims to be added to the JWT
      * @param builder the JWTCreator.Builder instance to which the custom
@@ -310,9 +309,7 @@ public class AuthzeroTokenResolver implements TokenResolver<DecodedJWT> {
     }
 
     /**
-     * <p>
      * Finish creating a token.
-     *
      * <p>
      * This is the final step of create a token, to sign this token.
      *
@@ -324,7 +321,7 @@ public class AuthzeroTokenResolver implements TokenResolver<DecodedJWT> {
     }
 
     /**
-     * Creates a new token with the specified expiration time, subject, and
+     * Creates a new token with the specified expiration duration, subject, and
      * audience.
      *
      * @param expireAfter the duration after which the token will expire
@@ -387,7 +384,7 @@ public class AuthzeroTokenResolver implements TokenResolver<DecodedJWT> {
                 // Build Claims
                 addClaim(builder, field.getName(), field.get(payload));
             } catch (IllegalAccessException e) {
-                log.error("Cannot access field %s!".formatted(field.getName()));
+                log.error("Cannot access field {}!", field.getName());
             }
         }
 
@@ -395,10 +392,10 @@ public class AuthzeroTokenResolver implements TokenResolver<DecodedJWT> {
     }
 
     /**
-     * Resolves the given token into a DecodedJWT object.
+     * Resolves the given token into a {@link DecodedJWT} object.
      *
      * @param token the token to be resolved
-     * @return a ResolvedToken object
+     * @return a {@link DecodedJWT} object
      */
     @Override
     public DecodedJWT resolve(String token) {
@@ -449,9 +446,9 @@ public class AuthzeroTokenResolver implements TokenResolver<DecodedJWT> {
 
             return bean;
         } catch (NoSuchMethodException e) {
-            log.error("Unable to find a no-argument constructor declaration for class %s.".formatted(targetType.getCanonicalName()));
+            log.error("Unable to find a no-argument constructor declaration for class {}.", targetType.getCanonicalName());
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
-            log.error("Unable to create a new instance of class %s.".formatted(targetType.getCanonicalName()));
+            log.error("Unable to create a new instance of class {}.", targetType.getCanonicalName());
         }
         return null;
     }
@@ -475,7 +472,7 @@ public class AuthzeroTokenResolver implements TokenResolver<DecodedJWT> {
     /**
      * Renews the given expired token with the specified custom payload data.
      *
-     * @param oldToken the expired token to be renewed
+     * @param oldToken the expiring token to be renewed
      * @param payload  the custom payload data to be included in the renewed
      *                 token
      * @return the renewed token as a {@code String}
@@ -489,7 +486,7 @@ public class AuthzeroTokenResolver implements TokenResolver<DecodedJWT> {
      * Renews the given expired token with the new specified strongly-typed
      * payload data.
      *
-     * @param oldToken the expired token to be renewed
+     * @param oldToken the expiring token to be renewed
      * @param payload  the strongly-typed payload data to be included in the
      *                 renewed token
      * @return the renewed token as a {@code String}
@@ -511,7 +508,7 @@ public class AuthzeroTokenResolver implements TokenResolver<DecodedJWT> {
      * @param oldToken the expired token to be renewed
      * @param payload  the strongly-typed payload data to be included in the
      *                 renewed token
-     * @return the renewed token as a {@code String}
+     * @return the renewed token as a {@link String}
      */
     @Override
     public <T extends TokenPayload> String renew(String oldToken, T payload) {

@@ -33,18 +33,21 @@
  * main token resolver in the Simple JWT project when integrating {@code
  * com.auth0:java-jwt} as the JWT management library.
  * <p>
- * The {@code AuthzeroTokenResolver} relies on the {@code com.auth0:java-jwt}
- * library to handle the underlying JWT operations, including token creation,
- * validation, and extraction. It utilizes the {@code com.auth0:java-jwt}
- * {@code Algorithm} class to define and use different algorithms for JWT
- * signing and verification.
+ * The {@link cn.org.codecrafters.simplejwt.authzero.AuthzeroTokenResolver}
+ * relies on the {@code com.auth0:java-jwt} library to handle the underlying
+ * JWT operations, including token creation, validation, and extraction. It
+ * utilizes the {@code com.auth0:java-jwt} {@link
+ * com.auth0.jwt.algorithms.Algorithm} class to define and use different
+ * algorithms for JWT signing and verification.
  * <p>
- * To use the {@code AuthzeroTokenResolver}, developers must provide the
- * necessary configurations and dependencies, such as the {@code GuidCreator}
- * for generating unique JWT IDs (JTI), the supported algorithm function, the
- * issuer name, and the secret key used for token signing and validation. The
- * {@code AuthzeroTokenResolverConfig} class provides a convenient way to
- * configure these dependencies.
+ * To use the {@link
+ * cn.org.codecrafters.simplejwt.authzero.AuthzeroTokenResolver}, developers
+ * must provide the necessary configurations and dependencies, such as the
+ * {@link cn.org.codecrafters.guid.GuidCreator} for generating unique JWT IDs
+ * (JTI), the supported algorithm function, the issuer name, and the secret key
+ * used for token signing and validation. The {@link
+ * cn.org.codecrafters.simplejwt.authzero.config.AuthzeroTokenResolverConfig}
+ * class provides a convenient way to configure these dependencies.
  * <p>
  * Developers using the {@code com.auth0:java-jwt} integration should be
  * familiar with the concepts and usage of the {@code com.auth0:java-jwt}

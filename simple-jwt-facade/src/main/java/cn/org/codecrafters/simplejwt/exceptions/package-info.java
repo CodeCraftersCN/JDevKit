@@ -17,20 +17,22 @@
 
 /**
  * The {@code cn.org.codecrafters.simplejwt.exceptions} package contains
- * custom exception classes related to the Simple JWT library. These
- * exceptions are thrown when there are issues or errors during the generation
- * , validation, or processing of JSON Web Tokens (JWTs) in Java applications.
+ * custom exception classes related to the
+ * {@code cn.org.codecrafters:simple-jwt-facade} library. These exceptions are
+ * thrown when there are issues or errors during the generation , validation,
+ * or processing of JSON Web Tokens (JWTs) in Java applications.
  * <p>
  * Custom exception classes in this package are designed to enhance the
  * robustness and reliability of the JWT handling process by providing clear
  * and meaningful error messages to the developers. They help developers
  * identify and troubleshoot issues related to JWT generation, validation, or
- * extraction and ensure smooth operation and error handling in their
- * applications.
+ * extraction and ensure smooth operation and error handling in
+ * their applications.
  * <p>
- * Developers using the Simple JWT library should be aware of the possible
- * exceptions that can be thrown and handle them appropriately to ensure secure
- * and reliable JWT handling in their Java applications.
+ * Developers using the {@code cn.org.codecrafters:simple-jwt-facade} library
+ * should be aware of the possible exceptions that can be thrown and handle
+ * them appropriately to ensure secure and reliable JWT handling in their
+ * Java applications.
  *
  * @since 1.0.0
  */
