@@ -16,10 +16,8 @@
  */
 
 /**
- * This package contains constant values related to JSON Web Token (JWT)
- * processing. These constants define various aspects of JWT, such as the
- * algorithms being used for token signing and verification, and other
- * configuration parameters.
+ * 该软件包包含与 JSON Web 令牌（JWT）处理相关的常量值。这些常量定义了 JWT 的各个方面，
+ * 例如用于令牌签名和验证的算法以及其他配置参数。
  *
  * @since 1.0.0
  */

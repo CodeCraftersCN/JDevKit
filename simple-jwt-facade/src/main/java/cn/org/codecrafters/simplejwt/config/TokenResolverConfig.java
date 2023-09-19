@@ -21,38 +21,28 @@ import cn.org.codecrafters.simplejwt.TokenResolver;
 import cn.org.codecrafters.simplejwt.constants.TokenAlgorithm;
 
 /**
- * The {@code TokenResolverConfig} provides a mechanism to configure a
- * {@link TokenResolver} with algorithm functions.
+ * {@code TokenResolverConfig} 提供了一种机制来配置 {@link TokenResolver} 的算法函数。
  * <p>
- * This generic interface is used to define the configuration details for a
- * {@link TokenResolver} that utilizes algorithm functions. The interface
- * allows for specifying algorithm functions corresponding to different {@link
- * TokenAlgorithm} instances supported by the {@link TokenResolver}
- * implementation.
+ * 这个通用接口用于定义使用算法函数的 {@link TokenResolver} 的配置细节。该接口允许指定与
+ * {@link TokenResolver} 实现支持的不同 {@link TokenAlgorithm} 实例相对应的算法函数。
  *
- * @param <Algo> the type representing algorithm functions used by the
- *               {@link TokenResolver}
+ * @param <Algo> 表示 {@link TokenResolver} 使用的算法函数的类型。
  * @author Zihlu Wang
- * @version 1.0.0
+ * @author Zitai Long
+ * @version 1.1.0
  * @since 1.0.0
  */
 public interface TokenResolverConfig<Algo> {
 
     /**
-     * Gets the algorithm function corresponding to the specified {@link
-     * TokenAlgorithm}.
+     * 获取与指定 {@link TokenAlgorithm} 相对应的算法函数。
      * <p>
-     * This method returns the algorithm function associated with the given
-     * {@link TokenAlgorithm}. The provided TokenAlgorithm represents the
-     * specific algorithm for which the corresponding algorithm function is
-     * required. The returned {@code Algo} represents the function
-     * implementation that can be used by the {@link TokenResolver} to handle
-     * the specific algorithm.
+     * 本方法返回与给定 {@link TokenAlgorithm} 相关的算法函数。提供的令牌算法
+     * （{@link TokenAlgorithm}）代表需要相应算法函数的特定算法。返回的 {@code Algo}
+     * 代表 {@link TokenResolver} 可用来处理特定算法的函数实现。
      *
-     * @param algorithm the {@link TokenAlgorithm} for which the algorithm
-     *                  function is required
-     * @return the algorithm function associated with the given {@link
-     * TokenAlgorithm}
+     * @param algorithm 需要的算法函数
+     * @return 与给定的 {@link TokenAlgorithm} 相关联的算法函数
      */
     Algo getAlgorithm(TokenAlgorithm algorithm);
 

@@ -20,13 +20,11 @@ package cn.org.codecrafters.simplejwt.constants;
 import lombok.Getter;
 
 /**
- * The {@code TokenAlgorithm} enum class defines the algorithms that can be
- * used for signing and verifying JSON Web Tokens (JWT). JWT allows various
- * cryptographic algorithms to be used for secure token generation and
- * validation. This enum provides a list of supported algorithms to ensure
- * consistent usage and avoid potential security issues.
+ * {@code TokenAlgorithm} 枚举类定义了可用于签署和验证 JSON Web 标记（JWT）的算法。
+ * JWT 允许使用各种加密算法来安全生成和验证令牌。该枚举提供了一个受支持算法的列表，以确保使
+ * 用的一致性并避免潜在的安全问题。
  * <p>
- * <b>Supported Algorithms:</b>
+ * <b>支持的算法</b>
  * <ul>
  *     <li>{@link TokenAlgorithm#HS256}: HMAC SHA-256</li>
  *     <li>{@link TokenAlgorithm#HS384}: HMAC SHA-384</li>
@@ -39,6 +37,8 @@ import lombok.Getter;
  *     <li>{@link TokenAlgorithm#ES512}: ECDSA with SHA-512</li>
  * </ul>
  *
+ * @author Zihlu Wang
+ * @author Zitai Long
  * @version 1.1.0
  * @since 1.0.0
  */
