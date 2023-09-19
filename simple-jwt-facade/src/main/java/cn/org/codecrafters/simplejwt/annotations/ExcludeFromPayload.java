@@ -23,20 +23,17 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Annotation {@code ExcludeFromPayload} is used to mark a property of a data
- * class that should be excluded from being automatically injected into the
- * JSON Web Token (JWT) payload during token generation. When a property is
- * annotated by this annotation, it will not be included in the JWT payloads.
+ * 注解 {@code ExcludeFromPayload} 用于标记数据类的一个属性，该属性应在令牌生成过程中被自动
+ * 注入到 JSON Web Token（JWT）有效负载中。使用此注解的属性将不会包含在 JWT 有效负载中。
  * <p>
- * <b>Usage:</b>
- * To exclude a property from the JWT payload, annotate the property with
- * {@code @ExcludeFromPayload}:
+ * <b>使用方法:</b>
+ * 要从 JWT 有效负载中排除某个属性，请将该注释 {@code @ExcludeFromPayload} 添加到目标字段上：
  *
  * <pre>{@code
  * public class UserData implements TokenPayload {
  *     private String username;
  *
- *     // This property will not be included in the JWT payload
+ *     // 这个属性将不会包含在 JWT 有效载荷中
  *     @ExcludeFromPayload
  *     private String sensitiveData;
  *
@@ -44,11 +41,9 @@ import java.lang.annotation.Target;
  * }
  * }</pre>
  * <p>
- * <b>Note:</b>
- * This annotation should be used on properties that are not intended to
- * be included in the JWT payload due to their sensitive nature or for other
- * reasons only. It is important to carefully choose which properties are
- * excluded from the payload to ensure the JWT remains secure and efficient.
+ * <b>注意事项：</b>
+ * 此注释应用于因敏感性质或其他原因而不打算包含在 JWT 有效负载中的属性。必须仔细选择哪些属性不包括
+ * 在有效负载中，以确保 JWT 保持安全和高效。
  *
  * @author Zihlu Wang
  * @version 1.1.0
