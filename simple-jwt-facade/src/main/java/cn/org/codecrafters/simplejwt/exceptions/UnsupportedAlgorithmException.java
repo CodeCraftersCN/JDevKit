@@ -18,17 +18,13 @@
 package cn.org.codecrafters.simplejwt.exceptions;
 
 /**
- * This {@code UnsupportedAlgorithmException} represents the given
- * algorithm is not supported by {@link
- * cn.org.codecrafters.simplejwt.TokenResolver} yet.
+ * {@code UnsupportedAlgorithmException} 表示 {@link
+ * cn.org.codecrafters.simplejwt.TokenResolver} 尚未支持给定的算法。
  * <p>
- * If you want the supports to an unsupported algorithm, you could
- * <ul>
- *     <li>Commit an issue at GitHub Issues or;</li>
- *     <li>Communicate with us on Discord Community.</li>
- * </ul>
+ * 如果您想让该算法得到支持，还请您耐心等候，或者联系我们。
  *
  * @author Zihlu Wang
+ * @author Zitai Long
  * @version 1.1.0
  * @since 1.0.0
  */

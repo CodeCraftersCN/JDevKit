@@ -18,52 +18,47 @@
 package cn.org.codecrafters.simplejwt.exceptions;
 
 /**
- * {@code WeakSecretException} represents that your secret is too weak to be
- * used in signing JWTs.
+ * {@code WeakSecretException} 表示您的秘密太弱，不能用于签署 JWT。
  * <p>
- * {@code WeakSecretException} will only appears that if you are using the
- * implementation module {@code cn.org.codecrafters:simple-jwt-jjwt} due to
- * it is implemented by {@code io.jsonwebtoken:jjwt}.
+ * {@code WeakSecretException} 只有在使用
+ * {@code cn.org.codecrafters:simple-jwt-jjwt}实现模块时才会出现，因为其采用了
+ * {@code io.jsonwebtoken:jjwt} 进行实现，该第三方类库要求密钥不得的长度不得小于16。
  *
  * @author Zihlu Wang
+ * @author Zitai Long
  * @version 1.1.0
  * @since 1.0.0
  */
 public class WeakSecretException extends RuntimeException {
 
     /**
-     * Constructs a new {@code WeakSecretException} with {@code null} as its
-     * detail message. The cause is not initialized, and may subsequently be
-     * initialized by a call to {@link #initCause}.
+     * 构造一个新的 {@code WeakSecretException} ，其详细信息为 {@code null} 。该原因
+     * 未被初始化，随后可通过调用{@link #initCause}进行初始化。
      */
     public WeakSecretException() {
     }
 
     /**
-     * Constructs a new {@code WeakSecretException} with the specified detail
-     * message. The cause is not initialized, and may subsequently be
-     * initialized by a call to {@link #initCause}.
+     * 构造一个新的 {@code WeakSecretException} ，并带有指定的细节信息。原因未初始化，
+     * 可通过调用 {@link #initCause} 进行初始化。
      *
-     * @param message the detail message. The detail message is saved for
-     *                later retrieval by the {@link #getMessage()} method.
+     * @param message 详细信息，该信息将被保存起来，以便以后通过 {@link
+     *                #getMessage()} 方法进行检索
      */
     public WeakSecretException(String message) {
         super(message);
     }
 
     /**
-     * Constructs a new {@code WeakSecretException} with the specified detail
-     * message and cause.
+     * 构造一个新的 {@code WeakSecretException} ，包含指定的细节信息和原因。
      * <p>
-     * Note that the detail message associated with {@code cause} is <i>not</i>
-     * automatically incorporated in this runtime exception's detail message.
+     * 请注意，与 {@code cause} 相关联的详细信息<i>不会</i>自动包含在此运行时异常的详细
+     * 信息中。
      *
-     * @param message the detail message (which is saved for later retrieval
-     *                by the {@link #getMessage()} method).
-     * @param cause   the cause (which is saved for later retrieval by the
-     *                {@link #getCause()} method).  (A {@code null} value is
-     *                permitted, and indicates that the cause is nonexistent or
-     *                unknown.)
+     * @param message 详细信息，该信息将被保存起来，以便以后通过 {@link
+     *                #getMessage()} 方法进行检索
+     * @param cause   原因（保存后可通过 {@link #getCause()} 方法检索）。 (允许使用
+     *                {@code null} 值，表示原因不存在或未知）。
      * @since 1.0.0
      */
     public WeakSecretException(String message, Throwable cause) {
@@ -71,16 +66,13 @@ public class WeakSecretException extends RuntimeException {
     }
 
     /**
-     * Constructs a new {@code WeakSecretException} with the specified cause
-     * and a detail message of {@code (cause==null ? null : cause.toString())}
-     * (which typically contains the class and detail message of
-     * {@code cause}). This constructor is useful for runtime exceptions that
-     * are little more than wrappers for other throwable.
+     * 构造一个新的 {@code WeakSecretException}，该异常具有指定的起因和
+     * {@code (cause==null ? null : cause.toString())} 的详细信息（通常包含
+     * {@code cause} 的类和详细信息）。该构造函数对运行时异常非常有用，因为运行时异常只不过
+     * 是其他可抛出异常的包装。
      *
-     * @param cause the cause (which is saved for later retrieval by the
-     *              {@link #getCause()} method).  (A {@code null} value is
-     *              permitted, and indicates that the cause is nonexistent or
-     *              unknown.)
+     * @param cause 原因（保存后可通过 {@link #getCause()} 方法检索）。 (允许使用
+     *              {@code null} 值，表示原因不存在或未知）。
      * @since 1.0.0
      */
     public WeakSecretException(Throwable cause) {
@@ -88,16 +80,14 @@ public class WeakSecretException extends RuntimeException {
     }
 
     /**
-     * Constructs a new {@code WeakSecretException} with the specified detail
-     * message, cause, suppression enabled or disabled, and writable
-     * stack trace enabled or disabled.
+     * 构造一个新的 {@code WeakSecretException}，包含指定的细节信息、原因、启用或禁用的
+     * 抑制功能，以及启用或禁用的可写堆栈跟踪功能。
      *
-     * @param message            the detail message.
-     * @param cause              the cause. (A {@code null} value is permitted,
-     *                           and indicates that the cause is nonexistent or
-     *                           unknown.)
-     * @param enableSuppression  whether suppression is enabled or disabled
-     * @param writableStackTrace whether the stack trace should be writable
+     * @param message            详细信息
+     * @param cause              原因（保存后可通过 {@link #getCause()} 方法检索）
+     *                           (允许使用 {@code null} 值，表示原因不存在或未知）
+     * @param enableSuppression  是否启用或禁用抑制功能
+     * @param writableStackTrace 堆栈跟踪是否可写
      * @since 1.0.0
      */
     public WeakSecretException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
