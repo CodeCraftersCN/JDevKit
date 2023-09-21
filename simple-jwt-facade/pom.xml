@@ -23,7 +23,7 @@
     <parent>
         <groupId>cn.org.codecrafters</groupId>
         <artifactId>jdevkit</artifactId>
-        <version>1.1.0</version>
+        <version>1.1.0.zh-CN</version>
     </parent>
 
     <artifactId>simple-jwt-facade</artifactId>
