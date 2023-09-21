@@ -63,6 +63,11 @@ public final class JjwtTokenResolverConfig implements TokenResolverConfig<Signat
 
     private static JjwtTokenResolverConfig instance;
 
+    /**
+     * 获取 {@code JjwtTokenResolverConfig} 的实例。
+     *
+     * @return {@code JjwtTokenResolverConfig} 的实例
+     */
     public static JjwtTokenResolverConfig getInstance() {
         if (instance == null) {
             instance = new JjwtTokenResolverConfig();

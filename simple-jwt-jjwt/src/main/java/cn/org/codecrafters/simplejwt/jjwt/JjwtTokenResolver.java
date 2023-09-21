@@ -107,6 +107,14 @@ public class JjwtTokenResolver implements TokenResolver<Jws<Claims>> {
 
     private final JjwtTokenResolverConfig config = JjwtTokenResolverConfig.getInstance();
 
+    /**
+     * 创建 {@code JjwtTokenResolver} 工具。
+     *
+     * @param jtiCreator 令牌 ID 生成器
+     * @param algorithm  令牌签名算法
+     * @param issuer     令牌签发者
+     * @param secret     密钥
+     */
     public JjwtTokenResolver(GuidCreator<?> jtiCreator, TokenAlgorithm algorithm, String issuer, String secret) {
         if (secret == null || secret.isBlank()) {
             throw new IllegalArgumentException("创建 JSON 网络令牌需要一个密文。");
@@ -127,6 +135,13 @@ public class JjwtTokenResolver implements TokenResolver<Jws<Claims>> {
         this.key = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
     }
 
+    /**
+     * 创建 {@code JjwtTokenResolver} 工具。
+     *
+     * @param algorithm 令牌的签名算法
+     * @param issuer    令牌签发者
+     * @param secret    密钥
+     */
     public JjwtTokenResolver(TokenAlgorithm algorithm, String issuer, String secret) {
         if (secret == null || secret.isBlank()) {
             throw new IllegalArgumentException("创建 JSON 网络令牌需要一个密文。");
@@ -147,6 +162,12 @@ public class JjwtTokenResolver implements TokenResolver<Jws<Claims>> {
         this.key = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
     }
 
+    /**
+     * 创建 {@code JjwtTokenResolver} 工具。
+     *
+     * @param issuer 令牌签发者
+     * @param secret 密钥
+     */
     public JjwtTokenResolver(String issuer, String secret) {
         if (secret == null || secret.isBlank()) {
             throw new IllegalArgumentException("创建 JSON 网络令牌需要一个密文。");
@@ -167,6 +188,11 @@ public class JjwtTokenResolver implements TokenResolver<Jws<Claims>> {
         this.key = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
     }
 
+    /**
+     * 生成 {@code JjwtTokenResolver} 工具。
+     *
+     * @param issuer 令牌签发者
+     */
     public JjwtTokenResolver(String issuer) {
         this.jtiCreator = UUID::randomUUID;
         this.algorithm = config.getAlgorithm(TokenAlgorithm.HS256);
@@ -174,6 +200,16 @@ public class JjwtTokenResolver implements TokenResolver<Jws<Claims>> {
         this.key = Keys.hmacShaKeyFor(SecretCreator.createSecret(32, true, true, true).getBytes(StandardCharsets.UTF_8));
     }
 
+    /**
+     * 生成令牌。
+     *
+     * @param expireAfter 令牌有效期
+     * @param audience    令牌的受众
+     * @param subject     令牌的主题
+     * @param now         当前时间
+     * @param claims      令牌的有效载荷
+     * @return 生成的令牌
+     */
     private String buildToken(Duration expireAfter, String audience, String subject, LocalDateTime now, Map<String, Object> claims) {
         var builder = Jwts.builder()
                 .setHeaderParam("typ", "JWT")
@@ -199,7 +235,7 @@ public class JjwtTokenResolver implements TokenResolver<Jws<Claims>> {
      * @param expireAfter 令牌过期的时间
      * @param audience    令牌的目标受众
      * @param subject     令牌的主体
-     * @return 生成的令牌为 {@code String｝
+     * @return 生成的令牌
      */
     @Override
     public String createToken(Duration expireAfter, String audience, String subject) {
