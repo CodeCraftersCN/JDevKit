@@ -55,8 +55,8 @@ public final class AesUtil {
     /**
      * 使用 AES 算法，用给定密钥对给定数据进行加密。
      *
-     * @param data 需要加密的数据
-     * @param key  加密数据的密钥
+     * @param data   需要加密的数据
+     * @param secret 加密数据的密钥
      * @return 加密结果，如果加密失败则为 {@code null}
      */
     public static byte[] encrypt(byte[] data, byte[] secret) {
@@ -79,8 +79,8 @@ public final class AesUtil {
     /**
      * 使用 AES 算法，用给定密钥解密给定数据。
      *
-     * @param data 需要解密的数据
-     * @param key  加解密数据的密钥
+     * @param data   需要解密的数据
+     * @param secret 加解密数据的密钥
      * @return 解密结果，如果解密失败则为 {@code null}
      */
     public static byte[] decrypt(byte[] data, byte[] secret) {
@@ -114,8 +114,8 @@ public final class AesUtil {
     /**
      * 使用 AES 算法，用给定密钥解密给定数据。
      *
-     * @param data 需要解密的数据
-     * @param secret  加解密数据的密钥
+     * @param data   需要解密的数据
+     * @param secret 加解密数据的密钥
      * @return 解密结果，如果解密失败则为 {@code null}
      */
     public static String decrypt(String data, String secret) {
