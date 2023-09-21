@@ -31,31 +31,25 @@ import java.util.Optional;
 import java.util.function.Function;
 
 /**
- * The {@code AuthzeroTokenResolverConfig} class provides the configuration for
- * the {@link AuthzeroTokenResolver}.
+ * {@code AuthzeroTokenResolverConfig} 类提供了 {@link AuthzeroTokenResolver} 的配置。
  * <p>
- * This configuration is used to establish the mapping between the standard
- * {@link TokenAlgorithm} defined within the {@link AuthzeroTokenResolver}
- * facade and the specific algorithms used by the {@code com.auth0:java-jwt}
- * library, which is the underlying library used by {@link
- * AuthzeroTokenResolver} to handle JSON Web Tokens (JWTs).
+ * 该配置类用于建立 {@code AuthzeroTokenResolverConfig} 中定义的标准
+ * {@link TokenAlgorithm} 与 {@code com.auth0:java-jwt} 库
+ * （ {@link AuthzeroTokenResolver} 用于处理 JSON Web 令牌（JWT）的
+ * 底层库）所使用的特定算法之间的映射。
  * <p>
- * <b>Algorithm Mapping:</b>
- * The {@code AuthzeroTokenResolverConfig} allows specifying the relationship
- * between the standard {@link TokenAlgorithm} instances supported by
- * {@link AuthzeroTokenResolver} and the corresponding algorithms used by the
- * {@code com.auth0:java-jwt} library. The mapping is achieved using a Map,
- * where the keys are the standard TokenAlgorithm instances, and the values
- * represent the algorithm functions used by Auth0 Java JWT library for each
- * corresponding key.
+ * <b>算法映射：</b>
+ * {@code AuthzeroTokenResolverConfig} 允许指定 {@link AuthzeroTokenResolver}
+ * 支持的标准 {@link TokenAlgorithm} 实例与 {@code com.auth0:java-jwt}
+ * 库使用的相应算法之间的关系。该映射使用 Map 实现，其中键是标准的 {@link
+ * TokenAlgorithm} 实例，值代表 {@code com.auth0:java-jwt} 库针对每个相应键使用的算法函数。
  * <p>
- * <b>Note:</b>
- * The provided algorithm mapping should be consistent with the actual
- * algorithms supported and used by the {@code com.auth0:java-jwt} library. It
- * is crucial to ensure that the mapping is accurate to enable proper token
- * validation and processing within the {@link AuthzeroTokenResolver}.
+ * <b>注意事项：</b>
+ * 所提供的算法映射应与 {@code com.auth0:java-jwt} 库支持和使用的实际算法一致。
+ * 确保映射的准确性对于在 {@link AuthzeroTokenResolver} 中正确验证和处理令牌至关重要。
  *
  * @author Zihlu Wang
+ * @author Zitai Long
  * @version 1.1.0
  * @since 1.0.0
  */
