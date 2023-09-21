@@ -79,8 +79,9 @@ import java.util.*;
  * <b>备注:</b>
  * 使用该解析器时，必须根据具体使用情况配置适当的算法、密文和签发器。
  * 此外，请确保在项目的依赖项中正确配置了该 {@code com.auth0:java-jwt} 库。
+ *
  * @author Zihlu Wang
- *         Zitai Long
+ * @author Zitai Long
  * @version 1.1.0
  * @see GuidCreator
  * @see Algorithm
@@ -164,8 +165,9 @@ public class AuthzeroTokenResolver implements TokenResolver<DecodedJWT> {
     }
 
     /**
-     *  使用提供的配置、HMAC256 算法和简单 UUID GuidCreator
-     *  创建一个 {@link AuthzeroTokenResolver} 新实例。
+     * 使用提供的配置、HMAC256 算法和简单 UUID GuidCreator
+     * 创建一个 {@link AuthzeroTokenResolver} 新实例。
+     *
      * @param issuer 将包含在 JWT 标记中的发行人声明值
      * @param secret 基于 HMAC 算法（HS256、HS384、HS512）的密文，用于令牌签名和验证
      */
@@ -187,8 +189,9 @@ public class AuthzeroTokenResolver implements TokenResolver<DecodedJWT> {
     }
 
     /**
-     *  使用提供的配置、HMAC256 算法和简单 UUID GuidCreator
-     *  创建一个 {@link AuthzeroTokenResolver} 新实例。
+     * 使用提供的配置、HMAC256 算法和简单 UUID GuidCreator
+     * 创建一个 {@link AuthzeroTokenResolver} 新实例。
+     *
      * @param issuer 将包含在 JWT 标记中的发行人声明值
      */
     public AuthzeroTokenResolver(String issuer) {
@@ -206,6 +209,7 @@ public class AuthzeroTokenResolver implements TokenResolver<DecodedJWT> {
 
     /**
      * 使用提供的参数构建 JSON 网络令牌 (JWT) 的基本信息，并将其添加到 JWTCreator.Builder 中。
+     *
      * @param subject     将包含在 JWT 中的标的声明值
      * @param audience    一个将包含在 JWT 中的受众声明值数组
      * @param expireAfter JWT 将过期的持续时间
@@ -272,6 +276,7 @@ public class AuthzeroTokenResolver implements TokenResolver<DecodedJWT> {
      * 该方法用于向 JWT 添加自定义声明。它接收一个索赔映射表，
      * 其中每个条目代表一个自定义索赔名称（key）及其相应的值（value）。
      * 自定义请求将使用 JWTCreator.Builder.Map 方法添加到 JWT。
+     *
      * @param claims  其中包含要添加到 JWT 中的自定义声明的键值对
      * @param builder 将添加自定义索赔的 JWTCreator.Builder 实例
      */
@@ -379,7 +384,7 @@ public class AuthzeroTokenResolver implements TokenResolver<DecodedJWT> {
      * @param token      从中提取有效负载的令牌
      * @param targetType 代表有效负载数据类型的目标类
      * @return 指定目标类型的实例，其中包含提取的有效载荷数据，
-     *         或者当 {@code null} 提取失败时
+     * 或者当 {@code null} 提取失败时
      */
     @Override
     public <T extends TokenPayload> T extract(String token, Class<T> targetType) {

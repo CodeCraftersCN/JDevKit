@@ -28,18 +28,15 @@ import java.util.Optional;
 import java.util.UUID;
 
 /**
- * The {@code WebCalendarEvent} class represents an event in the web calendar.
- * It extends the abstract class WebCalendarNode and provides additional
- * methods to set properties specific to events.
+ * {@code WebCalendarEvent} 类表示网络日历中的一个事件。
+ * 它扩展了抽象类 WebCalendarNode，并提供了用于设置事件特定属性的附加方法。
  * <p>
- * Users can use the methods in this class to add categories, set the
- * classification, add comments, descriptions, locations, set percent
- * complete, set priority, set summary, set start time, set end time, set
- * duration, set URL, set UID, and set timezone for the event. After setting
- * the properties, users can call the {@link #resolve()} method to generate the
- * corresponding iCalendar content for the event.
+ * 用户可使用该类中的方法为事件添加类别、设置分类、添加注释、描述、位置、设置完成百分比、设置优先级、设置摘要、
+ * 设置开始时间、设置结束时间、设置持续时间、设置 URL、设置 UID 和设置时区。设置完属性后，用户可以调用
+ * {@link #resolve()}方法为事件生成相应的 iCalendar 内容。
  *
  * @author Zihlu Wang
+ * @author Zitai Long
  * @version 1.1.0
  * @since 1.0.0
  */
@@ -48,10 +45,10 @@ public final class WebCalendarEvent extends WebCalendarNode {
     private final static String TAG = "VEVENT";
 
     /**
-     * Add categories to the event.
+     * 为事件添加类别。
      *
-     * @param categories the categories to add
-     * @return the WebCalendarEvent object
+     * @param categories 要添加的类别
+     * @return WebCalendarEvent 对象
      */
     public WebCalendarEvent addCategories(String... categories) {
         this.categories.addAll(Arrays.asList(categories));
@@ -59,10 +56,10 @@ public final class WebCalendarEvent extends WebCalendarNode {
     }
 
     /**
-     * Add a collection of categories to the event.
+     * 为事件添加类别集合。
      *
-     * @param categories the collection of categories to add
-     * @return the WebCalendarEvent object
+     * @param categories 要添加的类别集合
+     * @return WebCalendarEvent 对象
      */
     public WebCalendarEvent addCategories(Collection<String> categories) {
         this.categories.addAll(categories);
@@ -70,10 +67,10 @@ public final class WebCalendarEvent extends WebCalendarNode {
     }
 
     /**
-     * Add a single category to the event.
+     * 为活动添加一个类别。
      *
-     * @param category the category to add
-     * @return the WebCalendarEvent object
+     * @param category 要添加的类别
+     * @return WebCalendarEvent 对象
      */
     public WebCalendarEvent addCategory(String category) {
         this.categories.add(category);
@@ -81,10 +78,10 @@ public final class WebCalendarEvent extends WebCalendarNode {
     }
 
     /**
-     * Set the classification of the event.
+     * 设置事件的分类。
      *
-     * @param classification the classification to set
-     * @return the WebCalendarEvent object
+     * @param classification 设定的分类
+     * @return WebCalendarEvent 对象
      */
     public WebCalendarEvent setClassification(Classification classification) {
         this.classification = classification;
@@ -92,10 +89,10 @@ public final class WebCalendarEvent extends WebCalendarNode {
     }
 
     /**
-     * Set the comment for the event.
+     * 为事件设置注释。
      *
-     * @param comment the comment to set
-     * @return the WebCalendarEvent object
+     * @param comment 要设置的注释
+     * @return WebCalendarEvent 对象
      */
     public WebCalendarEvent setComment(String comment) {
         this.comment = comment;
@@ -103,10 +100,10 @@ public final class WebCalendarEvent extends WebCalendarNode {
     }
 
     /**
-     * Set the description for the event.
+     * 设置事件描述。
      *
-     * @param description the description to set
-     * @return the WebCalendarEvent object
+     * @param description 要设置的说明
+     * @return WebCalendarEvent 对象
      */
     public WebCalendarEvent setDescription(String description) {
         this.description = description;
@@ -114,10 +111,10 @@ public final class WebCalendarEvent extends WebCalendarNode {
     }
 
     /**
-     * Set the location for the event.
+     * 设置活动地点。
      *
-     * @param location the location to set
-     * @return the WebCalendarEvent object
+     * @param location 设置的位置
+     * @return WebCalendarEvent 对象
      */
     public WebCalendarEvent setLocation(String location) {
         this.location = location;
@@ -125,40 +122,40 @@ public final class WebCalendarEvent extends WebCalendarNode {
     }
 
     /**
-     * Set the percent complete for the event.
+     * 设置事件的完成百分比。
      *
-     * @param percentComplete the percent complete to set
-     * @return the WebCalendarEvent object
-     * @throws IllegalArgumentException if the percent complete is out of range (0 ~ 100)
+     * @param percentComplete 设置的完成百分比
+     * @return WebCalendarEvent 对象
+     * @throws IllegalArgumentException 如果完成百分比超出范围（0 ~ 100）
      */
     public WebCalendarEvent setPercentComplete(Integer percentComplete) {
         if (percentComplete < 0 || percentComplete > 100) {
-            throw new IllegalArgumentException("Percent out of range (0 ~ 100)");
+            throw new IllegalArgumentException("超出范围的百分比（0 ~ 100）");
         }
         this.percentComplete = percentComplete;
         return this;
     }
 
     /**
-     * Set the priority for the event.
+     * 设置事件的优先级。
      *
-     * @param priority the priority to set
-     * @return the WebCalendarEvent object
-     * @throws IllegalArgumentException if the priority is out of range (0 ~ 9)
+     * @param priority 设定的优先级
+     * @return WebCalendarEvent 对象
+     * @throws IllegalArgumentException 如果优先级超出范围 (0 ~ 9)
      */
     public WebCalendarEvent setPriority(Integer priority) {
         if (priority < 0 || priority > 9) {
-            throw new IllegalArgumentException("The priority you provide is out of range (0 ~ 9).");
+            throw new IllegalArgumentException("您提供的优先级超出了范围（0 ~ 9）。");
         }
         this.priority = priority;
         return this;
     }
 
     /**
-     * Set the summary for the event.
+     * 设置事件摘要。
      *
-     * @param summary the summary to set
-     * @return the WebCalendarEvent object
+     * @param summary 设置的摘要
+     * @return WebCalendarEvent 对象
      */
     public WebCalendarEvent setSummary(String summary) {
         this.summary = summary;
@@ -166,25 +163,25 @@ public final class WebCalendarEvent extends WebCalendarNode {
     }
 
     /**
-     * Set the end time for the event.
+     * 设置事件的结束时间。
      *
-     * @param end the end time to set
-     * @return the WebCalendarEvent object
-     * @throws IllegalStateException if the field DURATION has been set before
+     * @param end 设定的结束时间
+     * @return WebCalendarEvent 对象
+     * @throws IllegalStateException 如果字段 DURATION 之前已经设置过
      */
     public WebCalendarEvent setEnd(LocalDateTime end) {
         if (this.duration != null) {
-            throw new IllegalStateException("You have set the field DURATION before, please remove it or remove setEnd.");
+            throw new IllegalStateException("您之前设置了 DURATION 字段，请删除它或删除 setEnd。");
         }
         this.end = end;
         return this;
     }
 
     /**
-     * Set the start time for the event.
+     * 设置事件的开始时间。
      *
-     * @param start the start time to set
-     * @return the WebCalendarEvent object
+     * @param start 设定的起始时间
+     * @return WebCalendarEvent 对象
      */
     public WebCalendarEvent setStart(LocalDateTime start) {
         this.start = start;
@@ -192,25 +189,25 @@ public final class WebCalendarEvent extends WebCalendarNode {
     }
 
     /**
-     * Set the duration for the event.
+     * 设置事件的持续时间。
      *
-     * @param duration the duration to set
-     * @return the WebCalendarEvent object
-     * @throws IllegalStateException if the field END has been set before
+     * @param duration 设定的持续时间
+     * @return WebCalendarEvent 对象
+     * @throws IllegalStateException 如果字段END 在
      */
     public WebCalendarEvent setDuration(Duration duration) {
         if (this.end != null) {
-            throw new IllegalStateException("You have set the field END before, please remove it or remove setDuration.");
+            throw new IllegalStateException("您之前设置了字段 END，请删除它或删除 setDuration。");
         }
         this.duration = duration;
         return this;
     }
 
     /**
-     * Set the URL for the event.
+     * 设置事件的 URL。
      *
-     * @param url the URL to set
-     * @return the WebCalendarEvent object
+     * @param url 要设置的 URL
+     * @return WebCalendarEvent 对象
      */
     public WebCalendarEvent setUrl(String url) {
         this.url = url;
@@ -218,10 +215,10 @@ public final class WebCalendarEvent extends WebCalendarNode {
     }
 
     /**
-     * Set the UID for the event.
+     * 设置事件的 UID。
      *
-     * @param uid the UID to set
-     * @return the WebCalendarEvent object
+     * @param uid 要设置的 UID
+     * @return WebCalendarEvent 对象
      */
     public WebCalendarEvent setUid(String uid) {
         this.uid = uid;
@@ -229,10 +226,10 @@ public final class WebCalendarEvent extends WebCalendarNode {
     }
 
     /**
-     * Set the domain name for the event.
+     * 设置事件的域名。
      *
-     * @param domainName the domain name to set
-     * @return the WebCalendarEvent object
+     * @param domainName 要设置的域名要设置的域名
+     * @return WebCalendarEvent 对象
      */
     public WebCalendarEvent setDomainName(String domainName) {
         this.domainName = domainName;
@@ -240,10 +237,10 @@ public final class WebCalendarEvent extends WebCalendarNode {
     }
 
     /**
-     * Set the timezone for the event.
+     * 设置事件的时区。
      *
-     * @param timezone the timezone to set
-     * @return the WebCalendarEvent object
+     * @param timezone 要设置的时区
+     * @return WebCalendarEvent 对象
      */
     public WebCalendarEvent setTimezone(String timezone) {
         this.timezone = timezone;
@@ -251,9 +248,9 @@ public final class WebCalendarEvent extends WebCalendarNode {
     }
 
     /**
-     * Generate and resolve the iCalendar content for the event.
+     * 生成并解析事件的 iCalendar 内容。
      *
-     * @return the resolved iCalendar content for the event
+     * @return 为事件解析的 iCalendar 内容
      */
     @Override
     public String resolve() {

@@ -37,7 +37,7 @@ import java.util.Map;
  * </pre>
  *
  * @author Zihlu Wang
- *         Zitai Long
+ * @author Zitai Long
  * @version 1.1.0
  * @since 1.0.0
  */

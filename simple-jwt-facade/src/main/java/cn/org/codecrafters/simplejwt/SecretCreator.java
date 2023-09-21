@@ -96,9 +96,9 @@ public final class SecretCreator {
     /**
      * 生成具有指定长度和字符集的安全密文。
      *
-     * @param length               要生成的密钥长度
-     * @param isContainCapital     指示密钥是否包含大写字母的标志
-     * @param isContainDigital     指示密钥是否包含数字的标志
+     * @param length           要生成的密钥长度
+     * @param isContainCapital 指示密钥是否包含大写字母的标志
+     * @param isContainDigital 指示密钥是否包含数字的标志
      * @return 生成的密钥
      * @throws WeakSecretException 如果要求生成密钥的长度小于 32 个字符
      * @see #createSecret(int, boolean, boolean, boolean)
@@ -112,8 +112,8 @@ public final class SecretCreator {
     /**
      * 生成具有指定长度和字符集的安全密文。
      *
-     * @param length               要生成的密钥长度
-     * @param isContainCapital     指示密钥是否包含大写字母的标志
+     * @param length           要生成的密钥长度
+     * @param isContainCapital 指示密钥是否包含大写字母的标志
      * @return 生成的密钥
      * @throws WeakSecretException 如果要求生成密钥的长度小于 32 个字符
      * @see #createSecret(int, boolean, boolean, boolean)
@@ -126,7 +126,7 @@ public final class SecretCreator {
     /**
      * 生成具有指定长度和字符集的安全密文。
      *
-     * @param length               要生成的密钥长度
+     * @param length 要生成的密钥长度
      * @return 生成的密钥
      * @throws WeakSecretException 如果要求生成密钥的长度小于 32 个字符
      * @see #createSecret(int, boolean, boolean, boolean)

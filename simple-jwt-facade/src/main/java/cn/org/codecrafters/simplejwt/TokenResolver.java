@@ -35,10 +35,10 @@ import java.util.Map;
  * <b>Token 更新:</b>
  * 该接口还提供令牌更新方法。客户端可以通过提供新的过期时间、受众、主题和可选的自定义有效载荷数据来
  * 更新已过期的令牌。
+ *
  * @param <ResolvedTokenType> 第三方库在解析 JWT 时获得的结果的类型
  * @author Zihlu Wang
- *         Zitai Long
- *
+ * @author Zitai Long
  * @version 1.1.0
  * @since 1.0.0
  */
@@ -92,7 +92,7 @@ public interface TokenResolver<ResolvedTokenType> {
      * @param <T>        将映射有效载荷数据的目标类型
      * @param token      从中提取有效负载的令牌
      * @param targetType 代表有效载荷数据类型的目标类
-     * @return           指定目标类型的实例，其中包含提取的有效载荷数据
+     * @return 指定目标类型的实例，其中包含提取的有效载荷数据
      */
     <T extends TokenPayload> T extract(String token, Class<T> targetType);
 
@@ -133,8 +133,7 @@ public interface TokenResolver<ResolvedTokenType> {
      * @param <T>      有效载荷数据类型，必须实现
      *                 {@link TokenPayload}
      * @param oldToken 要续期的过期令牌
-     * @param payload 续期令牌中将包含的强类型有效载荷数据
-     *
+     * @param payload  续期令牌中将包含的强类型有效载荷数据
      * @return 更新后的令牌作为 {@code String}
      */
     <T extends TokenPayload> String renew(String oldToken, T payload);

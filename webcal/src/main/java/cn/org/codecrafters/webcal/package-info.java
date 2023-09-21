@@ -16,25 +16,22 @@
  */
 
 /**
- * The package {@code cn.org.codecrafters.webcal} contains classes and modules
- * related to web calendar generation and resolution. It provides functionality
- * to create and manage iCalendar content for web-based calendar applications.
+ * 该包 {@code cn.org.codecrafters.webcal} 包含与网络日历生成和解析相关的类和模块。
+ * 它为基于网络的日历应用程序提供了创建和管理 iCalendar 内容的功能。
  * <p>
- * The main classes and modules in this package include:
+ * 该软件包中的主要类和模块包括：
  * <ul>
  *     <li>
- *         {@link cn.org.codecrafters.webcal.WebCalendar}: A class for
- *         generating web calendars with customisable settings and events.
+ *          {@link cn.org.codecrafters.webcal.WebCalendar} ：
+ *          一个用于生成可自定义设置和事件的网络日历的类。
  *     </li>
  *     <li>
- *         {@link cn.org.codecrafters.webcal.WebCalendarEvent}: A class
- *         representing a single event in a web calendar with various
- *         attributes and options.
+ *         {@link cn.org.codecrafters.webcal.WebCalendarEvent} ：
+ *          一个代表网络日历中单个事件的类，具有各种属性和选项。
  *     </li>
  *     <li>
- *         {@link cn.org.codecrafters.webcal.WebCalendarNode}: An abstract
- *         class serving as the base class for web calendar nodes, providing
- *         common attributes and functionality for events.
+ *         {@link cn.org.codecrafters.webcal.WebCalendarNode} ：
+ *          抽象类，作为网络日历节点的基类，为事件提供通用属性和功能。
  *     </li>
  * </ul>
  *

@@ -21,12 +21,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * {@code WebCalendar} class represents a web calendar in iCalendar format.
+ * {@code WebCalendar} 类表示 iCalendar 格式的网络日历。
  * <p>
- * It allows users to create and customise calendar components and events and
- * generate an <b>iCalendar</b> string containing all the calendar information.
+ * 它允许用户创建和自定义日历组件和事件，并生成包含所有日历信息的 <b>iCalendar</b> 字符串。
  * <p>
- * Usage Example:
+ * 使用示例：
  * <pre>
  * WebCalendar calendar = new WebCalendar()
  *         .setName("My Web Calendar")
@@ -39,78 +38,77 @@ import java.util.List;
  * String iCalendarString = calendar.resolve();
  * </pre>
  * <p>
- * The {@code WebCalendar} class is designed to generate an iCalendar string
- * conforming to the iCalendar specification, which can be used to share
- * calendar data with other calendar applications or services.
+ * {@code WebCalendar} 类旨在生成符合 iCalendar 规范的 iCalendar 字符串，
+ * 该字符串可用于与其他日历应用程序或服务共享日历数据。
  *
  * @author Zihlu Wang
+ * @author Zitai Long
  * @version 1.1.0
  * @since 1.0.0
  */
 public final class WebCalendar {
 
     /**
-     * The {@code VCALENDAR} tag for iCalendar format
+     * 用于 iCalendar 格式的 {@code VCALENDAR} 标记
      */
     private final static String TAG = "VCALENDAR";
 
     /**
-     * The name of this calendar.
+     * 该日历的名称。
      */
     private String name;
 
     /**
-     * The company who produces this calendar.
+     * 制作该日历的公司。
      * <p>
-     * This property will be used in {@code PRODID}.
+     * 该属性将用于 {@code PRODID}。
      */
     private String companyName;
 
     /**
-     * The product name.
+     * 产品名称。
      * <p>
-     * This property will be used in {@code PRODID}
+     * 该属性将在 {@code PRODID} 中使用。
      */
     private String productName;
 
     /**
-     * The producer's domain name.
+     * 制作者的域名。
      */
     private String domainName;
 
     /**
-     * Scale of this calendar.
+     * 本日历的规模。
      */
     private final String scale = "GREGORIAN";
 
     /**
-     * The method of this calendar.
+     * 该日历的方法。
      */
     private String method;
 
     /**
-     * The version of this calendar.
+     * 本日历的版本。
      */
     private final String version = "2.0";
 
     /**
-     * List of calendar components and events
+     * 日历组件和事件列表
      */
     private final List<WebCalendarNode> nodes;
 
     /**
-     * Constructor for WebCalendar class, initializes the list of calendar
-     * components and events.
+     * WebCalendar 类的构造函数，用于初始化日历组件和事件列表。
      */
     public WebCalendar() {
         this.nodes = new ArrayList<>();
     }
 
     /**
-     * Set the name of the web calendar.
+     * 设置网络日历的名称。
      *
-     * @param name the name of the web calendar
-     * @return the WebCalendar object
+     * @param name 网络日历的名称
+     * @return WebCalendar 对象
      */
     public WebCalendar setName(String name) {
         this.name = name;
@@ -118,10 +116,10 @@ public final class WebCalendar {
     }
 
     /**
-     * Set the company name associated with the web calendar.
+     * 设置与网络日历相关的公司名称。
      *
-     * @param companyName the company name
-     * @return the WebCalendar object
+     * @param companyName 公司名称
+     * @return WebCalendar 对象
      */
     public WebCalendar setCompanyName(String companyName) {
         this.companyName = companyName;
@@ -129,10 +127,10 @@ public final class WebCalendar {
     }
 
     /**
-     * Set the domain name associated with the web calendar.
+     * 设置与网络日历相关的域名。
      *
-     * @param domainName the domain name
-     * @return the WebCalendar object
+     * @param domainName 域名
+     * @return WebCalendar 对象
      */
     public WebCalendar setDomainName(String domainName) {
         this.domainName = domainName;
@@ -140,10 +138,10 @@ public final class WebCalendar {
     }
 
     /**
-     * Set the product name of the web calendar.
+     * 设置网络日历的产品名称。
      *
-     * @param productName the product name
-     * @return the WebCalendar object
+     * @param productName 产品名称
+     * @return WebCalendar 对象
      */
     public WebCalendar setProductName(String productName) {
         this.productName = productName;
@@ -151,10 +149,10 @@ public final class WebCalendar {
     }
 
     /**
-     * Set the method for publishing the web calendar.
+     * 设置发布网络日历的方法。
      *
-     * @param method the publishing method
-     * @return the WebCalendar object
+     * @param method 发布方法
+     * @return WebCalendar 对象
      */
     public WebCalendar setMethod(String method) {
         this.method = method;
@@ -162,10 +160,10 @@ public final class WebCalendar {
     }
 
     /**
-     * Add an node to the web calendar.
+     * 在网络日历中添加的节点。
      *
-     * @param node the calendar component or event to be added
-     * @return the WebCalendar object
+     * @param node 要添加的日历节点
+     * @return WebCalendar 对象
      */
     public WebCalendar addNode(WebCalendarNode node) {
         this.nodes.add(node);
@@ -173,10 +171,10 @@ public final class WebCalendar {
     }
 
     /**
-     * Add an event to the web calendar.
+     * 在网络日历中添加事件。
      *
-     * @param event the calendar component or event to be added
-     * @return the WebCalendar object
+     * @param event 要添加的日历组件或事件
+     * @return WebCalendar 对象
      */
     public WebCalendar addEvent(WebCalendarEvent event) {
         this.nodes.add(event);
@@ -184,9 +182,9 @@ public final class WebCalendar {
     }
 
     /**
-     * Generate and resolve the iCalendar string for the web calendar.
+     * 生成并解析网络日历的 iCalendar 字符串。
      *
-     * @return the resolved iCalendar string
+     * @return 已解析的 iCalendar 字符串
      */
     public String resolve() {
         var events = new StringBuilder();

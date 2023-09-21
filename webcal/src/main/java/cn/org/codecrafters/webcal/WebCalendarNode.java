@@ -25,22 +25,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The abstract sealed class {@code WebCalendarNode} represents a node in the
- * web calendar, such as an event, a to-do item, or an alarm. It provides
- * common properties and methods for all calendar components and events.
+ * 抽象封存类 {@code WebCalendarNode} 表示网络日历中的一个节点，如事件、待办事项或闹钟。
+ * 它为所有日历组件和事件提供了通用属性和方法。
  * <p>
- * Subclasses of {@code WebCalendarNode} should implement the {@link
- * #resolve()} method to generate the corresponding iCalendar content for the
- * specific calendar component or event.
+ * {@code WebCalendarNode} 的子类应实现 {@link #resolve()}方法，
+ * 以便为特定日历组件或事件生成相应的 iCalendar 内容。
  *
  * @author Zihlu Wang
+ * @author Zitai Long
  * @version 1.1.0
  * @since 1.0.0
  */
 public abstract sealed class WebCalendarNode
         permits WebCalendarEvent {
 
-    // Common properties for all calendar components and events
+    // 所有日历组件和事件的通用属性
     protected List<String> categories;
 
     protected Classification classification;
@@ -72,17 +71,16 @@ public abstract sealed class WebCalendarNode
     protected String timezone;
 
     /**
-     * Constructor for WebCalendarNode class, initializes the list of
-     * categories associated with the calendar component or event.
+     * WebCalendarNode 类的构造函数，用于初始化与日历组件或事件相关的类别列表。
      */
     protected WebCalendarNode() {
         this.categories = new ArrayList<>();
     }
 
     /**
-     * Set the domain name associated with the calendar component or event.
+     * 设置与日历组件或事件相关的域名。
      *
-     * @param domainName the domain name
+     * @param domainName 域名
      * @return the WebCalendarNode object
      */
     public WebCalendarNode setDomainName(String domainName) {
@@ -91,9 +89,9 @@ public abstract sealed class WebCalendarNode
     }
 
     /**
-     * Resolve the list of categories into a comma-separated string.
+     * 将类别列表解析为逗号分隔的字符串。
      *
-     * @return the comma-separated string of categories
+     * @return 以逗号分隔的类别字符串
      */
     protected String resolveCategories() {
         var builder = new StringBuilder();
@@ -105,10 +103,9 @@ public abstract sealed class WebCalendarNode
     }
 
     /**
-     * Generate and resolve the iCalendar content for the calendar component or
-     * event.
+     * 生成并解析日历组件或事件的 iCalendar 内容。
      *
-     * @return the resolved iCalendar content
+     * @return 已解决的 iCalendar 内容
      */
     public abstract String resolve();
 
