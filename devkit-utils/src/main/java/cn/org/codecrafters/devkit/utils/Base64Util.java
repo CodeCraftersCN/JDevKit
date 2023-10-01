@@ -20,6 +20,7 @@ package cn.org.codecrafters.devkit.utils;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
+import java.util.Objects;
 
 /**
  * {@code Base64Util} 类提供了使用 Base64 编码对字符串进行编码和解码的静态方法。字符串编
@@ -46,10 +47,38 @@ import java.util.Base64;
  * 指定字符集，以确保编码和解码的一致性。
  *
  * @author Zihlu Wang
- * @version 1.0.0
+ * @version 1.1.0
  * @since 1.0.0
  */
 public final class Base64Util {
+
+    private static Base64.Encoder encoder;
+
+    private static Base64.Decoder decoder;
+
+    /**
+     * Ensure that there is only one Base64 Encoder.
+     *
+     * @return the {@link Base64.Encoder} instance
+     */
+    private static Base64.Encoder getEncoder() {
+        if (Objects.isNull(encoder)) {
+            encoder = Base64.getEncoder();
+        }
+        return encoder;
+    }
+
+    /**
+     * Ensure that there is only one Base64 Encoder.
+     *
+     * @return the {@link Base64.Encoder} instance
+     */
+    private static Base64.Decoder getDecoder() {
+        if (Objects.isNull(decoder)) {
+            decoder = Base64.getDecoder();
+        }
+        return decoder;
+    }
 
     /**
      * 私有构造函数可防止类的实例化。
@@ -65,8 +94,7 @@ public final class Base64Util {
      * @return Base64 编码的字符串
      */
     public static String encode(String value, Charset charset) {
-        var encoder = Base64.getEncoder();
-        var encoded = encoder.encode(value.getBytes(charset));
+        var encoded = getEncoder().encode(value.getBytes(charset));
 
         return new String(encoded);
     }
@@ -89,8 +117,7 @@ public final class Base64Util {
      * @return 解码后的字符串
      */
     public static String decode(String value, Charset charset) {
-        var decoder = Base64.getDecoder();
-        var decoded = decoder.decode(value.getBytes(charset));
+        var decoded = getDecoder().decode(value.getBytes(charset));
 
         return new String(decoded);
     }

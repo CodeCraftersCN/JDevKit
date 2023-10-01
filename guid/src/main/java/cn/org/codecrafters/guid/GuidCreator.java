@@ -18,12 +18,11 @@
 package cn.org.codecrafters.guid;
 
 /**
- * The {@code GuidCreator} is a generic interface for generating globally unique
- * identifiers (GUIDs) of a specific type.
+ * {@link GuidCreator} 是一个生成指定类型的全局唯一 ID 的通用接口。
  * <p>
- * The type of ID is determined by the class implementing this interface.
+ * ID 类型由实现该接口的类决定。
  *
- * @param <IdType> this represents the type of the Global Unique Identifier
+ * @param <IdType> 全局唯一 ID 的类型
  * @author Zihlu Wang
  * @version 1.1.0
  * @since 1.0.0
@@ -31,12 +30,11 @@ package cn.org.codecrafters.guid;
 public interface GuidCreator<IdType> {
 
     /**
-     * Generates and returns the next globally unique ID.
+     * 生成并返回下一个全局唯一 ID。
      * <p>
-     * The exact implementation of how the globally unique ID is generated and
-     * returned will depend on the class implementing this method.
+     * 如何生成和返回全局唯一 ID 的具体实现取决于实现此方法的类。
      *
-     * @return the next globally unique ID
+     * @return 下一个全局唯一 ID
      */
     IdType nextId();
 

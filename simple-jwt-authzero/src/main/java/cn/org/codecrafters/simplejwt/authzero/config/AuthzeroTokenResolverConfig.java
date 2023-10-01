@@ -17,6 +17,8 @@
 
 package cn.org.codecrafters.simplejwt.authzero.config;
 
+import cn.org.codecrafters.simplejwt.TokenResolver;
+import cn.org.codecrafters.simplejwt.authzero.AuthzeroTokenResolver;
 import cn.org.codecrafters.simplejwt.config.TokenResolverConfig;
 import cn.org.codecrafters.simplejwt.constants.TokenAlgorithm;
 import cn.org.codecrafters.simplejwt.exceptions.UnsupportedAlgorithmException;
@@ -29,70 +31,59 @@ import java.util.Optional;
 import java.util.function.Function;
 
 /**
- * The AuthzeroTokenResolverConfig class provides the configuration for the
- * AuthzeroTokenResolver.
+ * {@code AuthzeroTokenResolverConfig} 类提供了 {@link AuthzeroTokenResolver} 的配置。
  * <p>
- * This configuration class is used to establish the mapping between the
- * standard TokenAlgorithm defined within the AuthzeroTokenResolver facade and
- * the specific algorithms used by the Auth0 Java JWT library, which is the
- * underlying library used by AuthzeroTokenResolver to handle JSON Web Tokens
- * (JWTs).
+ * 该配置类用于建立 {@code AuthzeroTokenResolverConfig} 中定义的标准
+ * {@link TokenAlgorithm} 与 {@code com.auth0:java-jwt} 库
+ * （ {@link AuthzeroTokenResolver} 用于处理 JSON Web 令牌（JWT）的
+ * 底层库）所使用的特定算法之间的映射。
  * <p>
- * <b>Algorithm Mapping:</b>
- * The AuthzeroTokenResolverConfig class allows specifying the relationship
- * between the standard TokenAlgorithm instances supported by
- * AuthzeroTokenResolver and the corresponding algorithms used by the
- * com.auth0:java-jwt library. The mapping is achieved using a Map, where the
- * keys are the standard TokenAlgorithm instances, and the values represent the
- * algorithm functions used by Auth0 Java JWT library for each corresponding
- * key.
+ * <b>算法映射：</b>
+ * {@code AuthzeroTokenResolverConfig} 允许指定 {@link AuthzeroTokenResolver}
+ * 支持的标准 {@link TokenAlgorithm} 实例与 {@code com.auth0:java-jwt}
+ * 库使用的相应算法之间的关系。该映射使用 Map 实现，其中键是标准的 {@link
+ * TokenAlgorithm} 实例，值代表 {@code com.auth0:java-jwt} 库针对每个相应键使用的算法函数。
  * <p>
- * <b>Note:</b>
- * The provided algorithm mapping should be consistent with the actual
- * algorithms supported and used by the Auth0 Java JWT library. It is crucial
- * to ensure that the mapping is accurate to enable proper token validation
- * and processing within the AuthzeroTokenResolver.
+ * <b>注意事项：</b>
+ * 所提供的算法映射应与 {@code com.auth0:java-jwt} 库支持和使用的实际算法一致。
+ * 确保映射的准确性对于在 {@link AuthzeroTokenResolver} 中正确验证和处理令牌至关重要。
  *
  * @author Zihlu Wang
+ * @author Zitai Long
  * @version 1.1.0
  * @since 1.0.0
  */
 public final class AuthzeroTokenResolverConfig implements TokenResolverConfig<Function<String, Algorithm>> {
 
     /**
-     * <p>
-     * Constructs a new instance of AuthzeroTokenResolverConfig.
-     *
+     * Constructs a new instance of {@code AuthzeroTokenResolverConfig}.
      * <p>
      * The constructor is set as private to enforce the singleton pattern for
-     * this configuration class. Instances of AuthzeroTokenResolverConfig
-     * should be obtained through the {@link #getInstance()} method.
+     * this configuration class. Instances of
+     * {@code AuthzeroTokenResolverConfig} should be obtained through the
+     * {@link #getInstance()} method.
      */
     private AuthzeroTokenResolverConfig() {
     }
 
     /**
-     * <p>
-     * The singleton instance of AuthzeroTokenResolverConfig.
-     *
+     * The singleton instance of {@code AuthzeroTokenResolverConfig}.
      * <p>
      * This instance is used to ensure that only one instance of
-     * AuthzeroTokenResolverConfig is created and shared throughout the
-     * application. The singleton pattern is implemented to provide centralized
+     * {@code AuthzeroTokenResolverConfig} is created and shared throughout the
+     * application. The singleton pattern is implemented to provide centralised
      * configuration and avoid redundant object creation.
      */
     private static AuthzeroTokenResolverConfig instance;
 
     /**
-     * <p>
      * The supported algorithms and their corresponding algorithm functions.
-     *
      * <p>
      * This map stores the supported algorithms as keys and their corresponding
      * algorithm functions as values. The algorithm functions represent the
-     * functions used by the Auth0 Java JWT library to handle the specific
-     * algorithms. The mapping is used to provide proper algorithm resolution
-     * and processing within the AuthzeroTokenResolver.
+     * functions used by the {@code com.auth0:java-jwt} library to handle the
+     * specific algorithms. The mapping is used to provide proper algorithm
+     * resolution and processing within the {@link AuthzeroTokenResolver}.
      */
     private static final Map<TokenAlgorithm, Function<String, Algorithm>> SUPPORTED_ALGORITHMS = new HashMap<>() {{
         put(TokenAlgorithm.HS256, Algorithm::HMAC256);
@@ -101,14 +92,14 @@ public final class AuthzeroTokenResolverConfig implements TokenResolverConfig<Fu
     }};
 
     /**
-     * Gets the instance of AuthzeroTokenResolverConfig.
+     * Gets the instance of {@code AuthzeroTokenResolverConfig}.
      * <p>
      * This method returns the singleton instance of
-     * AuthzeroTokenResolverConfig. If the instance is not yet created, it will
-     * create a new instance and return it. Otherwise, it returns the existing
-     * instance.
+     * {@code AuthzeroTokenResolverConfig}. If the instance is not yet created,
+     * it will create a new instance and return it. Otherwise, it returns the
+     * existing instance.
      *
-     * @return the instance of AuthzeroTokenResolverConfig
+     * @return the instance of {@code AuthzeroTokenResolverConfig}
      */
     public static AuthzeroTokenResolverConfig getInstance() {
         if (Objects.isNull(instance)) {
@@ -119,20 +110,20 @@ public final class AuthzeroTokenResolverConfig implements TokenResolverConfig<Fu
     }
 
     /**
-     * <p>
      * Gets the algorithm function corresponding to the specified
-     * TokenAlgorithm.
-     *
+     * {@link TokenAlgorithm}.
      * <p>
      * This method returns the algorithm function associated with the given
-     * TokenAlgorithm. The provided TokenAlgorithm represents the specific
-     * algorithm for which the corresponding algorithm function is required.
-     * The returned AlgorithmFunction represents the function implementation
-     * that can be used by the TokenResolver to handle the specific algorithm.
+     * {@link TokenAlgorithm}. The provided {@link TokenAlgorithm} represents
+     * the specific algorithm for which the corresponding algorithm function
+     * is required. The returned Algorithm Function represents the function
+     * implementation that can be used by the {@link TokenResolver} to handle
+     * the specific algorithm.
      *
-     * @param algorithm the TokenAlgorithm for which the algorithm function is
-     *                  required
-     * @return the algorithm function associated with the given TokenAlgorithm
+     * @param algorithm the {@link TokenAlgorithm} for which the algorithm
+     *                  function isrequired
+     * @return the algorithm function associated with the given {@link
+     * TokenAlgorithm}
      * @throws UnsupportedAlgorithmException if the given {@code algorithm} is
      *                                       not supported by this
      *                                       implementation

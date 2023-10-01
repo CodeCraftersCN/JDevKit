@@ -16,40 +16,32 @@
  */
 
 /**
- * This package contains classes related to the integration of the {@code
- * io.jsonwebtoken:jjwt-api} library in the Simple JWT project. {@code
- * io.jsonwebtoken:jjwt-api} is a powerful and widely-used Identity as a Service
- * (IDaaS) platform that provides secure authentication and authorisation
- * solutions for web and mobile applications. The classes in this package
- * provide the necessary functionality to handle JSON Web Tokens (JWTs) using
- * the {@code io.jsonwebtoken:jjwt-api} library.
+ * 本软件包包含与 Simple JWT 项目中的 {@code io.jsonwebtoken:jjwt-api} 库集成相关的类。
+ * {@code io.jsonwebtoken:jjwt-api} 是一个功能强大、应用广泛的身份即服务 （IDaaS） 平台，
+ * 可为网络和移动应用程序提供安全的身份验证和授权解决方案。本软件包中的类提供了使用
+ * {@code io.jsonwebtoken:jjwt-api} 库处理 JSON Web 标记（JWT）的必要功能。
  * <p>
- * The main class in this package is the {@link
- * cn.org.codecrafters.simplejwt.jjwt.JjwtTokenResolver}, which
- * implements the {@link cn.org.codecrafters.simplejwt.TokenResolver} interface
- * and uses the {@code io.jsonwebtoken:jjwt-api} library to handle JWT
- * operations. It provides the functionality to create, validate, and extract
- * JWTs using the {@code io.jsonwebtoken:jjwt-api} library. Developers can use
- * this class as the main token resolver in the Simple JWT project when
- * integrating {@code io.jsonwebtoken:jjwt-api} as the JWT management library.
+ * 该包的主类是 {@link cn.org.codecrafters.simplejwt.jjwt.JjwtTokenResolver}，
+ * 它实现了 {@link cn.org.codecrafters.simplejwt.TokenResolver} 接口，并使用
+ * {@code io.jsonwebtoken:jjwt-api} 库来处理 JWT 操作。它提供了使用
+ * {@code io.jsonwebtoken:jjwt-api} 库创建、验证和提取 JWT 的功能。
+ * 开发人员在集成 {@code io.jsonwebtoken:jjwt-api} 作为 JWT 管理库时，
+ * 可将该类用作简单 JWT 项目中的主要令牌解析器。
  * <p>
- * The {@code JjwtTokenResolver} relies on the {@code io.jsonwebtoken:jjwt-api}
- * library to handle the underlying JWT operations, including token creation,
- * validation, and extraction. It utilizes the {@code io.jsonwebtoken:jjwt-api}
- * {@code Algorithm} class to define and use different algorithms for JWT
- * signing and verification.
+ * {@link cn.org.codecrafters.simplejwt.jjwt.JjwtTokenResolver}
+ * 依赖于 {@code io.jsonwebtoken:jjwt-api} 库来处理底层 JWT 操作，包括令牌创建、验证和提取。
+ * 它利用 {@code io.jsonwebtoken:jjwt-api} {@link
+ * io.jsonwebtoken.SignatureAlgorithm} 类来定义和使用不同的 JWT 签名和验证算法。
  * <p>
- * To use the {@code JjwtTokenResolver}, developers must provide the necessary
- * configurations and dependencies, such as the {@code GuidCreator} for
- * generating unique JWT IDs (JTI), the supported algorithm function, the
- * issuer name, and the secret key used for token signing and validation. The
- * {@code JjwtTokenResolverConfig} class provides a convenient way to configure
- * these dependencies.
+ * 要使用{@link cn.org.codecrafters.simplejwt.jjwt.JjwtTokenResolver} ，
+ * 开发人员必须提供必要的配置和依赖项，例如用于生成唯一 JWT ID（JTI）的{@link
+ * cn.org.codecrafters.guid.GuidCreator} 、支持的算法函数、发行者名称以及用于令牌签名和验证的秘钥。
+ * {@link cn.org.codecrafters.simplejwt.jjwt.config.JjwtTokenResolverConfig}
+ * 类提供了配置这些依赖关系的便捷方法。
  * <p>
- * Developers using the {@code io.jsonwebtoken:jjwt-api} integration should be
- * familiar with the concepts and usage of the {@code io.jsonwebtoken:jjwt-api}
- * library and follow the official {@code io.jsonwebtoken:jjwt-api}
- * documentation for best practices and security considerations.
+ * 使用 {@code io.jsonwebtoken:jjwt-api} 集成的开发人员应熟悉
+ * {@code io.jsonwebtoken:jjwt-api} 库的概念和用法，并遵循
+ * {@code io.jsonwebtoken:jjwt-api} 官方文档中的最佳实践和安全注意事项。
  *
  * @since 1.0.0
  */

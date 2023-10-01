@@ -29,35 +29,30 @@ import java.util.HashMap;
 import java.util.Optional;
 
 /**
- * PropertyEncryptor is a utility class designed for encrypting configuration
- * information in Spring Boot applications.
+ * {@link PropertyGuard} 是您 Spring Boot 应用中的配置守护者，它将保护您的配置不会因为特殊
+ * 情况而泄漏。通常，一个 Spring Boot 应用需要将许多属于机密字段的配置属性填写在 {@code
+ * application.yml} 文件中，例如数据库的密码、API 密钥等等。为了保证这些机密内容不被暴露，通过
+ * {@link PropertyGuard} 便可以保护您的配置属性不被泄漏。
  * <p>
- * Spring Boot applications often need to store sensitive configuration details
- * such as database passwords, API keys, etc. To ensure that these sensitive
- * pieces of information are not exposed, developers can utilize the
- * {@code PropertyGuard} class to encrypt and store them within configuration
- * files.
- * <p>
- * <b>Usage</b>
- * In {@code application.yml} or {@code application.properties}:
+ * <b>使用方式：</b>
+ * 在 {@code application.yml} 或 {@code application.properties} 文件中，你需要将您原
+ * 本的内容使用自定义密钥通过 Aes 算法进行加密，并在属性值最前方加上前缀 {@code pg:}。
  * <pre>
- *     # original
+ *     # 原始内容
  *     app.example-properties=Sample Value
  *
- *     # encrypted with key 3856faef0d2d4f33
+ *     # 通过密钥 3856faef0d2d4f33 加密后的内容
  *     app.example-properties=pg:t4YBfv8M9ZmTzWgTi2gJqg==
  * </pre>
- * Then, add the command line arguments like {@code --pe.key=3856faef0d2d4f33}.
+ * 此后，给您的应用加上如下格式的命令行参数：
+ * {@code --pg.key=<您的密钥，如上文案例则为3856faef0d2d4f33>}。
  * <p>
- * This class is extracted from <a href="https://baomidou.com/pages/e0a5ce/"
- * >MyBatis-Plus</a>.
- * <p>
- * The prefix to specify the encrypted value is {@code pg}.
+ * 该工具类抽取自 <a href="https://baomidou.com/pages/e0a5ce/">MyBatis Plus</a>。
  *
  * @author hubin@baomidou
  * @version 1.1.0
  * @see org.springframework.boot.env.EnvironmentPostProcessor
- * @since 1.1.0 (3.3.2 of MyBatis-Plus)
+ * @since 1.1.0 (MyBatis-Plus 版本 3.3.2)
  */
 public class PropertyGuard implements EnvironmentPostProcessor {
 

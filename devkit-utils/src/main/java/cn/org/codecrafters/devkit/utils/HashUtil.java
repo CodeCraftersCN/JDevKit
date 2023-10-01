@@ -127,13 +127,11 @@ public final class HashUtil {
     }
 
     /**
-     * Calculates the MD5 hash value of the specified string using the given
-     * charset.
+     * 使用给定的编码计算字符串的 MD5 哈希值。
      *
-     * @param value   the string to calculate with the MD5 algorithm
-     * @param charset the charset to use for encoding the string (default is
-     *                UTF-8 if null)
-     * @return the MD5 hash value as a hexadecimal string
+     * @param value   要使用 MD5 算法计算的字符串
+     * @param charset 字符集（如果为空，默认为 UTF-8）
+     * @return 以十六进制字符串表示的 MD5 哈希值
      */
     public static String md5(String value, Charset charset) {
         charset = Optional.ofNullable(charset).orElse(StandardCharsets.UTF_8);
@@ -141,24 +139,21 @@ public final class HashUtil {
     }
 
     /**
-     * Calculates the MD5 hash value of the specified string using the UTF-8
-     * charset.
+     * 使用 UTF-8 字符集计算指定字符串的 MD5 哈希值。
      *
-     * @param value the string to calculate with the MD5 algorithm
-     * @return the MD5 hash value as a hexadecimal string
+     * @param value 要使用 MD5 算法计算的字符串
+     * @return 以十六进制字符串表示的 MD5 哈希值
      */
     public static String md5(String value) {
         return hash("MD5", value, StandardCharsets.UTF_8);
     }
 
     /**
-     * Calculates the SHA-1 hash value of the specified string using the given
-     * charset.
+     * 使用给定的编码计算字符串的 SHA-1 哈希值。
      *
-     * @param value   the string to calculate with the SHA-1 algorithm
-     * @param charset the charset to use for encoding the string (default is
-     *                UTF-8 if null)
-     * @return the SHA-1 hash value as a hexadecimal string
+     * @param value   要使用 SHA-1 算法计算的字符串
+     * @param charset 字符集（如果为空，默认为 UTF-8）
+     * @return 以十六进制字符串表示的 SHA-1 哈希值
      */
     public static String sha1(String value, Charset charset) {
         charset = Optional.ofNullable(charset).orElse(StandardCharsets.UTF_8);
@@ -166,24 +161,21 @@ public final class HashUtil {
     }
 
     /**
-     * Calculates the SHA-1 hash value of the specified string using the UTF-8
-     * charset.
+     * 使用 UTF-8 字符集计算指定字符串的 SHA-1 哈希值。
      *
-     * @param value the string to calculate with the SHA-1 algorithm
-     * @return the SHA-1 hash value as a hexadecimal string
+     * @param value 要使用 SHA-1 算法计算的字符串
+     * @return 以十六进制字符串表示的 SHA-1 哈希值
      */
     public static String sha1(String value) {
         return hash("SHA-1", value, StandardCharsets.UTF_8);
     }
 
     /**
-     * Calculates the SHA-224 hash value of the specified string using the
-     * given charset.
+     * 使用给定的编码计算字符串的 SHA-224 哈希值。
      *
-     * @param value   the string to calculate with the SHA-225 algorithm
-     * @param charset the charset to use for encoding the string (default is
-     *                UTF-8 if null)
-     * @return the SHA-224 hash value as a hexadecimal string
+     * @param value   要使用 SHA-224 算法计算的字符串
+     * @param charset 字符集（如果为空，默认为 UTF-8）
+     * @return 以十六进制字符串表示的 SHA-224 哈希值
      */
     public static String sha224(String value, Charset charset) {
         charset = Optional.ofNullable(charset).orElse(StandardCharsets.UTF_8);
@@ -191,24 +183,21 @@ public final class HashUtil {
     }
 
     /**
-     * Calculates the SHA-224 hash value of the specified string using the
-     * UTF-8 charset.
+     * 使用 UTF-8 字符集计算指定字符串的 SHA-224 哈希值。
      *
-     * @param value the string to calculate with the SHA-224 algorithm
-     * @return the SHA-224 hash value as a hexadecimal string
+     * @param value 要使用 SHA-224 算法计算的字符串
+     * @return 以十六进制字符串表示的 SHA-224 哈希值
      */
     public static String sha224(String value) {
         return hash("SHA-224", value, StandardCharsets.UTF_8);
     }
 
     /**
-     * Calculates the SHA-256 hash value of the specified string using the
-     * given charset.
+     * 使用给定的编码计算字符串的 SHA-256 哈希值。
      *
-     * @param value   the string to calculate with the SHA-256 algorithm
-     * @param charset the charset to use for encoding the string (default is
-     *                UTF-8 if null)
-     * @return the SHA-256 hash value as a hexadecimal string
+     * @param value   要使用 SHA-256 算法计算的字符串
+     * @param charset 字符集（如果为空，默认为 UTF-8）
+     * @return 以十六进制字符串表示的 SHA-256 哈希值
      */
     public static String sha256(String value, Charset charset) {
         charset = Optional.ofNullable(charset).orElse(StandardCharsets.UTF_8);
@@ -216,24 +205,21 @@ public final class HashUtil {
     }
 
     /**
-     * Calculates the SHA-256 hash value of the specified string using the
-     * UTF-8 charset.
+     * 使用 UTF-8 字符集计算指定字符串的 SHA-256 哈希值。
      *
-     * @param value the string to calculate with the SHA-256 algorithm
-     * @return the SHA-256 hash value as a hexadecimal string
+     * @param value 要使用 SHA-256 算法计算的字符串
+     * @return 以十六进制字符串表示的 SHA-256 哈希值
      */
     public static String sha256(String value) {
         return hash("SHA-256", value, StandardCharsets.UTF_8);
     }
 
     /**
-     * Calculates the SHA-384 hash value of the specified string using the
-     * given charset.
+     * 使用给定的编码计算字符串的 SHA-384 哈希值。
      *
-     * @param value   the string to calculate with the SHA-384 algorithm
-     * @param charset the charset to use for encoding the string (default is
-     *                UTF-8 if null)
-     * @return the SHA-384 hash value as a hexadecimal string
+     * @param value   要使用 SHA-384 算法计算的字符串
+     * @param charset 字符集（如果为空，默认为 UTF-8）
+     * @return 以十六进制字符串表示的 SHA-384 哈希值
      */
     public static String sha384(String value, Charset charset) {
         charset = Optional.ofNullable(charset).orElse(StandardCharsets.UTF_8);
@@ -241,24 +227,21 @@ public final class HashUtil {
     }
 
     /**
-     * Calculates the SHA-384 hash value of the specified string using the
-     * UTF-8 charset.
+     * 使用 UTF-8 字符集计算指定字符串的 SHA-384 哈希值。
      *
-     * @param value the string to calculate with the SHA-384 algorithm
-     * @return the SHA-384 hash value as a hexadecimal string
+     * @param value 要使用 SHA-384 算法计算的字符串
+     * @return 以十六进制字符串表示的 SHA-384 哈希值
      */
     public static String sha384(String value) {
         return hash("SHA-384", value, StandardCharsets.UTF_8);
     }
 
     /**
-     * Calculates the SHA-512 hash value of the specified string using the
-     * given charset.
+     * 使用给定的编码计算字符串的 SHA-512 哈希值。
      *
-     * @param value   the string to calculate with the SHA-512 algorithm
-     * @param charset the charset to use for encoding the string (default is
-     *                UTF-8 if null)
-     * @return the SHA-512 hash value as a hexadecimal string
+     * @param value   要使用 SHA-512 算法计算的字符串
+     * @param charset 字符集（如果为空，默认为 UTF-8）
+     * @return 以十六进制字符串表示的 SHA-512 哈希值
      */
     public static String sha512(String value, Charset charset) {
         charset = Optional.ofNullable(charset).orElse(StandardCharsets.UTF_8);
@@ -266,11 +249,10 @@ public final class HashUtil {
     }
 
     /**
-     * Calculates the SHA-512 hash value of the specified string using the
-     * UTF-8 charset.
+     * 使用 UTF-8 字符集计算指定字符串的 SHA-512 哈希值。
      *
-     * @param value the string to calculate with the SHA-512 algorithm
-     * @return the SHA-512 hash value as a hexadecimal string
+     * @param value 要使用 SHA-512 算法计算的字符串
+     * @return 以十六进制字符串表示的 SHA-512 哈希值
      */
     public static String sha512(String value) {
         return hash("SHA-512", value, StandardCharsets.UTF_8);

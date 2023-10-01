@@ -20,29 +20,23 @@ package cn.org.codecrafters.guid;
 import cn.org.codecrafters.guid.exceptions.TimingException;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.ZoneOffset;
 
 /**
- * SnowflakeGuidCreator - GUID generator based on the Snowflake algorithm.
- * <p>
- * The SnowflakeGuidCreator generates unique identifiers using the Snowflake
- * algorithm, which combines a timestamp, worker ID, and data centre ID to
- * create 64-bit long integers. The bit distribution for the generated IDs is
- * as follows:
+ * {@link SnowflakeGuidCreator} 使用雪花算法生成全局唯一 ID，其结合时间戳、工作机 ID
+ * 以及数据中心 ID 来创建一个 64 位长度的正整数。生成的 ID 的比特分布如下：
  * <ul>
- *     <li>1 bit for sign</li>
- *     <li>41 bits for timestamp (in milliseconds)</li>
- *     <li>5 bits for data centre ID</li>
- *     <li>5 bits for worker ID</li>
- *     <li>12 bits for sequence number (per millisecond)</li>
+ *     <li>1 比特用于签名</li>
+ *     <li>41 比特用于表示时间戳（单位：毫秒）</li>
+ *     <li>5 比特用于表示数据中心 ID</li>
+ *     <li>5 比特用于表示服务器 ID</li>
+ *     <li>12 比特表示每毫秒内的序列号</li>
  * </ul>
  * <p>
- * When initializing the SnowflakeGuidCreator, you must provide the worker ID
- * and data centre ID, ensuring they are within the valid range defined by the
- * bit size. The generator maintains an internal sequence number that
- * increments for IDs generated within the same millisecond. If the system
- * clock moves backward, an exception is thrown to prevent generating IDs with
- * repeated timestamps.
+ * 初始化 {@link SnowflakeGuidCreator} 时，您必须提供服务器 ID 和数据中心 ID，确保它们在位
+ * 大小定义的有效范围内。生成器会维护一个内部序列号，在同一毫秒内生成的 ID 会递增。如果系统时钟向后
+ * 移动，则会出现异常，以防止生成具有重复时间戳的 ID。
  *
  * @author Zihlu Wang
  * @version 1.1.0
@@ -51,84 +45,82 @@ import java.time.ZoneOffset;
 public final class SnowflakeGuidCreator implements GuidCreator<Long> {
 
     /**
-     * Default custom epoch.
+     * 默认的起始时间
      *
      * @value 2015-01-01T00:00:00Z
      */
     private static final long DEFAULT_CUSTOM_EPOCH = 1_420_070_400_000L;
 
     /**
-     * The start epoch timestamp to generate IDs from.
+     * 用于生成 ID 的自定义开始时间的时间戳
      */
     private final long startEpoch;
 
     /**
-     * The number of bits reserved for the worker ID.
+     * 服务器 ID 所占位长.
      */
     private final long workerIdBits = 5L;
 
     /**
-     * The number of bits reserved for the data centre ID.
+     * 数据中心 ID 所占位长。
      */
     private final long dataCentreIdBits = 5L;
 
     /**
-     * The worker ID assigned to this generator.
+     * 当前 ID 生成服务器的服务器 ID。
      */
     private final long workerId;
 
     /**
-     * The data centre ID assigned to this generator.
+     * 当前 ID 生成服务器的数据中心 ID。
      */
     private final long dataCentreId;
 
     /**
-     * The current sequence number.
+     * 当前序列号。
      */
     private long sequence = 0L;
 
     /**
-     * The timestamp of the last generated ID.
+     * 上次生成 ID 的时间戳。
      */
     private long lastTimestamp = -1L;
 
     /**
-     * Constructs a SnowflakeGuidGenerator with the default start epoch and
-     * custom worker ID, data centre ID.
+     * 使用默认的开始时间戳与自定义的服务器 ID 和数据中心 ID 创建 {@link
+     * SnowflakeGuidCreator} 实例。
      *
-     * @param workerId     the worker ID (between 0 and 31).
-     * @param dataCentreId the data centre ID (between 0 and 31).
+     * @param dataCentreId 数据中心 ID（0-31之间）
+     * @param workerId     服务器 ID（0-31之间）
      */
-    public SnowflakeGuidCreator(long workerId, long dataCentreId) {
-        this(workerId, dataCentreId, DEFAULT_CUSTOM_EPOCH);
+    public SnowflakeGuidCreator(long dataCentreId, long workerId) {
+        this(dataCentreId, workerId, DEFAULT_CUSTOM_EPOCH);
     }
 
     /**
-     * Constructs a SnowflakeGuidGenerator with a custom epoch, worker ID, and
-     * data centre ID.
+     * 使用指定的开始时间戳与自定义的服务器 ID 和数据中心 ID 创建 {@link
+     * SnowflakeGuidCreator} 实例。
      *
-     * @param startEpoch   the custom epoch timestamp (in milliseconds) to
-     *                     start generating IDs from
-     * @param workerId     the worker ID (between 0 and 31)
-     * @param dataCentreId the data centre ID (between 0 and 31)
-     * @throws IllegalArgumentException if the start epoch is greater than the
-     *                                  current timestamp, or if the worker ID
-     *                                  or data centre ID is out of range
+     * @param dataCentreId 数据中心 ID（0-31之间）
+     * @param workerId     服务器 ID（0-31之间）
+     * @param startEpoch   自定义的纪元时间戳（以毫秒为单位），从该时间戳开始生成 ID
+     * @throws IllegalArgumentException 如果起始时间大于当前时间戳，或者服务器 ID 或
+     *                                  数据中心 ID 超出范围
      */
-    public SnowflakeGuidCreator(long workerId, long dataCentreId, long startEpoch) {
+    public SnowflakeGuidCreator(long dataCentreId, long workerId, long startEpoch) {
         if (startEpoch > currentTimestamp()) {
-            throw new IllegalArgumentException("Start Epoch can not be greater than current timestamp!");
+            throw new IllegalArgumentException("起始时间戳不得大于当前时间戳");
         }
 
         var maxWorkerId = ~(-1L << workerIdBits);
         if (workerId > maxWorkerId || workerId < 0) {
-            throw new IllegalArgumentException(String.format("Worker Id can't be greater than %d or less than 0",
+            throw new IllegalArgumentException(String.format("服务器 ID 不得大于 %d 或小于 0",
                     maxWorkerId));
         }
 
         var maxDataCentreId = ~(-1L << dataCentreIdBits);
         if (dataCentreId > maxDataCentreId || dataCentreId < 0) {
-            throw new IllegalArgumentException(String.format("Data Centre Id can't be greater than %d or less than 0",
+            throw new IllegalArgumentException(String.format("数据中心 ID 不得大于 %d 或小于 0",
                     maxDataCentreId));
         }
 
@@ -138,11 +130,10 @@ public final class SnowflakeGuidCreator implements GuidCreator<Long> {
     }
 
     /**
-     * Generates the next unique ID.
+     * 生成下一个全局唯一 ID。
      *
-     * @return the generated unique ID
-     * @throws TimingException if the system clock moves backwards,
-     *                         indicating an invalid sequence of timestamps.
+     * @return 生成的下一个全局唯一 ID
+     * @throws TimingException 如果系统时钟向后移动，表明时间戳序列无效
      */
     @Override
     public synchronized Long nextId() {
@@ -151,7 +142,7 @@ public final class SnowflakeGuidCreator implements GuidCreator<Long> {
         // If the current time is less than the timestamp of the last ID generation, it means that the system clock
         // has been set back and an exception should be thrown.
         if (timestamp < lastTimestamp) {
-            throw new TimingException("Clock moved backwards. Refusing to generate id for %d milliseconds"
+            throw new TimingException("时钟回调，拒绝生成 %d 毫秒的 ID"
                     .formatted(lastTimestamp - timestamp));
         }
 
@@ -184,10 +175,10 @@ public final class SnowflakeGuidCreator implements GuidCreator<Long> {
     }
 
     /**
-     * Blocks until the next millisecond to obtain a new timestamp.
+     * 阻塞至下一毫秒，以获取新的时间戳。
      *
-     * @param lastTimestamp the timestamp when the last ID was generated
-     * @return the current timestamp
+     * @param lastTimestamp 最后一次生成 ID 的时间戳
+     * @return 当前的时间戳
      */
     private long awaitToNextMillis(long lastTimestamp) {
         var timestamp = currentTimestamp();
@@ -198,12 +189,12 @@ public final class SnowflakeGuidCreator implements GuidCreator<Long> {
     }
 
     /**
-     * Returns the current timestamp in milliseconds.
+     * 以毫秒返回当前时间戳。
      *
-     * @return the current timestamp
+     * @return 当前时间戳
      */
     private long currentTimestamp() {
-        return LocalDateTime.now().toInstant(ZoneOffset.UTC).toEpochMilli();
+        return LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
     }
 }
 

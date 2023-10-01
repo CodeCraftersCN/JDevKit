@@ -17,6 +17,7 @@
 
 package cn.org.codecrafters.simplejwt.jjwt.config;
 
+import cn.org.codecrafters.simplejwt.TokenResolver;
 import cn.org.codecrafters.simplejwt.config.TokenResolverConfig;
 import cn.org.codecrafters.simplejwt.constants.TokenAlgorithm;
 import cn.org.codecrafters.simplejwt.exceptions.UnsupportedAlgorithmException;
@@ -27,31 +28,25 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * The JjwtTokenResolverConfig class provides the configuration for the
- * JjwtTokenResolverConfig.
+ * {@code JjwtTokenResolverConfig} 类提供了 {@link JjwtTokenResolver} 的配置。
  * <p>
- * This configuration class is used to establish the mapping between the
- * standard TokenAlgorithm defined within the JjwtTokenResolverConfig and
- * the specific algorithms used by the {@code io.jsonwebtoken:jjwt} library,
- * which is the underlying library used by JjwtTokenResolverConfig to handle
- * JSON Web Tokens (JWTs).
+ * 该配置类用于建立 {@code JjwtTokenResolverConfig} 中定义的标准
+ * {@link TokenAlgorithm} 与 {@code io.jsonwebtoken:jjwt} 库
+ * （ {@code JjwtTokenResolver} 用于处理 JSON Web 令牌（JWT）的
+ * 底层库）所使用的特定算法之间的映射。
  * <p>
- * <b>Algorithm Mapping:</b>
- * The JjwtTokenResolverConfig class allows specifying the relationship
- * between the standard TokenAlgorithm instances supported by
- * JjwtTokenResolverConfig and the corresponding algorithms used by the
- * {@code io.jsonwebtoken:jjwt} library. The mapping is achieved using a Map,
- * where the keys are the standard TokenAlgorithm instances, and the values
- * represent the algorithm functions used by {@code io.jsonwebtoken:jjwt}
- * library for each corresponding key.
+ * <b>算法映射：</b>
+ * {@code JjwtTokenResolverConfig} 允许指定 {@link JjwtTokenResolver}
+ * 支持的标准 {@link TokenAlgorithm} 实例与 {@code io.jsonwebtoken:jjwt}
+ * 库使用的相应算法之间的关系。该映射使用 Map 实现，其中键是标准的 {@link
+ * TokenAlgorithm} 实例，值代表 {@code io.jsonwebtoken:jjwt} 库针对每个相应键使用的算法函数。
  * <p>
- * <b>Note:</b>
- * The provided algorithm mapping should be consistent with the actual
- * algorithms supported and used by the {@code io.jsonwebtoken:jjwt} library.
- * It is crucial to ensure that the mapping is accurate to enable proper token
- * validation and processing within the {@link JjwtTokenResolver}.
+ * <b>注意事项：</b>
+ * 所提供的算法映射应与 {@code io.jsonwebtoken:jjwt} 库支持和使用的实际算法一致。
+ * 确保映射的准确性对于在 {@link JjwtTokenResolver} 中正确验证和处理令牌至关重要。
  *
  * @author Zihlu Wang
+ * @author Zitai Long
  * @version 1.1.0
  * @since 1.0.0
  */
@@ -68,6 +63,11 @@ public final class JjwtTokenResolverConfig implements TokenResolverConfig<Signat
 
     private static JjwtTokenResolverConfig instance;
 
+    /**
+     * 获取 {@code JjwtTokenResolverConfig} 的实例。
+     *
+     * @return {@code JjwtTokenResolverConfig} 的实例
+     */
     public static JjwtTokenResolverConfig getInstance() {
         if (instance == null) {
             instance = new JjwtTokenResolverConfig();
@@ -77,25 +77,20 @@ public final class JjwtTokenResolverConfig implements TokenResolverConfig<Signat
     }
 
     /**
-     * Gets the algorithm function corresponding to the specified
-     * TokenAlgorithm.
+     * 获取与指定 {@link TokenAlgorithm} 相对应的算法函数。
      * <p>
-     * This method returns the algorithm function associated with the given
-     * TokenAlgorithm. The provided TokenAlgorithm represents the specific
-     * algorithm for which the corresponding algorithm function is required.
-     * The returned AlgorithmFunction represents the function implementation
-     * that can be used by the TokenResolver to handle the specific algorithm.
+     * 本方法返回与给定的 {@link TokenAlgorithm} 相关的算法函数。
+     * 所提供的 {@link TokenAlgorithm} 代表需要相应算法函数的特定算法。
+     * 返回的算法函数代表 {@link TokenResolver} 可用于处理特定算法的函数实现。
      *
-     * @param algorithm the TokenAlgorithm for which the algorithm function is
-     *                  required
-     * @return the algorithm function associated with the given TokenAlgorithm
+     * @param algorithm 需要算法函数的{@link TokenAlgorithm}。
+     * @return 与给定的 {@link TokenAlgorithm} 相关联的算法函数
      */
     @Override
     public SignatureAlgorithm getAlgorithm(TokenAlgorithm algorithm) {
         if (!SUPPORTED_ALGORITHMS.containsKey(algorithm)) {
             throw new UnsupportedAlgorithmException("""
-                    The request algorithm is not supported by our system yet. Please change to supported ones.
-                    """);
+                    我们的系统尚不支持该请求算法。请更改为支持的算法。""");
         }
         return SUPPORTED_ALGORITHMS.get(algorithm);
     }

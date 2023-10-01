@@ -39,8 +39,8 @@ import java.util.UUID;
  * 本工具类作者为 hubin@baomidou
  *
  * @author hubin@baomidou
- * @since 1.1.0
  * @version 1.1.0
+ * @since 1.1.0
  */
 @Slf4j
 public final class AesUtil {
@@ -55,15 +55,15 @@ public final class AesUtil {
     /**
      * 使用 AES 算法，用给定密钥对给定数据进行加密。
      *
-     * @param data 需要加密的数据
-     * @param key  加密数据的密钥
+     * @param data   需要加密的数据
+     * @param secret 加密数据的密钥
      * @return 加密结果，如果加密失败则为 {@code null}
      */
-    public static byte[] encrypt(byte[] data, byte[] key) {
+    public static byte[] encrypt(byte[] data, byte[] secret) {
         try {
-            var secretKeySpec = new SecretKeySpec(new SecretKeySpec(key, AES).getEncoded(), AES);
+            var secretKeySpec = new SecretKeySpec(new SecretKeySpec(secret, AES).getEncoded(), AES);
             var cipher = Cipher.getInstance(AES_CBC_CIPHER);
-            cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec, new IvParameterSpec(key));
+            cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec, new IvParameterSpec(secret));
             return cipher.doFinal(data);
         } catch (NoSuchAlgorithmException | NoSuchPaddingException | UnsupportedOperationException |
                  InvalidKeyException | InvalidAlgorithmParameterException | IllegalBlockSizeException |
@@ -79,15 +79,15 @@ public final class AesUtil {
     /**
      * 使用 AES 算法，用给定密钥解密给定数据。
      *
-     * @param data 需要解密的数据
-     * @param key  加解密数据的密钥
+     * @param data   需要解密的数据
+     * @param secret 加解密数据的密钥
      * @return 解密结果，如果解密失败则为 {@code null}
      */
-    public static byte[] decrypt(byte[] data, byte[] key) {
+    public static byte[] decrypt(byte[] data, byte[] secret) {
         try {
-            var secretKeySpec = new SecretKeySpec(new SecretKeySpec(key, AES).getEncoded(), AES);
+            var secretKeySpec = new SecretKeySpec(new SecretKeySpec(secret, AES).getEncoded(), AES);
             var cipher = Cipher.getInstance(AES_CBC_CIPHER);
-            cipher.init(Cipher.DECRYPT_MODE, secretKeySpec, new IvParameterSpec(key));
+            cipher.init(Cipher.DECRYPT_MODE, secretKeySpec, new IvParameterSpec(secret));
             return cipher.doFinal(data);
         } catch (NoSuchAlgorithmException | NoSuchPaddingException | UnsupportedOperationException |
                  InvalidKeyException | InvalidAlgorithmParameterException | IllegalBlockSizeException |
@@ -103,25 +103,25 @@ public final class AesUtil {
     /**
      * 使用 AES 算法，用给定密钥对给定数据进行加密。
      *
-     * @param data 需要加密的数据
-     * @param key  加密数据的密钥
+     * @param data   需要加密的数据
+     * @param secret 加密数据的密钥
      * @return 加密结果，如果加密失败则为 {@code null}
      */
-    public static String encrypt(String data, String key) {
-        return Base64.getEncoder().encodeToString(encrypt(data.getBytes(StandardCharsets.UTF_8), key.getBytes(StandardCharsets.UTF_8)));
+    public static String encrypt(String data, String secret) {
+        return Base64.getEncoder().encodeToString(encrypt(data.getBytes(StandardCharsets.UTF_8), secret.getBytes(StandardCharsets.UTF_8)));
     }
 
     /**
      * 使用 AES 算法，用给定密钥解密给定数据。
      *
-     * @param data 需要解密的数据
-     * @param key  加解密数据的密钥
+     * @param data   需要解密的数据
+     * @param secret 加解密数据的密钥
      * @return 解密结果，如果解密失败则为 {@code null}
      */
-    public static String decrypt(String data, String key) {
+    public static String decrypt(String data, String secret) {
         return new String(Objects.requireNonNull(
                 decrypt(Base64.getDecoder().decode(data.getBytes()),
-                        key.getBytes(StandardCharsets.UTF_8)))
+                        secret.getBytes(StandardCharsets.UTF_8)))
         );
     }
 
@@ -130,7 +130,7 @@ public final class AesUtil {
      *
      * @return 生成的安全密文
      */
-    public static String generateRandomKey() {
+    public static String generateRandomSecret() {
         return UUID.randomUUID().toString().replaceAll("-", "").substring(0, 16);
     }
 

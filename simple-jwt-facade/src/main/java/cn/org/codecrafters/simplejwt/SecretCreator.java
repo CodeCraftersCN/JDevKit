@@ -22,59 +22,51 @@ import cn.org.codecrafters.simplejwt.exceptions.WeakSecretException;
 import java.util.Random;
 
 /**
- * SecretCreator is a utility class that provides methods to generate secure
- * secret strings. The generated secrets can be used as cryptographic keys or
- * passwords for various security-sensitive purposes.
+ * {@code SecretCreator} 是一个实用类，它提供了生成安全秘密字符串的方法。生成的秘密字符串
+ * 可用作密码密钥或密码，用于各种安全敏感目的。
  *
  * @author Zihlu Wang
+ * @author Zitai Long
  * @version 1.1.0
  * @since 1.0.0
  */
 public final class SecretCreator {
 
     /**
-     * Private constructor to prevent instantiation
+     * 防止实例化的私有构造函数
      */
     private SecretCreator() {
     }
 
     /**
-     * The string containing all lowercase characters that can be used to
-     * generate the secret.
+     * 包含所有小写字符的字符串，可用于生成密文。
      */
     private static final String LOWERCASE_CHARACTERS = "abcdefghijklmnopqrstuvwxyz";
 
     /**
-     * The string containing all uppercase characters that can be used to
-     * generate the secret.
+     * 包含所有大写字符的字符串，可用于生成密文。
      */
     private static final String UPPERCASE_CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     /**
-     * The string containing all digit characters that can be used to generate
-     * the secret.
+     * 包含可用于生成密文的所有数字字符的字符串。
      */
     private static final String DIGITS = "0123456789";
 
     /**
-     * The string containing all special sign characters that can be used to
-     * generate the secret.
+     * 包含可用于生成密文的所有特殊符号字符的字符串。
      */
     private static final String SPECIAL_SIGNS = "!@#$%^&,*()_+-=,[]{}|;:,'\",.<>/?";
 
     /**
-     * Generates a secure secret with the specified length and character sets.
+     * 生成具有指定长度和字符集的安全密文。
      *
-     * @param length               the length of the secret to be generated
-     * @param isContainCapital     flag indicating if the secret should contain
-     *                             uppercase letters
-     * @param isContainDigital     flag indicating if the secret should contain
-     *                             digits
-     * @param isContainSpecialSign flag indicating if the secret should contain
-     *                             special sign characters
-     * @return the generated secure secret
-     * @throws WeakSecretException if the requested secret length is less than
-     *                             32 characters
+     * @param length               要生成的密钥长度
+     * @param isContainCapital     指示密钥是否包含大写字母的标志
+     * @param isContainDigital     指示密钥是否包含数字的标志
+     * @param isContainSpecialSign 指示密钥是否包含特殊字符的标志
+     * @return 生成的密钥
+     * @throws WeakSecretException 如果要求生成密钥的长度小于 32 个字符
      */
     public static String createSecret(int length,
                                       boolean isContainCapital,
@@ -82,39 +74,34 @@ public final class SecretCreator {
                                       boolean isContainSpecialSign) {
         if (length < 32) {
             throw new WeakSecretException("""
-                    The requested secret, which is only %d characters long, is too weak. \
-                    Please replace it with a stronger secret.
-                    """.formatted(length));
+                    您请求的密钥仅有 %d 字符长的密钥安全性不足，请考虑更换一个更强的密钥。""".formatted(length));
         }
 
-        final var randomizer = new Random();
+        final var randomiser = new Random();
         var charset = new StringBuilder(LOWERCASE_CHARACTERS);
 
         if (isContainCapital) charset.append(UPPERCASE_CHARACTERS);
         if (isContainDigital) charset.append(DIGITS);
         if (isContainSpecialSign) charset.append(SPECIAL_SIGNS);
 
-        var password = new StringBuilder();
+        var secretBuilder = new StringBuilder();
         var charsetSize = charset.length();
         for (var i = 0; i < length; ++i) {
-            password.append(charset.charAt(randomizer.nextInt(charsetSize)));
+            secretBuilder.append(charset.charAt(randomiser.nextInt(charsetSize)));
         }
 
-        return password.toString();
+        return secretBuilder.toString();
     }
 
     /**
-     * Generates a secure secret with the specified length, containing
-     * uppercase letters and digits.
+     * 生成具有指定长度和字符集的安全密文。
      *
-     * @param length           the length of the secret to be generated
-     * @param isContainCapital flag indicating if the secret should contain
-     *                         uppercase letters
-     * @param isContainDigital flag indicating if the secret should contain
-     *                         digits
-     * @return the generated secure secret
-     * @throws WeakSecretException if the requested secret length is less than
-     *                             32 characters
+     * @param length           要生成的密钥长度
+     * @param isContainCapital 指示密钥是否包含大写字母的标志
+     * @param isContainDigital 指示密钥是否包含数字的标志
+     * @return 生成的密钥
+     * @throws WeakSecretException 如果要求生成密钥的长度小于 32 个字符
+     * @see #createSecret(int, boolean, boolean, boolean)
      */
     public static String createSecret(int length,
                                       boolean isContainCapital,
@@ -123,15 +110,13 @@ public final class SecretCreator {
     }
 
     /**
-     * Generates a secure secret with the specified length, containing
-     * uppercase letters.
+     * 生成具有指定长度和字符集的安全密文。
      *
-     * @param length           the length of the secret to be generated
-     * @param isContainCapital flag indicating if the secret should contain
-     *                         uppercase letters
-     * @return the generated secure secret
-     * @throws WeakSecretException if the requested secret length is less than
-     *                             32 characters
+     * @param length           要生成的密钥长度
+     * @param isContainCapital 指示密钥是否包含大写字母的标志
+     * @return 生成的密钥
+     * @throws WeakSecretException 如果要求生成密钥的长度小于 32 个字符
+     * @see #createSecret(int, boolean, boolean, boolean)
      */
     public static String createSecret(int length,
                                       boolean isContainCapital) {
@@ -139,13 +124,12 @@ public final class SecretCreator {
     }
 
     /**
-     * Generates a secure secret with the specified length, containing
-     * lowercase letters.
+     * 生成具有指定长度和字符集的安全密文。
      *
-     * @param length the length of the secret to be generated
-     * @return the generated secure secret
-     * @throws WeakSecretException if the requested secret length is less than
-     *                             32 characters
+     * @param length 要生成的密钥长度
+     * @return 生成的密钥
+     * @throws WeakSecretException 如果要求生成密钥的长度小于 32 个字符
+     * @see #createSecret(int, boolean, boolean, boolean)
      */
     public static String createSecret(int length) {
         return createSecret(length, false, false, false);

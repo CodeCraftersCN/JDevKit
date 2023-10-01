@@ -16,11 +16,8 @@
  */
 
 /**
- * This package contains annotation classes that are used to prevent annotated
- * properties from being automatically injected into the JSON Web Token (JWT)
- * payload during token generation. These annotations can be applied to
- * properties of a data class to exclude them from being included as part
- * of the JWT payload.
+ * 此软件包包含注解类，用于防止注解属性在令牌生成过程中自动注入 JSON Web 令牌（JWT）有效载荷。
+ * 这些注解可应用于数据类的属性，以防止它们被作为 JWT 有效负载的一部分。
  *
  * @since 1.0.0
  */

@@ -16,24 +16,17 @@
  */
 
 /**
- * The {@code cn.org.codecrafters.simplejwt} package is the core package of the
- * Simple JWT project, which provides a lightweight and easy-to-use library for
- * working with JSON Web Tokens (JWTs) in Java applications. JWT is a
- * widely-used standard for representing claims between two parties, typically
- * used to secure web and mobile applications. This library aims to simplify
- * the JWT handling process and provide convenient abstractions for JWT
- * generation, validation, and extraction.
+ * {@code cn.org.codecrafters.simplejwt} 包是 <b>Simple JWT</b> 项目的核心包，它为在
+ * Java 应用程序中使用 JSON Web 标记（JWT）提供了一个轻量级且易于使用的库。JWT 是一种广泛使用
+ * 的标准，用于表示双方之间的声明，通常用于确保网络和移动应用程序的安全。该库旨在简化 JWT
+ * 处理流程，并为 JWT 生成、验证和提取提供方便的抽象。
  * <p>
- * The Simple JWT library is designed to be flexible and customisable, allowing
- * developers to use different algorithms, token resolvers, and token payload
- * classes based on their specific application requirements. It aims to
- * simplify the JWT handling process while maintaining security and best
- * practices for working with JWTs.
+ * <b>Simple JWT</b> 库的设计具有灵活性和可定制性，允许开发人员根据其特定应用程序的要求使用
+ * 不同的算法、令牌解析器和令牌有效载荷类。该库旨在简化 JWT 处理流程，同时保持安全性和使用 JWT
+ * 的最佳实践。
  * <p>
- * Developers should refer to the official documentation and examples for the
- * Simple JWT project to understand how to use the library effectively and
- * securely in their Java applications.
- * 
+ * 开发人员应参考 <b>Simple JWT</b> 项目的官方文档和示例，了解如何在其 Java 应用程序中有效、
+ * 安全地使用该库。
  *
  * @since 1.0.0
  */

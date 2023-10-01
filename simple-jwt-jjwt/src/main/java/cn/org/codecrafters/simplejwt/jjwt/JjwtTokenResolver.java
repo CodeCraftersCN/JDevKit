@@ -43,30 +43,26 @@ import java.util.Map;
 import java.util.UUID;
 
 /**
- * The {@link JjwtTokenResolver} class is an implementation of the {@link
- * cn.org.codecrafters.simplejwt.TokenResolver} interface. It uses the {@code
- * io.jsonwebtoken:jjwt} library to handle JSON Web Token (JWT) resolution.
- * This resolver provides functionality to create, extract, verify, and renew
- * JWT tokens using various algorithms and custom payload data.
+ * {@link JjwtTokenResolver} 类是 {@link cn.org.codecrafters.simplejwt.TokenResolver}
+ * 接口的实现。它使用 {@code io.jsonwebtoken:jjwt} 库来处理 JSON 网络令牌（JWT）解析。
+ * 该解析器提供了使用各种算法和自定义有效载荷数据创建、提取、验证和更新 JWT 令牌的功能。
+ *
  * <p>
- * <b>Dependencies:</b>
- * This implementation relies on the {@code io.jsonwebtoken:jjwt} library. Please
- * ensure you have added this library as a dependency to your project before
- * using this resolver.
+ * <b>依赖关系：</b>
+ * 本实现依赖于 {@code io.jsonwebtoken:jjwt} 库。
+ * 在使用此解析器之前，请确保您已将此库作为依赖项添加到您的项目中。
  * <p>
- * <b>Usage:</b>
- * To use the {@code JjwtTokenResolver}, first, create an instance of this
- * class:
+ * <b>使用方法：</b>
+ * 要使用 {@code JjwtTokenResolver}，首先要创建该类的一个实例：
  * <pre>{@code
- *   TokenResolver<DecodedJWT> tokenResolver =
+ *   TokenResolver<Jws<Claims>> tokenResolver =
  *       new JjwtTokenResolver(TokenAlgorithm.HS256,
  *                                 "Token Subject",
  *                                 "Token Issuer",
  *                                 "Token Secret");
  *   }</pre>
  * <p>
- * Then, you can utilize the various methods provided by this resolver to
- * handle JWT tokens:
+ * 然后，您就可以利用该解析器提供的各种方法来处理 JWT 标记：
  * <pre>{@code
  *   // Creating a new JWT token
  *   String token =
@@ -84,13 +80,12 @@ import java.util.UUID;
  *       tokenResolver.renew(token, Duration.ofMinutes(30), customPayloads);
  *   }</pre>
  * <p>
- * <b>Note:</b>
- * It is essential to configure the appropriate algorithms, secret, and issuer
- * according to your specific use case when using this resolver.
- * Additionally, ensure that the {@code io.jsonwebtoken:jjwt} library is
- * correctly configured in your project's dependencies.
+ * <b>注意事项：</b>
+ * 使用此解析器时，必须根据具体使用情况配置适当的算法、密文和签发器。
+ * 此外，请确保在项目的依赖项中正确配置了 {@code io.jsonwebtoken:jjwt} 库。
  *
  * @author Zihlu Wang
+ * @author Zitai Long
  * @version 1.1.0
  * @see Claims
  * @see Jws
@@ -112,17 +107,25 @@ public class JjwtTokenResolver implements TokenResolver<Jws<Claims>> {
 
     private final JjwtTokenResolverConfig config = JjwtTokenResolverConfig.getInstance();
 
+    /**
+     * 创建 {@code JjwtTokenResolver} 工具。
+     *
+     * @param jtiCreator 令牌 ID 生成器
+     * @param algorithm  令牌签名算法
+     * @param issuer     令牌签发者
+     * @param secret     密钥
+     */
     public JjwtTokenResolver(GuidCreator<?> jtiCreator, TokenAlgorithm algorithm, String issuer, String secret) {
         if (secret == null || secret.isBlank()) {
-            throw new IllegalArgumentException("A secret is required to build a JSON Web Token.");
+            throw new IllegalArgumentException("创建 JSON 网络令牌需要一个密文。");
         }
 
         if (secret.length() <= 32) {
             log.error("""
-                            The provided secret which owns {} characters is too weak. Please replace it with a stronger one.""",
+                            所提供的包含 {} 字符的密文太弱。请替换为更强的密文。""",
                     secret.length());
             throw new WeakSecretException("""
-                    The provided secret which owns %s characters is too weak. Please replace it with a stronger one."""
+                    所提供的包含 %s 个字符的密文太弱。请替换为更强的密文。"""
                     .formatted(secret.length()));
         }
 
@@ -132,17 +135,24 @@ public class JjwtTokenResolver implements TokenResolver<Jws<Claims>> {
         this.key = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
     }
 
+    /**
+     * 创建 {@code JjwtTokenResolver} 工具。
+     *
+     * @param algorithm 令牌的签名算法
+     * @param issuer    令牌签发者
+     * @param secret    密钥
+     */
     public JjwtTokenResolver(TokenAlgorithm algorithm, String issuer, String secret) {
         if (secret == null || secret.isBlank()) {
-            throw new IllegalArgumentException("A secret is required to build a JSON Web Token.");
+            throw new IllegalArgumentException("创建 JSON 网络令牌需要一个密文。");
         }
 
         if (secret.length() <= 32) {
             log.error(
-                    "The provided secret which owns {} characters is too weak. Please replace it with a stronger one.",
+                    "所提供的包含 {} 字符的密文太弱。请替换为更强的密文。",
                     secret.length());
             throw new WeakSecretException(
-                    "The provided secret which owns %s characters is too weak. Please replace it with a stronger one."
+                    "所提供的包含 %s 个字符的密文太弱。请替换为更强的密文。"
                             .formatted(secret.length()));
         }
 
@@ -152,17 +162,23 @@ public class JjwtTokenResolver implements TokenResolver<Jws<Claims>> {
         this.key = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
     }
 
+    /**
+     * 创建 {@code JjwtTokenResolver} 工具。
+     *
+     * @param issuer 令牌签发者
+     * @param secret 密钥
+     */
     public JjwtTokenResolver(String issuer, String secret) {
         if (secret == null || secret.isBlank()) {
-            throw new IllegalArgumentException("A secret is required to build a JSON Web Token.");
+            throw new IllegalArgumentException("创建 JSON 网络令牌需要一个密文。");
         }
 
         if (secret.length() <= 32) {
             log.error(
-                    "The provided secret which owns {} characters is too weak. Please replace it with a stronger one.",
+                    "所提供的包含 {} 字符的密文太弱。请替换为更强的密文。",
                     secret.length());
             throw new WeakSecretException(
-                    "The provided secret which owns %s characters is too weak. Please replace it with a stronger one."
+                    "所提供的包含 %s 个字符的密文太弱。请替换为更强的密文。"
                             .formatted(secret.length()));
         }
 
@@ -172,6 +188,11 @@ public class JjwtTokenResolver implements TokenResolver<Jws<Claims>> {
         this.key = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
     }
 
+    /**
+     * 生成 {@code JjwtTokenResolver} 工具。
+     *
+     * @param issuer 令牌签发者
+     */
     public JjwtTokenResolver(String issuer) {
         this.jtiCreator = UUID::randomUUID;
         this.algorithm = config.getAlgorithm(TokenAlgorithm.HS256);
@@ -179,6 +200,16 @@ public class JjwtTokenResolver implements TokenResolver<Jws<Claims>> {
         this.key = Keys.hmacShaKeyFor(SecretCreator.createSecret(32, true, true, true).getBytes(StandardCharsets.UTF_8));
     }
 
+    /**
+     * 生成令牌。
+     *
+     * @param expireAfter 令牌有效期
+     * @param audience    令牌的受众
+     * @param subject     令牌的主题
+     * @param now         当前时间
+     * @param claims      令牌的有效载荷
+     * @return 生成的令牌
+     */
     private String buildToken(Duration expireAfter, String audience, String subject, LocalDateTime now, Map<String, Object> claims) {
         var builder = Jwts.builder()
                 .setHeaderParam("typ", "JWT")
@@ -199,13 +230,12 @@ public class JjwtTokenResolver implements TokenResolver<Jws<Claims>> {
     }
 
     /**
-     * Creates a new token with the specified expiration time, subject, and
-     * audience.
+     * 创建一个新令牌，并指定有效期、主题和受众。
      *
-     * @param expireAfter the duration after which the token will expire
-     * @param audience    the audience for which the token is intended
-     * @param subject     the subject of the token
-     * @return the generated token as a {@code String}
+     * @param expireAfter 令牌过期的时间
+     * @param audience    令牌的目标受众
+     * @param subject     令牌的主体
+     * @return 生成的令牌
      */
     @Override
     public String createToken(Duration expireAfter, String audience, String subject) {
@@ -214,14 +244,13 @@ public class JjwtTokenResolver implements TokenResolver<Jws<Claims>> {
     }
 
     /**
-     * Creates a new token with the specified expiration time, subject,
-     * audience, and custom payload data.
+     * 创建一个新令牌，其中包含指定的过期时间、主题、受众和自定义有效载荷数据。
      *
-     * @param expireAfter the duration after which the token will expire
-     * @param audience    the audience for which the token is intended
-     * @param subject     the subject of the token
-     * @param payload     the custom payload data to be included in the token
-     * @return the generated token as a {@code String}
+     * @param expireAfter 令牌过期的时间
+     * @param audience    令牌的目标受众
+     * @param subject     令牌主体
+     * @param payload     将包含在令牌中的自定义有效载荷数据
+     * @return 生成的令牌为 {@code String}
      */
     @Override
     public String createToken(Duration expireAfter, String audience, String subject, Map<String, Object> payload) {
@@ -230,16 +259,13 @@ public class JjwtTokenResolver implements TokenResolver<Jws<Claims>> {
     }
 
     /**
-     * Creates a new token with the specified expiration time, subject,
-     * audience, and strongly-typed payload data.
+     * 创建新令牌，并指定有效期、主题、受众和强类型有效载荷数据。
      *
-     * @param expireAfter the duration after which the token will expire
-     * @param audience    the audience for which the token is intended
-     * @param subject     the subject of the token
-     * @param payload     the strongly-typed payload data to be included in the
-     *                    token
-     * @return the generated token as a {@code String} or {@code null} if
-     * creation fails
+     * @param expireAfter 令牌过期的时间
+     * @param audience    令牌的目标受众
+     * @param subject     令牌主体
+     * @param payload     令牌中包含的强类型有效载荷数据
+     * @return 生成的令牌为 {@code String} 或 {@code null} 如果 创建失败
      * @see MapUtil#objectToMap(Object)
      */
     @Override
@@ -249,17 +275,17 @@ public class JjwtTokenResolver implements TokenResolver<Jws<Claims>> {
             var claims = MapUtil.objectToMap(payload);
             return buildToken(expireAfter, audience, subject, now, claims);
         } catch (IllegalAccessException e) {
-            log.error("An error occurs while accessing the fields of the object");
+            log.error("访问对象字段时发生错误。");
         }
 
         return null;
     }
 
     /**
-     * Resolves the given token into a ResolvedTokenType object.
+     * 将给定的标记解析为 {@link Jws<Claims>} 对象。
      *
-     * @param token the token to be resolved
-     * @return a ResolvedTokenType object
+     * @param token 要解析的令牌
+     * @return 一个 ResolvedTokenType 对象
      */
     @Override
     public Jws<Claims> resolve(String token) {
@@ -270,13 +296,11 @@ public class JjwtTokenResolver implements TokenResolver<Jws<Claims>> {
     }
 
     /**
-     * Extracts the payload information from the given token and maps it to the
-     * specified target type.
+     * 从给定标记中提取有效载荷信息，并将其映射到指定的目标类型。
      *
-     * @param token      the token from which to extract the payload
-     * @param targetType the target class representing the payload data type
-     * @return an instance of the specified target type with the extracted
-     * payload data, or {@code null} if extraction fails.
+     * @param token      从中提取有效载荷的令牌
+     * @param targetType 代表有效载荷数据类型的目标类
+     * @return 指定目标类型的实例，其中包含提取的有效载荷数据；如果提取失败，则返回 {@code null}。
      * @see MapUtil#mapToObject(Map, Class)
      */
     @Override
@@ -287,25 +311,24 @@ public class JjwtTokenResolver implements TokenResolver<Jws<Claims>> {
         try {
             return MapUtil.mapToObject(claims, targetType);
         } catch (InvocationTargetException e) {
-            log.info("An error occurs while invoking the constructor of type {}.", targetType.getCanonicalName());
+            log.error("调用 {} 类型的构造函数时发生错误。", targetType.getCanonicalName());
         } catch (NoSuchMethodException e) {
-            log.error("The constructor of the required type {} is not found.", targetType.getCanonicalName());
+            log.error("未找到所需类型 {} 的构造函数。", targetType.getCanonicalName());
         } catch (InstantiationException e) {
-            log.error("The required type {} is abstract or an interface.", targetType.getCanonicalName());
+            log.error("所需类型 {} 是抽象类型或接口类型。", targetType.getCanonicalName());
         } catch (IllegalAccessException e) {
-            log.error("An error occurs while accessing the fields of the object.");
+            log.error("访问对象的字段时发生错误。");
         }
 
         return null;
     }
 
     /**
-     * Renews the given expired token with the specified custom payload data.
+     * 使用指定的自定义有效载荷数据更新给定的过期令牌。
      *
-     * @param oldToken    the expired token to be renewed
-     * @param expireAfter specify when does the new token invalid
-     * @param payload     the custom payload data to be included in the renewed
-     *                    token
+     * @param oldToken    要续期的过期令牌
+     * @param expireAfter 指定新令牌何时失效
+     * @param payload     更新令牌中包含的自定义有效载荷数据
      * @return the renewed token as a {@code String}
      */
     @Override
@@ -318,12 +341,11 @@ public class JjwtTokenResolver implements TokenResolver<Jws<Claims>> {
     }
 
     /**
-     * Renews the given expired token with the specified custom payload data.
+     * 使用指定的自定义有效载荷数据更新给定的过期令牌。
      *
-     * @param oldToken the expired token to be renewed
-     * @param payload  the custom payload data to be included in the renewed
-     *                 token
-     * @return the renewed token as a {@code String}
+     * @param oldToken 要续期的过期令牌
+     * @param payload  将包含在已更新令牌中的自定义有效载荷数据
+     * @return 更新的标记为 {@code String}
      */
     @Override
     public String renew(String oldToken, Map<String, Object> payload) {
@@ -331,14 +353,12 @@ public class JjwtTokenResolver implements TokenResolver<Jws<Claims>> {
     }
 
     /**
-     * Renews the given expired token with the specified strongly-typed
-     * payload data.
+     * 使用指定的强类型有效载荷数据更新给定的过期令牌。
      *
-     * @param oldToken    the expired token to be renewed
-     * @param expireAfter specify when does the new token invalid
-     * @param payload     the strongly-typed payload data to be included in the
-     *                    renewed token
-     * @return the renewed token as a {@code String}
+     * @param oldToken    要续期的过期令牌
+     * @param expireAfter 指定新令牌何时失效
+     * @param payload     续期令牌中将包含的强类型有效载荷数据
+     * @return 更新的标记为 {@code String}
      */
     @Override
     public <T extends TokenPayload> String renew(String oldToken, Duration expireAfter, T payload) {
@@ -350,13 +370,11 @@ public class JjwtTokenResolver implements TokenResolver<Jws<Claims>> {
     }
 
     /**
-     * Renews the given expired token with the specified strongly-typed
-     * payload data.
+     * 使用指定的强类型有效载荷数据更新给定的过期令牌。
      *
-     * @param oldToken the expired token to be renewed
-     * @param payload  the strongly-typed payload data to be included in the
-     *                 renewed token
-     * @return the renewed token as a {@code String}
+     * @param oldToken 要续期的过期令牌
+     * @param payload  续期令牌中将包含的强类型有效载荷数据
+     * @return 更新的标记为 {@code String}
      */
     @Override
     public <T extends TokenPayload> String renew(String oldToken, T payload) {

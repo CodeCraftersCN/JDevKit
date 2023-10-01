@@ -16,37 +16,26 @@
  */
 
 /**
- * The package {@code cn.org.codecrafters.simplejwt.jjwt.config} contains
- * configuration classes related to the {@link
+ * 包 {@code cn.org.codecrafters.simplejwt.jjwt.config} 包含
+ * 与 {@link cn.org.codecrafters.simplejwt.jjwt.JjwtTokenResolver} 实现相关的配置类。
+ *
+ * <p>
+ * 该软件包中的类为 {@link cn.org.codecrafters.simplejwt.jjwt.JjwtTokenResolver}
+ * 提供了配置选项和设置，后者用于使用 Auth0 库解析 JSON Web 标记（JWT）。
+ * <p>
+ * {@link cn.org.codecrafters.simplejwt.jjwt.config.JjwtTokenResolverConfig}
+ * 类是一个配置类，它定义了标准 {@link cn.org.codecrafters.simplejwt.constants.TokenAlgorithm}
+ * 与 {@link cn.org.codecrafters.simplejwt.jjwt.JjwtTokenResolver}
+ * 用于处理 JWT 算法的相应函数实现之间的映射。它使开发人员能够根据所选的 JWT 算法和所使用的库指定和自定义算法函数。
+ * <p>
+ * 此软件包中的配置选项可帮助开发人员将 {@link
  * cn.org.codecrafters.simplejwt.jjwt.JjwtTokenResolver}
- * implementation.
+ * 无缝集成并配置到 Spring Boot 应用程序中。开发人员可以微调令牌解析过程并自定义算法处理，
+ * 以满足其特定要求和所需的安全级别。
  * <p>
- * The classes in this package provide configuration options and settings for
- * the {@link cn.org.codecrafters.simplejwt.jjwt.JjwtTokenResolver},
- * which is used for resolving JSON Web Tokens (JWT) using the Auth0 library.
- * <p>
- * The {@link
- * cn.org.codecrafters.simplejwt.jjwt.config.JjwtTokenResolverConfig}
- * class is a configuration class that defines the mapping between standard
- * {@link cn.org.codecrafters.simplejwt.constants.TokenAlgorithm} and the
- * corresponding function implementation used by {@link
- * cn.org.codecrafters.simplejwt.jjwt.JjwtTokenResolver} for handling
- * JWT algorithms. It enables developers to specify and customize the
- * algorithm functions according to the chosen JWT algorithm and the library
- * being used.
- * <p>
- * The configuration options in this package help developers integrate and
- * configure the {@link
- * cn.org.codecrafters.simplejwt.jjwt.JjwtTokenResolver} seamlessly
- * into their Spring Boot applications. Developers can fine-tune the token
- * resolution process and customize algorithm handling to align with their
- * specific requirements and desired level of security.
- * <p>
- * It is recommended to explore the classes in this package to understand how
- * to configure and use the {@link
- * cn.org.codecrafters.simplejwt.jjwt.JjwtTokenResolver} effectively
- * in the Spring Boot environment to handle JWT authentication and
- * authorisation securely and efficiently.
+ * 建议探索此软件包中的类，以了解如何在 Spring Boot 环境中有效配置和使用
+ * {@link cn.org.codecrafters.simplejwt.jjwt.JjwtTokenResolver} ，
+ * 从而安全高效地处理 JWT 身份验证和授权。
  *
  * @since 1.0.0
  */

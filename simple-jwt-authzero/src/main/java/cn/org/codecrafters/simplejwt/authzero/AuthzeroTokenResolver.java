@@ -39,20 +39,17 @@ import java.time.ZoneId;
 import java.util.*;
 
 /**
- * The {@code AuthzeroTokenResolver} class is an implementation of the {@link
- * cn.org.codecrafters.simplejwt.TokenResolver} interface. It uses the {@code
- * com.auth0:java-jwt} library to handle JSON Web Token (JWT) resolution. This
- * resolver provides functionality to create, extract, verify, and renew JWT
- * tokens using various algorithms and custom payload data.
+ * 该类 {@code AuthzeroTokenResolver} 实现了 {@link
+ * cn.org.codecrafters.simplejwt.TokenResolver} 接口. 它用了 {@code
+ * com.auth0:java-jwt} 库来处理 JSON 网络令牌 (JWT) 解析。
+ * 该解析器提供使用各种算法和自定义有效载荷数据创建、提取、验证和更新 JWT 标记的功能。
  * <p>
- * <b>Dependencies:</b>
- * This implementation relies on the {@code com.auth0:java-jwt} library. Please
- * ensure you have added this library as a dependency to your project before
- * using this resolver.
+ * <b>依赖:</b>
+ * 该实现依赖于 {@code com.auth0:java-jwt} 库。
+ * 在使用此解析器之前，请确保已将此库作为依赖项添加到您的项目中。
  * <p>
- * <b>Usage:</b>
- * To use the {@code AuthzeroTokenResolver}, first, create an instance of this
- * class:
+ * <b>使用方法:</b>
+ * 要使用该 {@code AuthzeroTokenResolver} 功能，首先要创建一个类:
  * <pre>{@code
  * TokenResolver<DecodedJWT> tokenResolver =
  *     new AuthzeroTokenResolver(TokenAlgorithm.HS256,
@@ -61,32 +58,30 @@ import java.util.*;
  *                               "Token Secret");
  * }</pre>
  * <p>
- * Then, you can utilize the various methods provided by this resolver to
- * handle JWT tokens:
+ * 然后，您就可以利用该解析器提供的各种方法来处理 JWT 标记：
  * <pre>{@code
- * // Creating a new JWT token
+ * // 创建新的 JWT 标记
  * String token =
  *     tokenResolver.createToken(Duration.ofHours(1),
  *                               "your_subject",
  *                               "your_audience",
  *                               customPayloads);
  *
- * // Extracting payload data from a JWT token
+ * // 从 JWT 令牌中提取有效载荷数据
  * DecodedJWT decodedJWT = tokenResolver.resolve(token);
  * T payloadData = decodedJWT.extract(token, T.class);
  *
- * // Renewing an existing JWT token
+ * // 更新现有的 JWT 令牌
  * String renewedToken =
  *     tokenResolver.renew(token, Duration.ofMinutes(30), customPayloads);
  * }</pre>
  * <p>
- * <b>Note:</b>
- * It is essential to configure the appropriate algorithms, secret, and issuer
- * according to your specific use case when using this resolver.
- * Additionally, ensure that the {@code com.auth0:java-jwt} library is
- * correctly configured in your project's dependencies.
+ * <b>备注:</b>
+ * 使用该解析器时，必须根据具体使用情况配置适当的算法、密文和签发器。
+ * 此外，请确保在项目的依赖项中正确配置了该 {@code com.auth0:java-jwt} 库。
  *
  * @author Zihlu Wang
+ * @author Zitai Long
  * @version 1.1.0
  * @see GuidCreator
  * @see Algorithm
@@ -99,47 +94,42 @@ import java.util.*;
 public class AuthzeroTokenResolver implements TokenResolver<DecodedJWT> {
 
     /**
-     * GuidCreator used for generating unique identifiers for "jti" claim in
-     * JWT tokens.
+     * 用于为 JWT 标记中的 "jti" 声明生成唯一标识符的 GuidCreator。
      */
     private final GuidCreator<?> jtiCreator;
 
     /**
-     * The algorithm used for signing and verifying JWT tokens.
+     * 用于签署和验证 JWT 标记的算法。
      */
     private final Algorithm algorithm;
 
     /**
-     * The issuer claim value to be included in JWT tokens.
+     * 将包含在 JWT 标记中的发行者声明值。
      */
     private final String issuer;
 
     /**
-     * The JSON Web Token resolver.
+     * JSON 网络令牌解析器。
      */
     private final JWTVerifier verifier;
 
     private final AuthzeroTokenResolverConfig config = AuthzeroTokenResolverConfig.getInstance();
 
     /**
-     * Creates a new instance of AuthzeroTokenResolver with the provided
-     * configurations.
+     * 使用提供的配置创建一个新 {@code AuthzeroTokenResolver} 实例。
      *
-     * @param jtiCreator the GuidCreator used for generating unique identifiers
-     *                   for "jti" claim in JWT tokens
-     * @param algorithm  the algorithm used for signing and verifying JWT
-     *                   tokens
-     * @param issuer     the issuer claim value to be included in JWT tokens
-     * @param secret     the secret used for HMAC-based algorithms (HS256,
-     *                   HS384, HS512) for token signing and verification
+     * @param jtiCreator 这个 {@link GuidCreator} 用于为 JWT 标记中的 "jti" 请求生成唯一标识符
+     * @param algorithm  用于签署和验证 JWT 标记的算法
+     * @param issuer     将包含在 JWT 标记中的发行人声明值
+     * @param secret     基于 HMAC 算法（HS256、HS384、HS512）的密文，用于令牌签名和验证
      */
     public AuthzeroTokenResolver(GuidCreator<?> jtiCreator, TokenAlgorithm algorithm, String issuer, String secret) {
         if (secret == null || secret.isBlank()) {
-            throw new IllegalArgumentException("A secret is required to build a JSON Web Token.");
+            throw new IllegalArgumentException("创建 JSON 网络令牌需要一个密文。");
         }
 
         if (secret.length() <= 32) {
-            log.warn("The provided secret which owns {} characters is too weak. Please consider replacing it with a stronger one.", secret.length());
+            log.warn("所提供的字符密文 {} 太短。请考虑将其更换为更长的。", secret.length());
         }
 
         this.jtiCreator = jtiCreator;
@@ -151,24 +141,22 @@ public class AuthzeroTokenResolver implements TokenResolver<DecodedJWT> {
     }
 
     /**
-     * Creates a new instance of AuthzeroTokenResolver with the provided
-     * configurations and a simple UUID GuidCreator.
+     * 使用提供的配置和简单 UUID GuidCreator 创建一个 {@link AuthzeroTokenResolver}  新实例。
      *
-     * @param algorithm the algorithm used for signing and verifying JWT tokens
-     * @param issuer    the issuer claim value to be included in JWT tokens
-     * @param secret    the secret used for HMAC-based algorithms (HS256,
-     *                  HS384, HS512) for token signing and verification
+     * @param algorithm 用于签署和验证 JWT 标记的算法
+     * @param issuer    将包含在 JWT 标记中的发行人声明值
+     * @param secret    基于 HMAC 算法（HS256、HS384、HS512）的密文，用于令牌签名和验证
      */
     public AuthzeroTokenResolver(TokenAlgorithm algorithm, String issuer, String secret) {
         if (secret == null || secret.isBlank()) {
-            throw new IllegalArgumentException("A secret is required to build a JSON Web Token.");
+            throw new IllegalArgumentException("创建 JSON 网络令牌需要一个密文。");
         }
 
         if (secret.length() <= 32) {
-            log.warn("The provided secret which owns {} characters is too weak. Please consider replacing it with a stronger one.", secret.length());
+            log.warn("所提供的字符密文 {} 太短。请考虑将其更换为更长的。", secret.length());
         }
 
-        this.jtiCreator = (GuidCreator<UUID>) UUID::randomUUID;
+        this.jtiCreator = UUID::randomUUID;
         this.algorithm = config
                 .getAlgorithm(algorithm)
                 .apply(secret);
@@ -177,23 +165,22 @@ public class AuthzeroTokenResolver implements TokenResolver<DecodedJWT> {
     }
 
     /**
-     * Creates a new instance of AuthzeroTokenResolver with the provided
-     * configurations, HMAC256 algorithm and a simple UUID GuidCreator.
+     * 使用提供的配置、HMAC256 算法和简单 UUID GuidCreator
+     * 创建一个 {@link AuthzeroTokenResolver} 新实例。
      *
-     * @param issuer the issuer claim value to be included in JWT tokens
-     * @param secret the secret used for HMAC-based algorithms (HS256,
-     *               HS384, HS512) for token signing and verification
+     * @param issuer 将包含在 JWT 标记中的发行人声明值
+     * @param secret 基于 HMAC 算法（HS256、HS384、HS512）的密文，用于令牌签名和验证
      */
     public AuthzeroTokenResolver(String issuer, String secret) {
         if (secret == null || secret.isBlank()) {
-            throw new IllegalArgumentException("A secret is required to build a JSON Web Token.");
+            throw new IllegalArgumentException("创建 JSON 网络令牌需要一个密文。");
         }
 
         if (secret.length() <= 32) {
-            log.warn("The provided secret which owns {} characters is too weak. Please consider replacing it with a stronger one.", secret.length());
+            log.warn("所提供的字符密文 {} 太短。请考虑将其更换为更长的。", secret.length());
         }
 
-        this.jtiCreator = (GuidCreator<UUID>) UUID::randomUUID;
+        this.jtiCreator = UUID::randomUUID;
         this.algorithm = config
                 .getAlgorithm(TokenAlgorithm.HS256)
                 .apply(secret);
@@ -202,34 +189,31 @@ public class AuthzeroTokenResolver implements TokenResolver<DecodedJWT> {
     }
 
     /**
-     * Creates a new instance of AuthzeroTokenResolver with the provided
-     * configurations, HMAC256 algorithm and a simple UUID GuidCreator.
+     * 使用提供的配置、HMAC256 算法和简单 UUID GuidCreator
+     * 创建一个 {@link AuthzeroTokenResolver} 新实例。
      *
-     * @param issuer the issuer claim value to be included in JWT tokens
+     * @param issuer 将包含在 JWT 标记中的发行人声明值
      */
     public AuthzeroTokenResolver(String issuer) {
         var secret = SecretCreator.createSecret(32, true, true, true);
 
-        this.jtiCreator = (GuidCreator<UUID>) UUID::randomUUID;
+        this.jtiCreator = UUID::randomUUID;
         this.algorithm = config
                 .getAlgorithm(TokenAlgorithm.HS256)
                 .apply(secret);
         this.issuer = issuer;
         this.verifier = JWT.require(this.algorithm).build();
 
-        log.info("The secret has been set to {}.", secret);
+        log.info("该密文已被设置为 {}。", secret);
     }
 
     /**
-     * Builds the basic information of the JSON Web Token (JWT) using the
-     * provided parameters and adds it to the JWTCreator.Builder.
+     * 使用提供的参数构建 JSON 网络令牌 (JWT) 的基本信息，并将其添加到 JWTCreator.Builder 中。
      *
-     * @param subject     the subject claim value to be included in the JWT
-     * @param audience    an array of audience claim values to be included in
-     *                    the JWT
-     * @param expireAfter the duration after which the JWT will expire
-     * @param builder     the JWTCreator.Builder instance to which the basic
-     *                    information will be added
+     * @param subject     将包含在 JWT 中的标的声明值
+     * @param audience    一个将包含在 JWT 中的受众声明值数组
+     * @param expireAfter JWT 将过期的持续时间
+     * @param builder     将添加基本信息的 JWTCreator.Builder 实例
      */
     private void buildBasicInfo(JWTCreator.Builder builder, Duration expireAfter, String subject, String... audience) {
         var now = LocalDateTime.now();
@@ -251,11 +235,11 @@ public class AuthzeroTokenResolver implements TokenResolver<DecodedJWT> {
     }
 
     /**
-     * Add a claim to a builder.
+     * 向构造器商添加声明。
      *
-     * @param builder the builder to build this JSON Web Token
-     * @param name    the property name
-     * @param value   the property value
+     * @param builder 构建器来构建该 JSON 网络令牌
+     * @param name    属性名
+     * @param value   属性值
      */
     private void addClaim(JWTCreator.Builder builder, String name, Object value) {
         if (Objects.nonNull(value)) {
@@ -277,7 +261,7 @@ public class AuthzeroTokenResolver implements TokenResolver<DecodedJWT> {
                 builder.withClaim(name, v);
             } else {
                 log.warn("""
-                        Unable to determine the type of field {}, converting it to a string now.""", name);
+                        无法确定字段 {} 的类型，现在将其转换为字符串。""", name);
                 builder.withClaim(name, value.toString());
             }
         } else {
@@ -286,20 +270,15 @@ public class AuthzeroTokenResolver implements TokenResolver<DecodedJWT> {
     }
 
     /**
+     * 使用提供的权利要求映射表构建 JSON 网络令牌 (JWT) 的自定义权利要求，
+     * 并将其添加到 JWTCreator.Builder 中。
      * <p>
-     * Builds the custom claims of the JSON Web Token (JWT) using the provided
-     * Map of claims and adds them to the JWTCreator.Builder.
-     * <p>
-     * <p>
-     * This method is used to add custom claims to the JWT. It takes a Map of
-     * claims, where each entry represents a custom claim name (key) and its
-     * corresponding value (value). The custom claims will be added to the JWT
-     * using the JWTCreator.Builder.
-     * <p>
+     * 该方法用于向 JWT 添加自定义声明。它接收一个索赔映射表，
+     * 其中每个条目代表一个自定义索赔名称（key）及其相应的值（value）。
+     * 自定义请求将使用 JWTCreator.Builder.Map 方法添加到 JWT。
      *
-     * @param claims  a Map containing the custom claims to be added to the JWT
-     * @param builder the JWTCreator.Builder instance to which the custom
-     *                claims will be added
+     * @param claims  其中包含要添加到 JWT 中的自定义声明的键值对
+     * @param builder 将添加自定义索赔的 JWTCreator.Builder 实例
      */
     private void buildMapClaims(JWTCreator.Builder builder, Map<String, Object> claims) {
         if (Objects.nonNull(claims)) {
@@ -310,27 +289,24 @@ public class AuthzeroTokenResolver implements TokenResolver<DecodedJWT> {
     }
 
     /**
+     * 完成创建令牌。
      * <p>
-     * Finish creating a token.
+     * 这是创建令牌的最后一步，也是签署令牌的最后一步。
      *
-     * <p>
-     * This is the final step of create a token, to sign this token.
-     *
-     * @param builder the builder to build this JWT
-     * @return the generated token as a {@code String}
+     * @param builder 构建器来构建该 JWT
+     * @return 生成的令牌作为 {@code String}
      */
     private String buildToken(JWTCreator.Builder builder) {
         return builder.sign(algorithm);
     }
 
     /**
-     * Creates a new token with the specified expiration time, subject, and
-     * audience.
+     * 创建一个新令牌，并指定有效期、主题和受众。
      *
-     * @param expireAfter the duration after which the token will expire
-     * @param subject     the subject of the token
-     * @param audience    the audience for which the token is intended
-     * @return the generated token as a {@code String}
+     * @param expireAfter 令牌过期的时间
+     * @param subject     标记的主体
+     * @param audience    令牌面向的受众
+     * @return 生成的令牌作为 {@code String}
      */
     @Override
     public String createToken(Duration expireAfter, String audience, String subject) {
@@ -340,14 +316,13 @@ public class AuthzeroTokenResolver implements TokenResolver<DecodedJWT> {
     }
 
     /**
-     * Creates a new token with the specified expiration time, subject,
-     * audience, and custom payload data.
+     * 创建一个新令牌，并指定到期时间和主题、受众和自定义有效载荷数据。
      *
-     * @param expireAfter the duration after which the token will expire
-     * @param subject     the subject of the token
-     * @param audience    the audience for which the token is intended
-     * @param payloads    the custom payload data to be included in the token
-     * @return the generated token as a {@code String}
+     * @param expireAfter 令牌过期的时间
+     * @param subject     标记的主体
+     * @param audience    令牌面向的受众
+     * @param payloads    将包含在令牌中的自定义有效载荷数据(键值对类型)
+     * @return 生成的令牌作为 {@code String}
      */
     @Override
     public String createToken(Duration expireAfter, String audience, String subject, Map<String, Object> payloads) {
@@ -359,15 +334,13 @@ public class AuthzeroTokenResolver implements TokenResolver<DecodedJWT> {
     }
 
     /**
-     * Creates a new token with the specified expiration time, subject,
-     * audience, and strongly-typed payload data.
+     * 创建一个新令牌，并指定有效期、主题、受众和强类型有效载荷数据。
      *
-     * @param expireAfter the duration after which the token will expire
-     * @param subject     the subject of the token
-     * @param audience    the audience for which the token is intended
-     * @param payload     the strongly-typed payload data to be included in the
-     *                    token
-     * @return the generated token as a {@code String}
+     * @param expireAfter 令牌过期的时间
+     * @param subject     标记的主体
+     * @param audience    令牌面向的受众
+     * @param payload     将包含在令牌中的自定义有效载荷数据(泛型)
+     * @return 生成的令牌作为 {@code String}
      */
     @Override
     public <T extends TokenPayload> String createToken(Duration expireAfter, String audience, String subject, T payload) {
@@ -387,7 +360,7 @@ public class AuthzeroTokenResolver implements TokenResolver<DecodedJWT> {
                 // Build Claims
                 addClaim(builder, field.getName(), field.get(payload));
             } catch (IllegalAccessException e) {
-                log.error("Cannot access field %s!".formatted(field.getName()));
+                log.error("Cannot access field {}!", field.getName());
             }
         }
 
@@ -395,10 +368,10 @@ public class AuthzeroTokenResolver implements TokenResolver<DecodedJWT> {
     }
 
     /**
-     * Resolves the given token into a DecodedJWT object.
+     * 将给定的标记转换为 @link DecodedJWT} 对象。
      *
-     * @param token the token to be resolved
-     * @return a ResolvedToken object
+     * @param token 要解析的标记
+     * @return 一个 {@link DecodedJWT} 对象
      */
     @Override
     public DecodedJWT resolve(String token) {
@@ -406,42 +379,41 @@ public class AuthzeroTokenResolver implements TokenResolver<DecodedJWT> {
     }
 
     /**
-     * Extracts the payload information from the given token and maps it to the
-     * specified target type.
+     * 从给定标记中提取有效载荷信息，并将其映射到指定的目标类型。
      *
-     * @param token      the token from which to extract the payload
-     * @param targetType the target class representing the payload data type
-     * @return an instance of the specified target type with the extracted
-     * payload data, or {@code null} when extraction fails
+     * @param token      从中提取有效负载的令牌
+     * @param targetType 代表有效负载数据类型的目标类
+     * @return 指定目标类型的实例，其中包含提取的有效载荷数据，
+     * 或者当 {@code null} 提取失败时
      */
     @Override
     public <T extends TokenPayload> T extract(String token, Class<T> targetType) {
-        // Get claims from token.
+        // 从令牌中获取声明。
         var claims = resolve(token).getClaims();
 
         try {
-            // Get the no-argument constructor to create an instance.
+            // 获取无参数构造函数以创建实例。
             T bean = targetType.getConstructor().newInstance();
 
             var fields = targetType.getDeclaredFields();
             for (var field : fields) {
-                // Ignore the field annotated with @ExcludeFromPayload.
+                // 忽略注释为 @ExcludeFromPayload 的字段。
                 if (field.isAnnotationPresent(ExcludeFromPayload.class))
                     continue;
 
-                // Get the name of this field.
+                // 获取该字段的名称。
                 var fieldName = field.getName();
 
-                // Prevent this class is annotated @Slf4j or added logger.
+                // 防止该类被注释为 @Slf4j 或添加日志记录器。
                 if ("log".equalsIgnoreCase(fieldName) || "logger".equalsIgnoreCase(fieldName))
                     continue;
 
-                // Get the value of this field.
+                // 获取该字段的值。
                 var fieldValue = Optional.ofNullable(claims.get(fieldName))
                         .map(claim -> claim.as(field.getType()))
                         .orElse(null);
                 if (fieldValue != null) {
-                    // Set the field value by invoking the setter method.
+                    // 通过调用 setter 方法设置字段值。
                     var setter = targetType.getDeclaredMethod("set" + fieldName.substring(0, 1).toUpperCase() + fieldName.substring(1), fieldValue.getClass());
                     setter.invoke(bean, fieldValue);
                 }
@@ -449,20 +421,19 @@ public class AuthzeroTokenResolver implements TokenResolver<DecodedJWT> {
 
             return bean;
         } catch (NoSuchMethodException e) {
-            log.error("Unable to find a no-argument constructor declaration for class %s.".formatted(targetType.getCanonicalName()));
+            log.error("无法为类 {} 找到无参数构造函数声明。", targetType.getCanonicalName());
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
-            log.error("Unable to create a new instance of class %s.".formatted(targetType.getCanonicalName()));
+            log.error("无法创建类 {} 的新实例。", targetType.getCanonicalName());
         }
         return null;
     }
 
     /**
-     * Renews the given expired token with the specified custom payload data.
+     * 使用指定的自定义有效载荷数据更新给定的过期令牌。
      *
-     * @param oldToken the expired token to be renewed
-     * @param payload  the custom payload data to be included in the renewed
-     *                 token
-     * @return the renewed token as a {@code String}
+     * @param oldToken 要续期的过期令牌
+     * @param payload  将包含在已更新令牌中的自定义有效负载数据
+     * @return 更新后的令牌作为 {@code String}
      */
     @Override
     public String renew(String oldToken, Duration expireAfter, Map<String, Object> payload) {
@@ -473,12 +444,11 @@ public class AuthzeroTokenResolver implements TokenResolver<DecodedJWT> {
     }
 
     /**
-     * Renews the given expired token with the specified custom payload data.
+     * 使用指定的自定义有效载荷数据更新给定的过期令牌。
      *
-     * @param oldToken the expired token to be renewed
-     * @param payload  the custom payload data to be included in the renewed
-     *                 token
-     * @return the renewed token as a {@code String}
+     * @param oldToken 要续期的即将到期的令牌
+     * @param payload  将包含在已更新令牌中的自定义有效载荷数据
+     * @return 更新后的令牌作为 {@code String}
      */
     @Override
     public String renew(String oldToken, Map<String, Object> payload) {
@@ -486,13 +456,11 @@ public class AuthzeroTokenResolver implements TokenResolver<DecodedJWT> {
     }
 
     /**
-     * Renews the given expired token with the new specified strongly-typed
-     * payload data.
+     * 使用新的指定强类型有效载荷数据更新给定的过期令牌。
      *
-     * @param oldToken the expired token to be renewed
-     * @param payload  the strongly-typed payload data to be included in the
-     *                 renewed token
-     * @return the renewed token as a {@code String}
+     * @param oldToken 要续期的即将到期的令牌
+     * @param payload  续期令牌中将包含的强类型有效载荷数据
+     * @return 更新后的令牌作为 {@code String}
      */
     @Override
     public <T extends TokenPayload> String renew(String oldToken, Duration expireAfter, T payload) {
@@ -503,15 +471,13 @@ public class AuthzeroTokenResolver implements TokenResolver<DecodedJWT> {
     }
 
     /**
-     * Renews the given expired token with the new specified strongly-typed
-     * payload data.
+     * 使用新的指定强类型有效载荷数据更新给定的过期令牌。
      *
-     * @param <T>      the type of the payload data, must implement
+     * @param <T>      有效载荷数据类型，必须执行
      *                 {@link TokenPayload}
-     * @param oldToken the expired token to be renewed
-     * @param payload  the strongly-typed payload data to be included in the
-     *                 renewed token
-     * @return the renewed token as a {@code String}
+     * @param oldToken 要续期的过期令牌
+     * @param payload  续期令牌中将包含的强类型有效载荷数据
+     * @return 更新后的令牌作为 {@link String}
      */
     @Override
     public <T extends TokenPayload> String renew(String oldToken, T payload) {

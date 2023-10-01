@@ -16,15 +16,12 @@
  */
 
 /**
- * The classes in this package provide configuration options and settings for
- * the Simple JWT library. They are used to customize the behavior of the
- * library and allow developers to fine-tune various aspects of JWT generation
- * and validation.
+ * 本软件包中的类为 {@code cn.org.codrafecters:simple-jwt-facade} 库提供了配置选项和设
+ * 置。它们用于自定义库的行为，并允许开发人员对 JWT 生成和验证的各个方面进行微调。
  * <p>
- * Other configuration classes may be added in the future to support additional
- * customisation options and features. Developers using the Simple JWT library
- * should be familiar with the available configuration options to ensure proper
- * integration and usage of the library.
+ * 未来可能会添加其他配置类，以支持更多自定义选项和功能。使用
+ * {@code cn.org.codecrafters:simple-jwt-facade} 库的开发人员应熟悉可用的配置选项，以确
+ * 保正确集成和使用该库。
  *
  * @since 1.0.0
  */

@@ -57,7 +57,7 @@ import cn.org.codecrafters.simplejwt.SecretCreator;
 
 class GenerateRandomKeySample {
     public static void main(String[] args) {
-        var secret1 = AesUtil.generateRandomKey();
+        var secret1 = AesUtil.generateRandomSecret();
         var secret2 = SecretCreator.createSecret(16, true, true, true);
     }
 }

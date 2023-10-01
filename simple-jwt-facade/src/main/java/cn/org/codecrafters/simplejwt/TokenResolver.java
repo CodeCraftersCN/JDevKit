@@ -22,139 +22,119 @@ import java.time.Duration;
 import java.util.Map;
 
 /**
- * The {@code TokenResolver} interface defines methods for creating,
- * extracting, and renewing tokens, particularly JSON Web Tokens (JWTs). It
- * provides a set of methods to generate tokens with various payload
- * configurations, extract payload from tokens, and renew expired tokens.
+ * {@code TokenResolver} 定义了创建、提取和更新令牌（尤其是 JSON 网络令牌）的方法( JWTs )。
+ * 它提供了一套方法，用于生成具有各种有效载荷配置的令牌、从令牌中提取有效载荷以及更新过期令牌。
  * <p>
- * <b>Token Creation:</b>
- * The interface provides overloaded methods for creating tokens with different
- * payload configurations, including expiration time, audience, subject, and
- * custom payload data. Clients can choose the appropriate method based on
- * their specific token requirements.
+ * <b>Token 创建:</b>
+ * 该接口提供了重载方法，用于创建具有不同令牌创建有效载荷配置的令牌，包括过期时间、受众、主题和
+ * 自定义有效载荷数据。客户可根据自己的具体令牌需求选择合适的方法。
  * <p>
- * <b>Token Extraction:</b>
- * The interface includes methods to extract payload information from a given
- * token. Clients can use these methods to obtain the payload data encoded in
- * the token.
+ * <b>Token 提取:</b>
+ * 该接口包括从给定令牌中提取有效载荷信息的方法。客户端可以使用这些方法获取令牌中编码的有效载荷数据。
  * <p>
- * <b>Token Renewal:</b>
- * The interface also offers methods for token renewal. Clients can renew an
- * expired token by providing a new expiration time, audience, subject, and
- * optional custom payload data.
+ * <b>Token 更新:</b>
+ * 该接口还提供令牌更新方法。客户端可以通过提供新的过期时间、受众、主题和可选的自定义有效载荷数据来
+ * 更新已过期的令牌。
  *
- * @param <ResolvedTokenType> the type of the result obtained by the
- *                            third-party library when parsing JWTs
+ * @param <ResolvedTokenType> 第三方库在解析 JWT 时获得的结果的类型
  * @author Zihlu Wang
+ * @author Zitai Long
  * @version 1.1.0
  * @since 1.0.0
  */
 public interface TokenResolver<ResolvedTokenType> {
 
     /**
-     * Creates a new token with the specified expiration time, subject, and
-     * audience.
+     * 创建一个新令牌，并指定有效期、主题和受众。
      *
-     * @param expireAfter the duration after which the token will expire
-     * @param subject     the subject of the token
-     * @param audience    the audience for which the token is intended
-     * @return the generated token as a {@code String}
+     * @param expireAfter 令牌过期的时间
+     * @param subject     标记的主体
+     * @param audience    令牌面向的目标受众
+     * @return 生成的令牌作为 {@code String}
      */
     String createToken(Duration expireAfter, String audience, String subject);
 
     /**
-     * Creates a new token with the specified expiration time, subject,
-     * audience, and custom payload data.
+     * 创建一个新令牌，其中包含指定的过期时间、主题、受众和自定义有效载荷数据。
      *
-     * @param expireAfter the duration after which the token will expire
-     * @param subject     the subject of the token
-     * @param audience    the audience for which the token is intended
-     * @param payload     the custom payload data to be included in the token
-     * @return the generated token as a {@code String}
+     * @param expireAfter 令牌过期的时间
+     * @param subject     标记的主体
+     * @param audience    令牌面向的目标受众
+     * @param payload     将包含在令牌中的自定义有效载荷数据
+     * @return 生成的令牌作为 {@code String}
      */
     String createToken(Duration expireAfter, String audience, String subject, Map<String, Object> payload);
 
     /**
-     * Creates a new token with the specified expiration time, subject,
-     * audience, and strongly-typed payload data.
+     * 创建一个新令牌，并指定有效期、主题、受众和强类型有效载荷数据。
      *
-     * @param <T>         the type of the payload data, must implement
+     * @param <T>         有效载荷数据类型，必须实现
      *                    {@link TokenPayload}
-     * @param expireAfter the duration after which the token will expire
-     * @param subject     the subject of the token
-     * @param audience    the audience for which the token is intended
-     * @param payload     the strongly-typed payload data to be included in the
-     *                    token
-     * @return the generated token as a {@code String}
+     * @param expireAfter 令牌过期的时间
+     * @param subject     标记的主体
+     * @param audience    令牌面向的目标受众
+     * @param payload     令牌中包含的强类型有效载荷数据
+     * @return 生成的令牌作为 {@code String}
      */
     <T extends TokenPayload> String createToken(Duration expireAfter, String audience, String subject, T payload);
 
     /**
-     * Resolves the given token into a ResolvedTokenType object.
+     * 将给定的令牌解析为 ResolvedTokenType 对象。
      *
-     * @param token the token to be resolved
-     * @return a ResolvedTokenType object
+     * @param token 要解析的标记
+     * @return 一个 ResolvedTokenType 对象
      */
     ResolvedTokenType resolve(String token);
 
     /**
-     * Extracts the payload information from the given token and maps it to the
-     * specified target type.
+     * 从给定标记中提取有效载荷信息，并将其映射到指定的目标类型。
      *
-     * @param <T>        the target type to which the payload data will be
-     *                   mapped
-     * @param token      the token from which to extract the payload
-     * @param targetType the target class representing the payload data type
-     * @return an instance of the specified target type with the extracted
-     * payload data
+     * @param <T>        将映射有效载荷数据的目标类型
+     * @param token      从中提取有效负载的令牌
+     * @param targetType 代表有效载荷数据类型的目标类
+     * @return 指定目标类型的实例，其中包含提取的有效载荷数据
      */
     <T extends TokenPayload> T extract(String token, Class<T> targetType);
 
     /**
-     * Renews the given expired token with the specified custom payload data.
+     * 使用指定的自定义有效载荷数据更新给定的过期令牌。
      *
-     * @param oldToken    the expired token to be renewed
-     * @param expireAfter specify when does the new token invalid
-     * @param payload     the custom payload data to be included in the renewed
-     *                    token
-     * @return the renewed token as a {@code String}
+     * @param oldToken    要续期的过期令牌
+     * @param expireAfter 指定新令牌何时失效
+     * @param payload     更新令牌中包含的自定义有效载荷数据
+     * @return 更新后的令牌作为 {@code String}
      */
     String renew(String oldToken, Duration expireAfter, Map<String, Object> payload);
 
     /**
-     * Renews the given expired token with the specified custom payload data.
+     * 使用指定的自定义有效载荷数据更新给定的过期令牌。
      *
-     * @param oldToken the expired token to be renewed
-     * @param payload  the custom payload data to be included in the renewed
-     *                 token
-     * @return the renewed token as a {@code String}
+     * @param oldToken 要更新的过期令牌
+     * @param payload  将包含在已更新令牌中的自定义有效载荷数据
+     * @return 更新后的令牌作为 {@code String}
      */
     String renew(String oldToken, Map<String, Object> payload);
 
     /**
-     * Renews the given expired token with the specified strongly-typed
-     * payload data.
+     * 使用指定的强类型有效载荷数据更新给定的过期令牌。
      *
-     * @param <T>         the type of the payload data, must implement
+     * @param <T>         有效载荷数据类型，必须实现
      *                    {@link TokenPayload}
-     * @param oldToken    the expired token to be renewed
-     * @param expireAfter specify when does the new token invalid
-     * @param payload     the strongly-typed payload data to be included in the
-     *                    renewed token
-     * @return the renewed token as a {@code String}
+     * @param oldToken    要续期的过期令牌
+     * @param expireAfter 指定新令牌何时失效
+     * @param payload     续期令牌中将包含的强类型有效载荷数据
+     * @return 更新后的令牌作为 {@code String}
      */
     <T extends TokenPayload> String renew(String oldToken, Duration expireAfter, T payload);
 
     /**
-     * Renews the given expired token with the specified strongly-typed
-     * payload data.
+     * 使用指定的强类型有效载荷数据更新给定的过期令牌。
      *
-     * @param <T>      the type of the payload data, must implement
+     * @param <T>      有效载荷数据类型，必须实现
      *                 {@link TokenPayload}
-     * @param oldToken the expired token to be renewed
-     * @param payload  the strongly-typed payload data to be included in the
-     *                 renewed token
-     * @return the renewed token as a {@code String}
+     * @param oldToken 要续期的过期令牌
+     * @param payload  续期令牌中将包含的强类型有效载荷数据
+     * @return 更新后的令牌作为 {@code String}
      */
     <T extends TokenPayload> String renew(String oldToken, T payload);
 
