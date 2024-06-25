@@ -49,7 +49,7 @@ import java.time.ZoneId;
  * specifies a "{@link Method METHOD}" property, this property is equivalent to the "{@link
  * LastModified LAST-MODIFIED}" property.
  *
- * @author Zihlu WANG
+ * @author zihluwang
  */
 public record DateTimeStamp(LocalDateTime dateTimeStamp) implements DateTimeProperty, ComponentProperty {
 

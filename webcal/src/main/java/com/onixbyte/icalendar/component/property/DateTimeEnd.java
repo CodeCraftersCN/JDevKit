@@ -21,9 +21,20 @@ import com.onixbyte.icalendar.property.parameter.ValueDataType;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
-import java.util.Optional;
 
+/**
+ * {@code DateTimeEnd} specifies the date and time that a calendar component ends.
+ * <p>
+ * THis property can be specified in {@link com.onixbyte.icalendar.component.Event Event} or {@link
+ * com.onixbyte.icalendar.component.FreeBusy FreeBusy} calendar components.
+ *
+ * @param valueDataType the type of value, date-time or date
+ * @param tzId          the timezone of value
+ * @param localDateTime end time
+ * @author zihluwang
+ */
 public record DateTimeEnd(ValueDataType valueDataType,
+                          TimeZoneIdentifier tzId,
                           LocalDateTime localDateTime) implements DateTimeProperty, ComponentProperty {
 
     private static final String PROPERTY_NAME = "DTEND";

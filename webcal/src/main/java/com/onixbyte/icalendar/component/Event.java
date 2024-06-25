@@ -17,9 +17,7 @@
 
 package com.onixbyte.icalendar.component;
 
-import com.onixbyte.icalendar.component.property.Classification;
-import com.onixbyte.icalendar.component.property.DateTimeStamp;
-import com.onixbyte.icalendar.component.property.UniqueIdentifier;
+import com.onixbyte.icalendar.component.property.*;
 
 /**
  * Event
@@ -51,7 +49,7 @@ public class Event extends CalendarComponent {
     /**
      *
      */
-    // private DateTimeStamp dtStart;
+    private DateTimeStamp dtStart;
 
     /*
      * The following properties are OPTIONAL, but MUST NOT occur more than once.
@@ -61,6 +59,18 @@ public class Event extends CalendarComponent {
      *
      */
     private Classification classification;
+
+    private DateTimeCreated created;
+
+    private Description description;
+
+    private GeoPosition geo;
+
+    private LastModified lastModified;
+
+    private Location location;
+
+    // private Organi
 
     @Override
     public String resolve() {

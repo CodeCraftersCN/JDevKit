@@ -20,7 +20,7 @@ package com.onixbyte.icalendar.core;
 /**
  * CalendarUtil
  *
- * @author Zihlu WANG
+ * @author zihluwang
  */
 public final class CalendarUtil {
 

@@ -44,7 +44,7 @@ public final class Delegatee implements PropertyParameter {
     }
 
     public static class Builder {
-        private List<CalendarUserAddress> value;
+        private final List<CalendarUserAddress> value;
 
         private Builder() {
             this.value = new ArrayList<>();

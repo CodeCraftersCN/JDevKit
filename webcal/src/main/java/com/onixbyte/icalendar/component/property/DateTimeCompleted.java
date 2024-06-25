@@ -22,6 +22,14 @@ import com.onixbyte.icalendar.core.DateTimeFormatters;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 
+/**
+ * {@code DateTimeComplete} defines the date and time that a to-do was actually completed.
+ * <p>
+ * This property can be specified in a {@link com.onixbyte.icalendar.component.Todo Todo}
+ * calendar component
+ *
+ * @param value the date and time when this to-do event is completed and must be in UTC time.
+ */
 public record DateTimeCompleted(LocalDateTime value) implements DateTimeProperty, ComponentProperty {
 
     private static final String PROPERTY_NAME = "COMPLETED";

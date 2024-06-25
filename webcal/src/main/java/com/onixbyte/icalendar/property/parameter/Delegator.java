@@ -33,7 +33,7 @@ public final class Delegator implements PropertyParameter {
 
     private static final String PARAMETER_NAME = "DELEGATED-FROM";
 
-    private List<CalendarUserAddress> value;
+    private final List<CalendarUserAddress> value;
 
     private Delegator(List<CalendarUserAddress> value) {
         this.value = value;
@@ -44,7 +44,7 @@ public final class Delegator implements PropertyParameter {
     }
 
     public static class Builder {
-        private List<CalendarUserAddress> value;
+        private final List<CalendarUserAddress> value;
 
         private Builder() {
             value = new ArrayList<>();
